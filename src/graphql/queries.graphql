@@ -3,6 +3,7 @@ query GetUser($id: ID!) {
   getUser(id: $id) {
     id
     name
+    email
     description
     password
     createdAt
@@ -18,6 +19,7 @@ query ListUsers(
     items {
       id
       name
+      email
       description
       password
       createdAt

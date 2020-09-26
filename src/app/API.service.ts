@@ -8,12 +8,14 @@ import { Observable } from "zen-observable-ts";
 export type CreateUserInput = {
   id?: string | null;
   name: string;
+  email: string;
   description?: string | null;
   password: string;
 };
 
 export type ModelUserConditionInput = {
   name?: ModelStringInput | null;
+  email?: ModelStringInput | null;
   description?: ModelStringInput | null;
   password?: ModelStringInput | null;
   and?: Array<ModelUserConditionInput | null> | null;
@@ -63,6 +65,7 @@ export type ModelSizeInput = {
 export type UpdateUserInput = {
   id: string;
   name?: string | null;
+  email?: string | null;
   description?: string | null;
   password?: string | null;
 };
@@ -74,6 +77,7 @@ export type DeleteUserInput = {
 export type ModelUserFilterInput = {
   id?: ModelIDInput | null;
   name?: ModelStringInput | null;
+  email?: ModelStringInput | null;
   description?: ModelStringInput | null;
   password?: ModelStringInput | null;
   and?: Array<ModelUserFilterInput | null> | null;
@@ -101,6 +105,7 @@ export type CreateUserMutation = {
   __typename: "User";
   id: string;
   name: string;
+  email: string;
   description: string | null;
   password: string;
   createdAt: string;
@@ -111,6 +116,7 @@ export type UpdateUserMutation = {
   __typename: "User";
   id: string;
   name: string;
+  email: string;
   description: string | null;
   password: string;
   createdAt: string;
@@ -121,6 +127,7 @@ export type DeleteUserMutation = {
   __typename: "User";
   id: string;
   name: string;
+  email: string;
   description: string | null;
   password: string;
   createdAt: string;
@@ -131,6 +138,7 @@ export type GetUserQuery = {
   __typename: "User";
   id: string;
   name: string;
+  email: string;
   description: string | null;
   password: string;
   createdAt: string;
@@ -143,6 +151,7 @@ export type ListUsersQuery = {
     __typename: "User";
     id: string;
     name: string;
+    email: string;
     description: string | null;
     password: string;
     createdAt: string;
@@ -155,6 +164,7 @@ export type OnCreateUserSubscription = {
   __typename: "User";
   id: string;
   name: string;
+  email: string;
   description: string | null;
   password: string;
   createdAt: string;
@@ -165,6 +175,7 @@ export type OnUpdateUserSubscription = {
   __typename: "User";
   id: string;
   name: string;
+  email: string;
   description: string | null;
   password: string;
   createdAt: string;
@@ -175,6 +186,7 @@ export type OnDeleteUserSubscription = {
   __typename: "User";
   id: string;
   name: string;
+  email: string;
   description: string | null;
   password: string;
   createdAt: string;
@@ -194,6 +206,7 @@ export class APIService {
           __typename
           id
           name
+          email
           description
           password
           createdAt
@@ -220,6 +233,7 @@ export class APIService {
           __typename
           id
           name
+          email
           description
           password
           createdAt
@@ -246,6 +260,7 @@ export class APIService {
           __typename
           id
           name
+          email
           description
           password
           createdAt
@@ -269,6 +284,7 @@ export class APIService {
           __typename
           id
           name
+          email
           description
           password
           createdAt
@@ -295,6 +311,7 @@ export class APIService {
             __typename
             id
             name
+            email
             description
             password
             createdAt
@@ -325,6 +342,7 @@ export class APIService {
           __typename
           id
           name
+          email
           description
           password
           createdAt
@@ -341,6 +359,7 @@ export class APIService {
           __typename
           id
           name
+          email
           description
           password
           createdAt
@@ -357,6 +376,7 @@ export class APIService {
           __typename
           id
           name
+          email
           description
           password
           createdAt

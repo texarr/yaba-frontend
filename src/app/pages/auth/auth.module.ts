@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { AuthRoutingModule } from './auth-routing.module';
+import { ReactiveFormsModule } from '@angular/forms';
+import { AmplifyUIAngularModule } from '@aws-amplify/ui-angular';
 
 
 
@@ -10,7 +12,9 @@ import { AuthRoutingModule } from './auth-routing.module';
   declarations: [RegisterComponent, LoginComponent],
   imports: [
     CommonModule,
-    AuthRoutingModule
+    AuthRoutingModule,
+    ReactiveFormsModule,
+    AmplifyUIAngularModule
   ]
 })
 export class AuthModule { }

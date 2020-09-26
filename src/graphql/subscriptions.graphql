@@ -3,6 +3,7 @@ subscription OnCreateUser {
   onCreateUser {
     id
     name
+    email
     description
     password
     createdAt
@@ -13,6 +14,7 @@ subscription OnUpdateUser {
   onUpdateUser {
     id
     name
+    email
     description
     password
     createdAt
@@ -23,6 +25,7 @@ subscription OnDeleteUser {
   onDeleteUser {
     id
     name
+    email
     description
     password
     createdAt

@@ -1,1 +1,17 @@
-<p>login works!</p>
+<h1>User login form</h1>
+
+<div class="form-body">
+  <form autocomplete="off" [formGroup]="loginForm" (ngSubmit)="onLogin(loginForm.value)">
+    <div>
+      <label>Email:</label>
+      <input type="text" formControlName="email" autocomplete="off">
+    </div>
+
+    <div>
+      <label>Password:</label>
+      <input type="password" formControlName="password">
+    </div>
+
+    <button type="submit">Create</button>
+  </form>
+</div>

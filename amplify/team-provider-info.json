@@ -10,6 +10,11 @@
       "StackName": "amplify-yaba-dev-212138",
       "StackId": "arn:aws:cloudformation:eu-central-1:223858909161:stack/amplify-yaba-dev-212138/81081150-002d-11eb-8934-0a0ddac78b4a",
       "AmplifyAppId": "d3jjbpc3lthclo"
+    },
+    "categories": {
+      "auth": {
+        "yaba152b08e0": {}
+      }
     }
   }
 }
