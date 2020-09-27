@@ -1,17 +1,19 @@
-<h1>User login form</h1>
-
-<div class="form-body">
-  <form autocomplete="off" [formGroup]="loginForm" (ngSubmit)="onLogin(loginForm.value)">
-    <div>
-      <label>Email:</label>
-      <input type="text" formControlName="email" autocomplete="off">
+<div class="form-body p-grid">
+  <form class="p-col-6 p-offset-3 authForm" [formGroup]="loginForm" (ngSubmit)="onLogin(loginForm.value)">
+    <div class="p-field p-grid">
+      <label for="email" class="p-col-fixed authForm__label">Email:</label>
+      <div class="p-col">
+        <input type="text" id="email" formControlName="email" pInputText [className]="'authForm__input'">
+      </div>
     </div>
 
-    <div>
-      <label>Password:</label>
-      <input type="password" formControlName="password">
+    <div class="p-field p-grid">
+      <label for="pass" class="p-col-fixed authForm__label">Password:</label>
+      <div class="p-col">
+        <input type="password" id="pass" formControlName="password" pInputText [className]="'authForm__input'">
+      </div>
     </div>
 
-    <button type="submit">Create</button>
+    <button type="submit" [disabled]="loginForm.invalid" pButton>Login</button>
   </form>
 </div>

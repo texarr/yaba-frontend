@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { APIService } from '../../../API.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { User } from '../../../models/user.model';
-import { HttpErrorResponse } from '@angular/common/http';
 import { RxwebValidators } from '@rxweb/reactive-form-validators';
 import { AuthService } from '../auth-service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -17,14 +17,15 @@ export class RegisterComponent implements OnInit {
   constructor(
     private api: APIService,
     private fb: FormBuilder,
-    private authService: AuthService
+    private authService: AuthService,
   ) { }
 
   ngOnInit(): void {
     this.newUserForm = this.fb.group({
-      username: ['', [Validators.required]],
+      name: ['', Validators.required],
       email: ['', [Validators.required, RxwebValidators.email()]],
-      password: ['', [Validators.required, RxwebValidators.compare({fieldName: 'passwordRepeat'})]],
+      emailConfirm: ['', [Validators.required, RxwebValidators.email(), RxwebValidators.compare({fieldName: 'email'})]],
+      password: ['', [Validators.required]],
       passwordRepeat: ['', [Validators.required, RxwebValidators.compare({fieldName: 'password'})]]
     })
   }
@@ -32,6 +33,8 @@ export class RegisterComponent implements OnInit {
   async signUp(user: User): Promise<void> {
     await this.authService.signUp(user).then((res) => {
       console.log(res);
+    }, (error) => {
+      console.log(error);
     })
 
     // const newUserDto = {

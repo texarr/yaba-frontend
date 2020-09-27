@@ -1,30 +1,37 @@
 <div class="form-body p-grid">
-  <form class="p-col-6 p-offset-3 newUserForm" [formGroup]="newUserForm" (ngSubmit)="signUp(newUserForm.value)">
+  <form class="p-col-6 p-offset-3 authForm" [formGroup]="newUserForm" (ngSubmit)="signUp(newUserForm.value)">
     <div class="p-field p-grid">
-      <label for="name" class="p-col-fixed newUserForm__label">Username:</label>
+      <label for="name" class="p-col-fixed authForm__label">Name:</label>
       <div class="p-col">
-        <input type="text" id="name" formControlName="username" pInputText [className]="'newUserForm__input'">
+        <input type="text" id="name" formControlName="name" pInputText [className]="'authForm__input'">
       </div>
     </div>
 
     <div class="p-field p-grid">
-      <label for="email" class="p-col-fixed newUserForm__label">Email:</label>
+      <label for="email" class="p-col-fixed authForm__label">Email:</label>
       <div class="p-col">
-        <input type="text" id="email" formControlName="email" pInputText [className]="'newUserForm__input'">
+        <input type="text" id="email" formControlName="email" pInputText [className]="'authForm__input'">
       </div>
     </div>
 
     <div class="p-field p-grid">
-      <label for="pass" class="p-col-fixed newUserForm__label">Password:</label>
+      <label for="emailConfirm" class="p-col-fixed authForm__label">Email Confirm:</label>
       <div class="p-col">
-        <input type="password" id="pass" formControlName="password" pInputText [className]="'newUserForm__input'">
+        <input type="text" id="emailConfirm" formControlName="emailConfirm" pInputText [className]="'authForm__input'">
       </div>
     </div>
 
     <div class="p-field p-grid">
-      <label for="pass2" class="p-col-fixed newUserForm__label">Repeat:</label>
+      <label for="pass" class="p-col-fixed authForm__label">Password:</label>
       <div class="p-col">
-        <input type="password" id="pass2" formControlName="passwordRepeat" pInputText [className]="'newUserForm__input'">
+        <input type="password" id="pass" formControlName="password" pInputText [className]="'authForm__input'">
+      </div>
+    </div>
+
+    <div class="p-field p-grid">
+      <label for="pass2" class="p-col-fixed authForm__label">Repeat:</label>
+      <div class="p-col">
+        <input type="password" id="pass2" formControlName="passwordRepeat" pInputText [className]="'authForm__input'">
       </div>
     </div>
 
