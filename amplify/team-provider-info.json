@@ -1,20 +1,26 @@
 {
-  "dev": {
-    "awscloudformation": {
-      "AuthRoleName": "amplify-yaba-dev-212138-authRole",
-      "UnauthRoleArn": "arn:aws:iam::223858909161:role/amplify-yaba-dev-212138-unauthRole",
-      "AuthRoleArn": "arn:aws:iam::223858909161:role/amplify-yaba-dev-212138-authRole",
-      "Region": "eu-central-1",
-      "DeploymentBucketName": "amplify-yaba-dev-212138-deployment",
-      "UnauthRoleName": "amplify-yaba-dev-212138-unauthRole",
-      "StackName": "amplify-yaba-dev-212138",
-      "StackId": "arn:aws:cloudformation:eu-central-1:223858909161:stack/amplify-yaba-dev-212138/81081150-002d-11eb-8934-0a0ddac78b4a",
-      "AmplifyAppId": "d3jjbpc3lthclo"
-    },
-    "categories": {
-      "auth": {
-        "yaba152b08e0": {}
-      }
+    "dev": {
+        "awscloudformation": {
+            "AuthRoleName": "amplify-yaba-dev-212138-authRole",
+            "UnauthRoleArn": "arn:aws:iam::223858909161:role/amplify-yaba-dev-212138-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::223858909161:role/amplify-yaba-dev-212138-authRole",
+            "Region": "eu-central-1",
+            "DeploymentBucketName": "amplify-yaba-dev-212138-deployment",
+            "UnauthRoleName": "amplify-yaba-dev-212138-unauthRole",
+            "StackName": "amplify-yaba-dev-212138",
+            "StackId": "arn:aws:cloudformation:eu-central-1:223858909161:stack/amplify-yaba-dev-212138/81081150-002d-11eb-8934-0a0ddac78b4a",
+            "AmplifyAppId": "d3jjbpc3lthclo"
+        },
+        "categories": {
+            "auth": {
+                "yaba152b08e0": {}
+            },
+            "hosting": {
+                "amplifyhosting": {
+                    "appId": "d3jjbpc3lthclo",
+                    "type": "manual"
+                }
+            }
+        }
     }
-  }
 }
