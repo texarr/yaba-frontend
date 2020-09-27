@@ -1,9 +1,9 @@
 <div class="form-body p-grid">
-  <form class="p-col-6 p-offset-3 newUserForm" [formGroup]="newUserForm" (ngSubmit)="onCreate(newUserForm.value)">
+  <form class="p-col-6 p-offset-3 newUserForm" [formGroup]="newUserForm" (ngSubmit)="signUp(newUserForm.value)">
     <div class="p-field p-grid">
-      <label for="name" class="p-col-fixed newUserForm__label">Name:</label>
+      <label for="name" class="p-col-fixed newUserForm__label">Username:</label>
       <div class="p-col">
-        <input type="text" id="name" formControlName="name" pInputText [className]="'newUserForm__input'">
+        <input type="text" id="name" formControlName="username" pInputText [className]="'newUserForm__input'">
       </div>
     </div>
 
