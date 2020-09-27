@@ -5,8 +5,8 @@ import { LoginComponent } from './login/login.component';
 import { AuthRoutingModule } from './auth-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AmplifyUIAngularModule } from '@aws-amplify/ui-angular';
-
-
+import { InputTextModule } from 'primeng/inputtext';
+import { ButtonModule } from 'primeng/button';
 
 @NgModule({
   declarations: [RegisterComponent, LoginComponent],
@@ -14,7 +14,9 @@ import { AmplifyUIAngularModule } from '@aws-amplify/ui-angular';
     CommonModule,
     AuthRoutingModule,
     ReactiveFormsModule,
-    AmplifyUIAngularModule
+    AmplifyUIAngularModule,
+    InputTextModule,
+    ButtonModule
   ]
 })
 export class AuthModule { }

@@ -1,22 +1,33 @@
-<h1>User registration form</h1>
-
-<div class="form-body">
-  <form autocomplete="off" [formGroup]="newUserForm" (ngSubmit)="onCreate(newUserForm.value)">
-    <div>
-      <label>Name:</label>
-      <input type="text" formControlName="name" autocomplete="off">
+<div class="form-body p-grid">
+  <form class="p-col-6 p-offset-3 newUserForm" [formGroup]="newUserForm" (ngSubmit)="onCreate(newUserForm.value)">
+    <div class="p-field p-grid">
+      <label for="name" class="p-col-fixed newUserForm__label">Name:</label>
+      <div class="p-col">
+        <input type="text" id="name" formControlName="name" pInputText [className]="'newUserForm__input'">
+      </div>
     </div>
 
-    <div>
-      <label>Email:</label>
-      <input type="text" formControlName="email" autocomplete="off">
+    <div class="p-field p-grid">
+      <label for="email" class="p-col-fixed newUserForm__label">Email:</label>
+      <div class="p-col">
+        <input type="text" id="email" formControlName="email" pInputText [className]="'newUserForm__input'">
+      </div>
     </div>
 
-    <div>
-      <label>Password:</label>
-      <input type="password" formControlName="password">
+    <div class="p-field p-grid">
+      <label for="pass" class="p-col-fixed newUserForm__label">Password:</label>
+      <div class="p-col">
+        <input type="password" id="pass" formControlName="password" pInputText [className]="'newUserForm__input'">
+      </div>
     </div>
 
-    <button type="submit">Create</button>
+    <div class="p-field p-grid">
+      <label for="pass2" class="p-col-fixed newUserForm__label">Repeat:</label>
+      <div class="p-col">
+        <input type="password" id="pass2" formControlName="passwordRepeat" pInputText [className]="'newUserForm__input'">
+      </div>
+    </div>
+
+    <button type="submit" [disabled]="newUserForm.invalid" pButton>Submit</button>
   </form>
 </div>
