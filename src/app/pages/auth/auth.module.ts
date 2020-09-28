@@ -9,6 +9,8 @@ import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 import { ConfirmComponent } from './confirm/confirm.component';
 import { RxReactiveFormsModule } from '@rxweb/reactive-form-validators';
+import { TranslocoModule } from '@ngneat/transloco';
+import { UiComponentsModule } from '../../ui-components/ui-components.module';
 
 @NgModule({
   declarations: [RegisterComponent, LoginComponent, ConfirmComponent],
@@ -21,6 +23,8 @@ import { RxReactiveFormsModule } from '@rxweb/reactive-form-validators';
     AmplifyUIAngularModule,
     InputTextModule,
     ButtonModule,
+    TranslocoModule,
+    UiComponentsModule
   ]
 })
 export class AuthModule { }
