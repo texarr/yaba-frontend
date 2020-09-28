@@ -2,5 +2,10 @@
   "formLabels": {
     "email": "Email",
     "password": "Password"
+  },
+  "formValidators": {
+    "required": "This field is required",
+    "email": "Try a valid e-mail address",
+    "compare": "Fields must have same value here"
   }
 }

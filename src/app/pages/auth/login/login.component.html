@@ -10,9 +10,10 @@
             formControlName="email"
             pInputText
             [className]="'authForm__input'"
-            aria-describedby="email-help"
           >
-          <small class="p-invalid">Username is not available.</small>
+          <app-validation-message
+            [control]="loginForm.get('email')"
+          ></app-validation-message>
         </div>
       </div>
 
@@ -20,6 +21,9 @@
         <label for="pass" class="p-col-fixed authForm__label">{{t('formLabels.password')}}</label>
         <div class="p-col">
           <input type="password" id="pass" formControlName="password" pInputText [className]="'authForm__input'">
+          <app-validation-message
+            [control]="loginForm.get('password')"
+          ></app-validation-message>
         </div>
       </div>
 
