@@ -1,0 +1,2546 @@
+{
+    "pipes": [],
+    "interfaces": [
+        {
+            "name": "User",
+            "id": "interface-User-4f7d0d2586ca001e5496f0026a1fb780",
+            "file": "src/app/models/user.model.ts",
+            "type": "interface",
+            "sourceCode": "export interface User {\r\n  id?: string;\r\n  name: string;\r\n  email: string;\r\n  password: string;\r\n}\r\n",
+            "properties": [
+                {
+                    "name": "email",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 4
+                },
+                {
+                    "name": "id",
+                    "type": "string",
+                    "optional": true,
+                    "description": "",
+                    "line": 2
+                },
+                {
+                    "name": "name",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 3
+                },
+                {
+                    "name": "password",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 5
+                }
+            ],
+            "indexSignatures": [],
+            "kind": 150,
+            "methods": []
+        },
+        {
+            "name": "ValidationMessage",
+            "id": "interface-ValidationMessage-c57dcb16e383508a054d13e8f6d80f92",
+            "file": "src/app/ui-components/forms/validation-message/validation-message.component.ts",
+            "type": "interface",
+            "sourceCode": "import { Component, Input, ViewEncapsulation } from '@angular/core';\r\nimport { AbstractControl, ValidationErrors } from '@angular/forms';\r\n\r\ninterface ValidationMessage {\r\n  keyError: string;\r\n  value: any;\r\n}\r\n\r\n@Component({\r\n  selector: 'app-validation-message',\r\n  templateUrl: './validation-message.component.html',\r\n  styleUrls: ['./validation-message.component.scss']\r\n})\r\nexport class ValidationMessageComponent {\r\n  @Input() control: AbstractControl;\r\n\r\n  constructor() { }\r\n\r\n  getErrors(): ValidationMessage[] {\r\n    const errors: ValidationErrors = this.control.errors;\r\n    if (errors !== null) {\r\n      return Object.keys(errors).map(keyError => {\r\n        return {\r\n          keyError,\r\n          value: errors[keyError]\r\n        }\r\n      })\r\n    }\r\n    return null;\r\n  }\r\n}\r\n",
+            "properties": [
+                {
+                    "name": "keyError",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 5
+                },
+                {
+                    "name": "value",
+                    "type": "any",
+                    "optional": false,
+                    "description": "",
+                    "line": 6
+                }
+            ],
+            "indexSignatures": [],
+            "kind": 150,
+            "methods": []
+        }
+    ],
+    "injectables": [
+        {
+            "name": "APIService",
+            "id": "injectable-APIService-0c1a799e29edac11b63bd67b31c7078e",
+            "file": "src/app/API.service.ts",
+            "properties": [
+                {
+                    "name": "OnCreateUserListener",
+                    "defaultValue": "API.graphql(\n    graphqlOperation(\n      `subscription OnCreateUser {\n        onCreateUser {\n          __typename\n          id\n          name\n          email\n          description\n          password\n          createdAt\n          updatedAt\n        }\n      }`\n    )\n  ) as Observable<OnCreateUserSubscription>",
+                    "type": "Observable<OnCreateUserSubscription>",
+                    "optional": false,
+                    "description": "",
+                    "line": 338
+                },
+                {
+                    "name": "OnDeleteUserListener",
+                    "defaultValue": "API.graphql(\n    graphqlOperation(\n      `subscription OnDeleteUser {\n        onDeleteUser {\n          __typename\n          id\n          name\n          email\n          description\n          password\n          createdAt\n          updatedAt\n        }\n      }`\n    )\n  ) as Observable<OnDeleteUserSubscription>",
+                    "type": "Observable<OnDeleteUserSubscription>",
+                    "optional": false,
+                    "description": "",
+                    "line": 372
+                },
+                {
+                    "name": "OnUpdateUserListener",
+                    "defaultValue": "API.graphql(\n    graphqlOperation(\n      `subscription OnUpdateUser {\n        onUpdateUser {\n          __typename\n          id\n          name\n          email\n          description\n          password\n          createdAt\n          updatedAt\n        }\n      }`\n    )\n  ) as Observable<OnUpdateUserSubscription>",
+                    "type": "Observable<OnUpdateUserSubscription>",
+                    "optional": false,
+                    "description": "",
+                    "line": 355
+                }
+            ],
+            "methods": [
+                {
+                    "name": "CreateUser",
+                    "args": [
+                        {
+                            "name": "input",
+                            "type": "CreateUserInput"
+                        },
+                        {
+                            "name": "condition",
+                            "type": "ModelUserConditionInput",
+                            "optional": true
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "Promise<CreateUserMutation>",
+                    "typeParameters": [],
+                    "line": 200,
+                    "modifierKind": [
+                        120
+                    ],
+                    "jsdoctags": [
+                        {
+                            "name": "input",
+                            "type": "CreateUserInput",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        },
+                        {
+                            "name": "condition",
+                            "type": "ModelUserConditionInput",
+                            "optional": true,
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "DeleteUser",
+                    "args": [
+                        {
+                            "name": "input",
+                            "type": "DeleteUserInput"
+                        },
+                        {
+                            "name": "condition",
+                            "type": "ModelUserConditionInput",
+                            "optional": true
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "Promise<DeleteUserMutation>",
+                    "typeParameters": [],
+                    "line": 254,
+                    "modifierKind": [
+                        120
+                    ],
+                    "jsdoctags": [
+                        {
+                            "name": "input",
+                            "type": "DeleteUserInput",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        },
+                        {
+                            "name": "condition",
+                            "type": "ModelUserConditionInput",
+                            "optional": true,
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "GetUser",
+                    "args": [
+                        {
+                            "name": "id",
+                            "type": "string"
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "Promise<GetUserQuery>",
+                    "typeParameters": [],
+                    "line": 281,
+                    "modifierKind": [
+                        120
+                    ],
+                    "jsdoctags": [
+                        {
+                            "name": "id",
+                            "type": "string",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "ListUsers",
+                    "args": [
+                        {
+                            "name": "filter",
+                            "type": "ModelUserFilterInput",
+                            "optional": true
+                        },
+                        {
+                            "name": "limit",
+                            "type": "number",
+                            "optional": true
+                        },
+                        {
+                            "name": "nextToken",
+                            "type": "string",
+                            "optional": true
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "Promise<ListUsersQuery>",
+                    "typeParameters": [],
+                    "line": 302,
+                    "modifierKind": [
+                        120
+                    ],
+                    "jsdoctags": [
+                        {
+                            "name": "filter",
+                            "type": "ModelUserFilterInput",
+                            "optional": true,
+                            "tagName": {
+                                "text": "param"
+                            }
+                        },
+                        {
+                            "name": "limit",
+                            "type": "number",
+                            "optional": true,
+                            "tagName": {
+                                "text": "param"
+                            }
+                        },
+                        {
+                            "name": "nextToken",
+                            "type": "string",
+                            "optional": true,
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "UpdateUser",
+                    "args": [
+                        {
+                            "name": "input",
+                            "type": "UpdateUserInput"
+                        },
+                        {
+                            "name": "condition",
+                            "type": "ModelUserConditionInput",
+                            "optional": true
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "Promise<UpdateUserMutation>",
+                    "typeParameters": [],
+                    "line": 227,
+                    "modifierKind": [
+                        120
+                    ],
+                    "jsdoctags": [
+                        {
+                            "name": "input",
+                            "type": "UpdateUserInput",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        },
+                        {
+                            "name": "condition",
+                            "type": "ModelUserConditionInput",
+                            "optional": true,
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "description": "",
+            "sourceCode": "import { Injectable } from \"@angular/core\";\nimport API, { graphqlOperation, GraphQLResult } from \"@aws-amplify/api-graphql\";\nimport { Observable } from \"zen-observable-ts\";\n\nexport type CreateUserInput = {\n  id?: string | null;\n  name: string;\n  email: string;\n  description?: string | null;\n  password: string;\n};\n\nexport type ModelUserConditionInput = {\n  name?: ModelStringInput | null;\n  email?: ModelStringInput | null;\n  description?: ModelStringInput | null;\n  password?: ModelStringInput | null;\n  and?: Array<ModelUserConditionInput | null> | null;\n  or?: Array<ModelUserConditionInput | null> | null;\n  not?: ModelUserConditionInput | null;\n};\n\nexport type ModelStringInput = {\n  ne?: string | null;\n  eq?: string | null;\n  le?: string | null;\n  lt?: string | null;\n  ge?: string | null;\n  gt?: string | null;\n  contains?: string | null;\n  notContains?: string | null;\n  between?: Array<string | null> | null;\n  beginsWith?: string | null;\n  attributeExists?: boolean | null;\n  attributeType?: ModelAttributeTypes | null;\n  size?: ModelSizeInput | null;\n};\n\nexport enum ModelAttributeTypes {\n  binary = \"binary\",\n  binarySet = \"binarySet\",\n  bool = \"bool\",\n  list = \"list\",\n  map = \"map\",\n  number = \"number\",\n  numberSet = \"numberSet\",\n  string = \"string\",\n  stringSet = \"stringSet\",\n  _null = \"_null\"\n}\n\nexport type ModelSizeInput = {\n  ne?: number | null;\n  eq?: number | null;\n  le?: number | null;\n  lt?: number | null;\n  ge?: number | null;\n  gt?: number | null;\n  between?: Array<number | null> | null;\n};\n\nexport type UpdateUserInput = {\n  id: string;\n  name?: string | null;\n  email?: string | null;\n  description?: string | null;\n  password?: string | null;\n};\n\nexport type DeleteUserInput = {\n  id?: string | null;\n};\n\nexport type ModelUserFilterInput = {\n  id?: ModelIDInput | null;\n  name?: ModelStringInput | null;\n  email?: ModelStringInput | null;\n  description?: ModelStringInput | null;\n  password?: ModelStringInput | null;\n  and?: Array<ModelUserFilterInput | null> | null;\n  or?: Array<ModelUserFilterInput | null> | null;\n  not?: ModelUserFilterInput | null;\n};\n\nexport type ModelIDInput = {\n  ne?: string | null;\n  eq?: string | null;\n  le?: string | null;\n  lt?: string | null;\n  ge?: string | null;\n  gt?: string | null;\n  contains?: string | null;\n  notContains?: string | null;\n  between?: Array<string | null> | null;\n  beginsWith?: string | null;\n  attributeExists?: boolean | null;\n  attributeType?: ModelAttributeTypes | null;\n  size?: ModelSizeInput | null;\n};\n\nexport type CreateUserMutation = {\n  __typename: \"User\";\n  id: string;\n  name: string;\n  email: string;\n  description: string | null;\n  password: string;\n  createdAt: string;\n  updatedAt: string;\n};\n\nexport type UpdateUserMutation = {\n  __typename: \"User\";\n  id: string;\n  name: string;\n  email: string;\n  description: string | null;\n  password: string;\n  createdAt: string;\n  updatedAt: string;\n};\n\nexport type DeleteUserMutation = {\n  __typename: \"User\";\n  id: string;\n  name: string;\n  email: string;\n  description: string | null;\n  password: string;\n  createdAt: string;\n  updatedAt: string;\n};\n\nexport type GetUserQuery = {\n  __typename: \"User\";\n  id: string;\n  name: string;\n  email: string;\n  description: string | null;\n  password: string;\n  createdAt: string;\n  updatedAt: string;\n};\n\nexport type ListUsersQuery = {\n  __typename: \"ModelUserConnection\";\n  items: Array<{\n    __typename: \"User\";\n    id: string;\n    name: string;\n    email: string;\n    description: string | null;\n    password: string;\n    createdAt: string;\n    updatedAt: string;\n  } | null> | null;\n  nextToken: string | null;\n};\n\nexport type OnCreateUserSubscription = {\n  __typename: \"User\";\n  id: string;\n  name: string;\n  email: string;\n  description: string | null;\n  password: string;\n  createdAt: string;\n  updatedAt: string;\n};\n\nexport type OnUpdateUserSubscription = {\n  __typename: \"User\";\n  id: string;\n  name: string;\n  email: string;\n  description: string | null;\n  password: string;\n  createdAt: string;\n  updatedAt: string;\n};\n\nexport type OnDeleteUserSubscription = {\n  __typename: \"User\";\n  id: string;\n  name: string;\n  email: string;\n  description: string | null;\n  password: string;\n  createdAt: string;\n  updatedAt: string;\n};\n\n@Injectable({\n  providedIn: \"root\"\n})\nexport class APIService {\n  async CreateUser(\n    input: CreateUserInput,\n    condition?: ModelUserConditionInput\n  ): Promise<CreateUserMutation> {\n    const statement = `mutation CreateUser($input: CreateUserInput!, $condition: ModelUserConditionInput) {\n        createUser(input: $input, condition: $condition) {\n          __typename\n          id\n          name\n          email\n          description\n          password\n          createdAt\n          updatedAt\n        }\n      }`;\n    const gqlAPIServiceArguments: any = {\n      input\n    };\n    if (condition) {\n      gqlAPIServiceArguments.condition = condition;\n    }\n    const response = (await API.graphql(\n      graphqlOperation(statement, gqlAPIServiceArguments)\n    )) as any;\n    return <CreateUserMutation>response.data.createUser;\n  }\n  async UpdateUser(\n    input: UpdateUserInput,\n    condition?: ModelUserConditionInput\n  ): Promise<UpdateUserMutation> {\n    const statement = `mutation UpdateUser($input: UpdateUserInput!, $condition: ModelUserConditionInput) {\n        updateUser(input: $input, condition: $condition) {\n          __typename\n          id\n          name\n          email\n          description\n          password\n          createdAt\n          updatedAt\n        }\n      }`;\n    const gqlAPIServiceArguments: any = {\n      input\n    };\n    if (condition) {\n      gqlAPIServiceArguments.condition = condition;\n    }\n    const response = (await API.graphql(\n      graphqlOperation(statement, gqlAPIServiceArguments)\n    )) as any;\n    return <UpdateUserMutation>response.data.updateUser;\n  }\n  async DeleteUser(\n    input: DeleteUserInput,\n    condition?: ModelUserConditionInput\n  ): Promise<DeleteUserMutation> {\n    const statement = `mutation DeleteUser($input: DeleteUserInput!, $condition: ModelUserConditionInput) {\n        deleteUser(input: $input, condition: $condition) {\n          __typename\n          id\n          name\n          email\n          description\n          password\n          createdAt\n          updatedAt\n        }\n      }`;\n    const gqlAPIServiceArguments: any = {\n      input\n    };\n    if (condition) {\n      gqlAPIServiceArguments.condition = condition;\n    }\n    const response = (await API.graphql(\n      graphqlOperation(statement, gqlAPIServiceArguments)\n    )) as any;\n    return <DeleteUserMutation>response.data.deleteUser;\n  }\n  async GetUser(id: string): Promise<GetUserQuery> {\n    const statement = `query GetUser($id: ID!) {\n        getUser(id: $id) {\n          __typename\n          id\n          name\n          email\n          description\n          password\n          createdAt\n          updatedAt\n        }\n      }`;\n    const gqlAPIServiceArguments: any = {\n      id\n    };\n    const response = (await API.graphql(\n      graphqlOperation(statement, gqlAPIServiceArguments)\n    )) as any;\n    return <GetUserQuery>response.data.getUser;\n  }\n  async ListUsers(\n    filter?: ModelUserFilterInput,\n    limit?: number,\n    nextToken?: string\n  ): Promise<ListUsersQuery> {\n    const statement = `query ListUsers($filter: ModelUserFilterInput, $limit: Int, $nextToken: String) {\n        listUsers(filter: $filter, limit: $limit, nextToken: $nextToken) {\n          __typename\n          items {\n            __typename\n            id\n            name\n            email\n            description\n            password\n            createdAt\n            updatedAt\n          }\n          nextToken\n        }\n      }`;\n    const gqlAPIServiceArguments: any = {};\n    if (filter) {\n      gqlAPIServiceArguments.filter = filter;\n    }\n    if (limit) {\n      gqlAPIServiceArguments.limit = limit;\n    }\n    if (nextToken) {\n      gqlAPIServiceArguments.nextToken = nextToken;\n    }\n    const response = (await API.graphql(\n      graphqlOperation(statement, gqlAPIServiceArguments)\n    )) as any;\n    return <ListUsersQuery>response.data.listUsers;\n  }\n  OnCreateUserListener: Observable<OnCreateUserSubscription> = API.graphql(\n    graphqlOperation(\n      `subscription OnCreateUser {\n        onCreateUser {\n          __typename\n          id\n          name\n          email\n          description\n          password\n          createdAt\n          updatedAt\n        }\n      }`\n    )\n  ) as Observable<OnCreateUserSubscription>;\n\n  OnUpdateUserListener: Observable<OnUpdateUserSubscription> = API.graphql(\n    graphqlOperation(\n      `subscription OnUpdateUser {\n        onUpdateUser {\n          __typename\n          id\n          name\n          email\n          description\n          password\n          createdAt\n          updatedAt\n        }\n      }`\n    )\n  ) as Observable<OnUpdateUserSubscription>;\n\n  OnDeleteUserListener: Observable<OnDeleteUserSubscription> = API.graphql(\n    graphqlOperation(\n      `subscription OnDeleteUser {\n        onDeleteUser {\n          __typename\n          id\n          name\n          email\n          description\n          password\n          createdAt\n          updatedAt\n        }\n      }`\n    )\n  ) as Observable<OnDeleteUserSubscription>;\n}\n",
+            "type": "injectable"
+        },
+        {
+            "name": "AuthService",
+            "id": "injectable-AuthService-cd88676a2f018ca97e353461a7bad081",
+            "file": "src/app/pages/auth/auth-service.ts",
+            "properties": [],
+            "methods": [
+                {
+                    "name": "confirmSignUp",
+                    "args": [
+                        {
+                            "name": "username",
+                            "type": "string"
+                        },
+                        {
+                            "name": "code",
+                            "type": "string"
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "{}",
+                    "typeParameters": [],
+                    "line": 32,
+                    "modifierKind": [
+                        120
+                    ],
+                    "jsdoctags": [
+                        {
+                            "name": "username",
+                            "type": "string",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        },
+                        {
+                            "name": "code",
+                            "type": "string",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "resendConfirmationCode",
+                    "args": [
+                        {
+                            "name": "username",
+                            "type": "string"
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "{}",
+                    "typeParameters": [],
+                    "line": 52,
+                    "modifierKind": [
+                        120
+                    ],
+                    "jsdoctags": [
+                        {
+                            "name": "username",
+                            "type": "string",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "signIn",
+                    "args": [
+                        {
+                            "name": "username",
+                            "type": "string"
+                        },
+                        {
+                            "name": "password",
+                            "type": "string"
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "{}",
+                    "typeParameters": [],
+                    "line": 42,
+                    "modifierKind": [
+                        120
+                    ],
+                    "jsdoctags": [
+                        {
+                            "name": "username",
+                            "type": "string",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        },
+                        {
+                            "name": "password",
+                            "type": "string",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "signOut",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "{}",
+                    "typeParameters": [],
+                    "line": 60,
+                    "modifierKind": [
+                        120
+                    ]
+                },
+                {
+                    "name": "signUp",
+                    "args": [
+                        {
+                            "name": "userDto",
+                            "type": "User"
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "{}",
+                    "typeParameters": [],
+                    "line": 15,
+                    "modifierKind": [
+                        120
+                    ],
+                    "jsdoctags": [
+                        {
+                            "name": "userDto",
+                            "type": "User",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "description": "",
+            "sourceCode": "import { Injectable } from '@angular/core';\r\nimport { Auth } from 'aws-amplify';\r\nimport { User } from '../../models/user.model';\r\nimport { Router } from '@angular/router';\r\n\r\n@Injectable({\r\n  providedIn: 'root'\r\n})\r\nexport class AuthService {\r\n\r\n  constructor(\r\n    private router: Router\r\n  ) {}\r\n\r\n  async signUp(userDto: User) {\r\n    try {\r\n      const { user } = await Auth.signUp({\r\n        username: userDto.email,\r\n        password: userDto.password,\r\n        attributes: {\r\n          name: userDto.name\r\n        }\r\n      });\r\n\r\n      this.router.navigateByUrl('/auth/confirm');\r\n      return user;\r\n    } catch (error) {\r\n      return error;\r\n    }\r\n  }\r\n\r\n  async confirmSignUp(username: string, code: string) {\r\n    try {\r\n      const confirm = await Auth.confirmSignUp(username, code);\r\n      this.router.navigateByUrl('/');\r\n      return confirm;\r\n    } catch (error) {\r\n      return error;\r\n    }\r\n  }\r\n\r\n  async signIn(username: string, password: string) {\r\n    try {\r\n      const signIn = await Auth.signIn(username, password);\r\n      this.router.navigateByUrl('/')\r\n      return signIn;\r\n    } catch (error) {\r\n      return error;\r\n    }\r\n  }\r\n\r\n  async resendConfirmationCode(username: string) {\r\n    try {\r\n      return await Auth.resendSignUp(username);\r\n    } catch (error) {\r\n      return error;\r\n    }\r\n  }\r\n\r\n  async signOut() {\r\n    try {\r\n      return await Auth.signOut({ global: true });\r\n    } catch (error) {\r\n      return error;\r\n    }\r\n  }\r\n}\r\n",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "args": [
+                    {
+                        "name": "router",
+                        "type": "Router"
+                    }
+                ],
+                "line": 9,
+                "jsdoctags": [
+                    {
+                        "name": "router",
+                        "type": "Router",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
+            "type": "injectable"
+        },
+        {
+            "name": "TranslocoHttpLoader",
+            "id": "injectable-TranslocoHttpLoader-54e756bacd3e124b7ccd3db9b54aa9e9",
+            "file": "src/app/transloco/transloco-root.module.ts",
+            "properties": [],
+            "methods": [
+                {
+                    "name": "getTranslation",
+                    "args": [
+                        {
+                            "name": "lang",
+                            "type": "string"
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "any",
+                    "typeParameters": [],
+                    "line": 17,
+                    "jsdoctags": [
+                        {
+                            "name": "lang",
+                            "type": "string",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "description": "",
+            "sourceCode": "import { HttpClient } from '@angular/common/http';\r\nimport {\r\n  TRANSLOCO_LOADER,\r\n  Translation,\r\n  TranslocoLoader,\r\n  TRANSLOCO_CONFIG,\r\n  translocoConfig,\r\n  TranslocoModule\r\n} from '@ngneat/transloco';\r\nimport { Injectable, NgModule } from '@angular/core';\r\nimport { environment } from '../../environments/environment';\r\n\r\n@Injectable({ providedIn: 'root' })\r\nexport class TranslocoHttpLoader implements TranslocoLoader {\r\n  constructor(private http: HttpClient) {}\r\n\r\n  getTranslation(lang: string) {\r\n    return this.http.get<Translation>(`/assets/i18n/${lang}.json`);\r\n  }\r\n}\r\n\r\n@NgModule({\r\n  exports: [ TranslocoModule ],\r\n  providers: [\r\n    {\r\n      provide: TRANSLOCO_CONFIG,\r\n      useValue: translocoConfig({\r\n        availableLangs: ['en', 'pl'],\r\n        defaultLang: 'en',\r\n        // Remove this option if your application doesn't support changing language in runtime.\r\n        reRenderOnLangChange: true,\r\n        prodMode: environment.production,\r\n      })\r\n    },\r\n    { provide: TRANSLOCO_LOADER, useClass: TranslocoHttpLoader }\r\n  ]\r\n})\r\nexport class TranslocoRootModule {}\r\n",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "args": [
+                    {
+                        "name": "http",
+                        "type": "HttpClient"
+                    }
+                ],
+                "line": 14,
+                "jsdoctags": [
+                    {
+                        "name": "http",
+                        "type": "HttpClient",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
+            "type": "injectable"
+        }
+    ],
+    "classes": [
+        {
+            "name": "AppPage",
+            "id": "class-AppPage-a0db91bfa3b9914e9048612074084ee6",
+            "file": "e2e/src/app.po.ts",
+            "type": "class",
+            "sourceCode": "import { browser, by, element } from 'protractor';\n\nexport class AppPage {\n  navigateTo(): Promise<unknown> {\n    return browser.get(browser.baseUrl) as Promise<unknown>;\n  }\n\n  getTitleText(): Promise<string> {\n    return element(by.css('app-root .content span')).getText() as Promise<string>;\n  }\n}\n",
+            "properties": [],
+            "methods": [
+                {
+                    "name": "getTitleText",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "Promise<string>",
+                    "typeParameters": [],
+                    "line": 8
+                },
+                {
+                    "name": "navigateTo",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "Promise<unknown>",
+                    "typeParameters": [],
+                    "line": 4
+                }
+            ],
+            "indexSignatures": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "hostBindings": [],
+            "hostListeners": []
+        }
+    ],
+    "directives": [],
+    "components": [
+        {
+            "name": "AppComponent",
+            "id": "component-AppComponent-eb7ec1598bc1605335732af0d398085a",
+            "file": "src/app/app.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-root",
+            "styleUrls": [
+                "./app.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./app.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "title",
+                    "defaultValue": "'yaba-frontend'",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 10
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 14
+                }
+            ],
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "",
+            "type": "component",
+            "sourceCode": "import { Component, OnInit } from '@angular/core';\r\nimport { PrimeNGConfig } from 'primeng/api';\r\n\r\n@Component({\r\n  selector: 'app-root',\r\n  templateUrl: './app.component.html',\r\n  styleUrls: ['./app.component.scss']\r\n})\r\nexport class AppComponent implements OnInit {\r\n  title = 'yaba-frontend';\r\n\r\n  constructor(private primeNGConfig: PrimeNGConfig) {}\r\n\r\n  ngOnInit() {\r\n    this.primeNGConfig.ripple = true;\r\n  }\r\n}\r\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "",
+                    "styleUrl": "./app.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "args": [
+                    {
+                        "name": "primeNGConfig",
+                        "type": "PrimeNGConfig"
+                    }
+                ],
+                "line": 10,
+                "jsdoctags": [
+                    {
+                        "name": "primeNGConfig",
+                        "type": "PrimeNGConfig",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
+            "implements": [
+                "OnInit"
+            ],
+            "templateData": "<h5>app component</h5>\n<router-outlet></router-outlet>\n"
+        },
+        {
+            "name": "AuthComponent",
+            "id": "component-AuthComponent-9c14bca22cb0c1aff6291af3e2785614",
+            "file": "src/app/pages/auth/auth.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-auth",
+            "styleUrls": [
+                "./auth.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./auth.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "Promise<void>",
+                    "typeParameters": [],
+                    "line": 12,
+                    "modifierKind": [
+                        120
+                    ]
+                }
+            ],
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "",
+            "type": "component",
+            "sourceCode": "import { Component, OnInit } from '@angular/core';\n\n@Component({\n  selector: 'app-auth',\n  templateUrl: './auth.component.html',\n  styleUrls: ['./auth.component.scss']\n})\nexport class AuthComponent implements OnInit {\n\n  constructor() { }\n\n  async ngOnInit(): Promise<void> {\n  }\n\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "",
+                    "styleUrl": "./auth.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "args": [],
+                "line": 8
+            },
+            "implements": [
+                "OnInit"
+            ],
+            "templateData": "<h5>auth component</h5>\n<router-outlet></router-outlet>\n"
+        },
+        {
+            "name": "ButtonComponent",
+            "id": "component-ButtonComponent-642c6c4e474cd5a0ac760dfda26b2fc9",
+            "file": "src/stories/button.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "storybook-button",
+            "styleUrls": [
+                "./button.css"
+            ],
+            "styles": [],
+            "template": "<button   type=\"button\"\n   (click)=\"onClick.emit($event)\"\n   [ngClass]=\"classes\"\n   [ngStyle]=\"{ 'background-color': backgroundColor }\"\n >\n   {{ label }}\n </button>",
+            "templateUrl": [],
+            "viewProviders": [],
+            "inputsClass": [
+                {
+                    "name": "backgroundColor",
+                    "description": "<p>What background color to use</p>\n",
+                    "line": 26,
+                    "type": "string"
+                },
+                {
+                    "name": "label",
+                    "defaultValue": "'Button'",
+                    "description": "<p>Button contents</p>\n",
+                    "line": 40
+                },
+                {
+                    "name": "primary",
+                    "defaultValue": "false",
+                    "description": "<p>Is this the principal call to action on the page?</p>\n",
+                    "line": 20
+                },
+                {
+                    "name": "size",
+                    "defaultValue": "'medium'",
+                    "description": "<p>How large should the button be?</p>\n",
+                    "line": 32,
+                    "type": "\"small\" | \"medium\" | \"large\""
+                }
+            ],
+            "outputsClass": [
+                {
+                    "name": "onClick",
+                    "defaultValue": "new EventEmitter<Event>()",
+                    "description": "<p>Optional click handler</p>\n",
+                    "line": 46,
+                    "type": "EventEmitter"
+                }
+            ],
+            "propertiesClass": [],
+            "methodsClass": [],
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "",
+            "type": "component",
+            "sourceCode": "import { Component, Input, Output, EventEmitter } from '@angular/core';\n\n@Component({\n  selector: 'storybook-button',\n  template: ` <button\n    type=\"button\"\n    (click)=\"onClick.emit($event)\"\n    [ngClass]=\"classes\"\n    [ngStyle]=\"{ 'background-color': backgroundColor }\"\n  >\n    {{ label }}\n  </button>`,\n  styleUrls: ['./button.css'],\n})\nexport default class ButtonComponent {\n  /**\n   * Is this the principal call to action on the page?\n   */\n  @Input()\n  primary = false;\n\n  /**\n   * What background color to use\n   */\n  @Input()\n  backgroundColor?: string;\n\n  /**\n   * How large should the button be?\n   */\n  @Input()\n  size: 'small' | 'medium' | 'large' = 'medium';\n\n  /**\n   * Button contents\n   *\n   * @required\n   */\n  @Input()\n  label = 'Button';\n\n  /**\n   * Optional click handler\n   */\n  @Output()\n  onClick = new EventEmitter<Event>();\n\n  public get classes(): string[] {\n    const mode = this.primary ? 'storybook-button--primary' : 'storybook-button--secondary';\n\n    return ['storybook-button', `storybook-button--${this.size}`, mode];\n  }\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": ".storybook-button {\n  font-family: 'Nunito Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;\n  font-weight: 700;\n  border: 0;\n  border-radius: 3em;\n  cursor: pointer;\n  display: inline-block;\n  line-height: 1;\n}\n.storybook-button--primary {\n  color: white;\n  background-color: #1ea7fd;\n}\n.storybook-button--secondary {\n  color: #333;\n  background-color: transparent;\n  box-shadow: rgba(0, 0, 0, 0.15) 0px 0px 0px 1px inset;\n}\n.storybook-button--small {\n  font-size: 12px;\n  padding: 10px 16px;\n}\n.storybook-button--medium {\n  font-size: 14px;\n  padding: 11px 20px;\n}\n.storybook-button--large {\n  font-size: 16px;\n  padding: 12px 24px;\n}\n",
+                    "styleUrl": "./button.css"
+                }
+            ],
+            "stylesData": "",
+            "accessors": {
+                "classes": {
+                    "name": "classes",
+                    "getSignature": {
+                        "name": "classes",
+                        "type": "[]",
+                        "returnType": "string[]",
+                        "line": 48
+                    }
+                }
+            }
+        },
+        {
+            "name": "ConfirmComponent",
+            "id": "component-ConfirmComponent-276e7f17e5580309215e461f1984aea4",
+            "file": "src/app/pages/auth/confirm/confirm.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-confirm",
+            "styleUrls": [
+                "./confirm.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./confirm.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "confirmForm",
+                    "type": "FormGroup",
+                    "optional": false,
+                    "description": "",
+                    "line": 12
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 19
+                },
+                {
+                    "name": "onConfirm",
+                    "args": [
+                        {
+                            "name": "confirmation",
+                            "type": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "any",
+                    "typeParameters": [],
+                    "line": 26,
+                    "modifierKind": [
+                        120
+                    ],
+                    "jsdoctags": [
+                        {
+                            "name": "confirmation",
+                            "type": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "",
+            "type": "component",
+            "sourceCode": "import { Component, OnInit } from '@angular/core';\nimport { FormBuilder, FormGroup, Validators } from '@angular/forms';\nimport { RxwebValidators } from '@rxweb/reactive-form-validators';\nimport { AuthService } from '../auth-service';\n\n@Component({\n  selector: 'app-confirm',\n  templateUrl: './confirm.component.html',\n  styleUrls: ['./confirm.component.scss']\n})\nexport class ConfirmComponent implements OnInit {\n  confirmForm: FormGroup;\n\n  constructor(\n    private fb: FormBuilder,\n    private authService: AuthService\n  ) { }\n\n  ngOnInit(): void {\n    this.confirmForm = this.fb.group({\n      username: ['', [Validators.required, RxwebValidators.email()]],\n      code: ['', Validators.required]\n    })\n  }\n\n  async onConfirm(confirmation) {\n    await this.authService.confirmSignUp(confirmation.username, confirmation.code).then((res) => {\n      console.log(res);\n    }, (error) => {\n      console.log(error);\n    })\n  }\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": ".authForm {\r\n\r\n  &__label {\r\n    width: 90px;\r\n  }\r\n\r\n  &__input {\r\n    width: 250px;\r\n  }\r\n}\r\n",
+                    "styleUrl": "./confirm.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "args": [
+                    {
+                        "name": "fb",
+                        "type": "FormBuilder"
+                    },
+                    {
+                        "name": "authService",
+                        "type": "AuthService"
+                    }
+                ],
+                "line": 12,
+                "jsdoctags": [
+                    {
+                        "name": "fb",
+                        "type": "FormBuilder",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    },
+                    {
+                        "name": "authService",
+                        "type": "AuthService",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
+            "implements": [
+                "OnInit"
+            ],
+            "templateData": "<ng-container *transloco=\"let t\">\r\n  <div class=\"form-body p-grid\">\r\n    <form class=\"p-col-6 p-offset-3 authForm\" [formGroup]=\"confirmForm\" (ngSubmit)=\"onConfirm(confirmForm.value)\">\r\n      <div class=\"p-field p-grid\">\r\n        <label for=\"email\" class=\"p-col-fixed authForm__label\">{{t('formLabels.email')}}</label>\r\n        <div class=\"p-col\">\r\n          <input type=\"text\" id=\"email\" formControlName=\"username\" pInputText [className]=\"'authForm__input'\">\r\n        </div>\r\n      </div>\r\n\r\n      <div class=\"p-field p-grid\">\r\n        <label for=\"name\" class=\"p-col-fixed authForm__label\">{{t('formLabels.confirmCode')}}</label>\r\n        <div class=\"p-col\">\r\n          <input type=\"password\" id=\"name\" formControlName=\"code\" pInputText [className]=\"'authForm__input'\">\r\n        </div> \r\n      </div>\r\n\r\n      <button type=\"submit\" [disabled]=\"confirmForm.invalid\" pButton [label]=\"t('buttons.submit')\"></button>\r\n    </form>\r\n  </div>\r\n</ng-container>\r\n"
+        },
+        {
+            "name": "HeaderComponent",
+            "id": "component-HeaderComponent-246e2a69dc126a3bd76c6328dd3b93e2",
+            "file": "src/stories/header.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "storybook-header",
+            "styleUrls": [
+                "./header.css"
+            ],
+            "styles": [],
+            "template": "<header>    <div class=\"wrapper\">\n      <div>\n        <svg width=\"32\" height=\"32\" viewBox=\"0 0 32 32\" xmlns=\"http://www.w3.org/2000/svg\">\n          <g fill=\"none\" fillRule=\"evenodd\">\n            <path\n              d=\"M10 0h12a10 10 0 0110 10v12a10 10 0 01-10 10H10A10 10 0 010 22V10A10 10 0 0110 0z\"\n              fill=\"#FFF\"\n            />\n            <path\n              d=\"M5.3 10.6l10.4 6v11.1l-10.4-6v-11zm11.4-6.2l9.7 5.5-9.7 5.6V4.4z\"\n              fill=\"#555AB9\"\n            />\n            <path\n              d=\"M27.2 10.6v11.2l-10.5 6V16.5l10.5-6zM15.7 4.4v11L6 10l9.7-5.5z\"\n              fill=\"#91BAF8\"\n            />\n          </g>\n        </svg>\n        <h1>Acme</h1>\n      </div>\n      <div>\n        <storybook-button\n          *ngIf=\"user\"\n          size=\"small\"\n          (onClick)=\"onLogout.emit($event)\"\n          label=\"Log out\"\n        ></storybook-button>\n        <storybook-button\n          *ngIf=\"!user\"\n          size=\"small\"\n          (onClick)=\"onLogin.emit($event)\"\n          label=\"Log in\"\n        ></storybook-button>\n        <storybook-button\n          *ngIf=\"!user\"\n          primary\n          size=\"small\"\n          (onClick)=\"onCreateAccount.emit($event)\"\n          label=\"Sign up\"\n        ></storybook-button>\n      </div>\n    </div>\n  </header>",
+            "templateUrl": [],
+            "viewProviders": [],
+            "inputsClass": [
+                {
+                    "name": "user",
+                    "defaultValue": "null",
+                    "line": 53,
+                    "type": "unknown"
+                }
+            ],
+            "outputsClass": [
+                {
+                    "name": "onCreateAccount",
+                    "defaultValue": "new EventEmitter<Event>()",
+                    "line": 62,
+                    "type": "EventEmitter"
+                },
+                {
+                    "name": "onLogin",
+                    "defaultValue": "new EventEmitter<Event>()",
+                    "line": 56,
+                    "type": "EventEmitter"
+                },
+                {
+                    "name": "onLogout",
+                    "defaultValue": "new EventEmitter<Event>()",
+                    "line": 59,
+                    "type": "EventEmitter"
+                }
+            ],
+            "propertiesClass": [],
+            "methodsClass": [],
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "",
+            "type": "component",
+            "sourceCode": "import { Component, Input, Output, EventEmitter } from '@angular/core';\n\n@Component({\n  selector: 'storybook-header',\n  template: `<header>\n    <div class=\"wrapper\">\n      <div>\n        <svg width=\"32\" height=\"32\" viewBox=\"0 0 32 32\" xmlns=\"http://www.w3.org/2000/svg\">\n          <g fill=\"none\" fillRule=\"evenodd\">\n            <path\n              d=\"M10 0h12a10 10 0 0110 10v12a10 10 0 01-10 10H10A10 10 0 010 22V10A10 10 0 0110 0z\"\n              fill=\"#FFF\"\n            />\n            <path\n              d=\"M5.3 10.6l10.4 6v11.1l-10.4-6v-11zm11.4-6.2l9.7 5.5-9.7 5.6V4.4z\"\n              fill=\"#555AB9\"\n            />\n            <path\n              d=\"M27.2 10.6v11.2l-10.5 6V16.5l10.5-6zM15.7 4.4v11L6 10l9.7-5.5z\"\n              fill=\"#91BAF8\"\n            />\n          </g>\n        </svg>\n        <h1>Acme</h1>\n      </div>\n      <div>\n        <storybook-button\n          *ngIf=\"user\"\n          size=\"small\"\n          (onClick)=\"onLogout.emit($event)\"\n          label=\"Log out\"\n        ></storybook-button>\n        <storybook-button\n          *ngIf=\"!user\"\n          size=\"small\"\n          (onClick)=\"onLogin.emit($event)\"\n          label=\"Log in\"\n        ></storybook-button>\n        <storybook-button\n          *ngIf=\"!user\"\n          primary\n          size=\"small\"\n          (onClick)=\"onCreateAccount.emit($event)\"\n          label=\"Sign up\"\n        ></storybook-button>\n      </div>\n    </div>\n  </header>`,\n  styleUrls: ['./header.css'],\n})\nexport default class HeaderComponent {\n  @Input()\n  user: unknown = null;\n\n  @Output()\n  onLogin = new EventEmitter<Event>();\n\n  @Output()\n  onLogout = new EventEmitter<Event>();\n\n  @Output()\n  onCreateAccount = new EventEmitter<Event>();\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": ".wrapper {\n  font-family: 'Nunito Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;\n  border-bottom: 1px solid rgba(0, 0, 0, 0.1);\n  padding: 15px 20px;\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n}\n\nsvg {\n  display: inline-block;\n  vertical-align: top;\n}\n\nh1 {\n  font-weight: 900;\n  font-size: 20px;\n  line-height: 1;\n  margin: 6px 0 6px 10px;\n  display: inline-block;\n  vertical-align: top;\n}\n\nbutton + button {\n  margin-left: 10px;\n}\n",
+                    "styleUrl": "./header.css"
+                }
+            ],
+            "stylesData": ""
+        },
+        {
+            "name": "LoginComponent",
+            "id": "component-LoginComponent-40a9618a389ed2e9ea83f39cf456b0d5",
+            "file": "src/app/pages/auth/login/login.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-login",
+            "styleUrls": [
+                "./login.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./login.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "loginForm",
+                    "type": "FormGroup",
+                    "optional": false,
+                    "description": "",
+                    "line": 13,
+                    "modifierKind": [
+                        114
+                    ]
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 21
+                },
+                {
+                    "name": "onLogin",
+                    "args": [
+                        {
+                            "name": "user",
+                            "type": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "any",
+                    "typeParameters": [],
+                    "line": 28,
+                    "modifierKind": [
+                        120
+                    ],
+                    "jsdoctags": [
+                        {
+                            "name": "user",
+                            "type": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "",
+            "type": "component",
+            "sourceCode": "import { Component, OnInit } from '@angular/core';\nimport { FormBuilder, FormGroup, Validators } from '@angular/forms';\nimport { APIService } from '../../../API.service';\nimport { AuthService } from '../auth-service';\nimport { RxwebValidators } from '@rxweb/reactive-form-validators';\n\n@Component({\n  selector: 'app-login',\n  templateUrl: './login.component.html',\n  styleUrls: ['./login.component.scss']\n})\nexport class LoginComponent implements OnInit {\n  public loginForm: FormGroup;\n\n  constructor(\n    private api: APIService,\n    private fb: FormBuilder,\n    private authService: AuthService\n  ) { }\n\n  ngOnInit(): void {\n    this.loginForm = this.fb.group({\n      email: ['', [Validators.required, RxwebValidators.email()]],\n      password: ['', [Validators.required]]\n    })\n  }\n\n  async onLogin(user) {\n    await this.authService.signIn(user.email, user.password).then((res) => {\n      console.log(res);\n    }, (error) => {\n      console.log(error);\n    })\n  }\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": ".authForm {\r\n\r\n  &__label {\r\n    width: 90px;\r\n  }\r\n\r\n  &__input {\r\n    width: 250px;\r\n  }\r\n}\r\n",
+                    "styleUrl": "./login.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "args": [
+                    {
+                        "name": "api",
+                        "type": "APIService"
+                    },
+                    {
+                        "name": "fb",
+                        "type": "FormBuilder"
+                    },
+                    {
+                        "name": "authService",
+                        "type": "AuthService"
+                    }
+                ],
+                "line": 13,
+                "jsdoctags": [
+                    {
+                        "name": "api",
+                        "type": "APIService",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    },
+                    {
+                        "name": "fb",
+                        "type": "FormBuilder",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    },
+                    {
+                        "name": "authService",
+                        "type": "AuthService",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
+            "implements": [
+                "OnInit"
+            ],
+            "templateData": "<ng-container *transloco=\"let t\">\r\n  <div class=\"form-body p-grid\">\r\n    <form class=\"p-col-6 p-offset-3 authForm\" [formGroup]=\"loginForm\" (ngSubmit)=\"onLogin(loginForm.value)\">\r\n      <div class=\"p-field p-grid\">\r\n        <label for=\"email\" class=\"p-col-fixed authForm__label\">{{t('formLabels.email')}}</label>\r\n        <div class=\"p-col\">\r\n          <input\r\n            type=\"text\"\r\n            id=\"email\"\r\n            formControlName=\"email\"\r\n            pInputText\r\n            [className]=\"'authForm__input'\"\r\n          >\r\n          <app-validation-message\r\n            [control]=\"loginForm.get('email')\"\r\n          ></app-validation-message>\r\n        </div>\r\n      </div>\r\n\r\n      <div class=\"p-field p-grid\">\r\n        <label for=\"pass\" class=\"p-col-fixed authForm__label\">{{t('formLabels.password')}}</label>\r\n        <div class=\"p-col\">\r\n          <input type=\"password\" id=\"pass\" formControlName=\"password\" pInputText [className]=\"'authForm__input'\">\r\n          <app-validation-message\r\n            [control]=\"loginForm.get('password')\"\r\n          ></app-validation-message>\r\n        </div>\r\n      </div>\r\n\r\n      <button type=\"submit\" [disabled]=\"loginForm.invalid\" pButton [label]=\"t('buttons.login')\" icon=\"pi pi-sign-in\" iconPos=\"right\"></button>\r\n    </form>\r\n  </div>\r\n</ng-container>\r\n"
+        },
+        {
+            "name": "PageComponent",
+            "id": "component-PageComponent-cca1a8911321fa17756ce90c90de65cc",
+            "file": "src/stories/page.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "storybook-page",
+            "styleUrls": [
+                "./page.css"
+            ],
+            "styles": [],
+            "template": "<article>    <storybook-header\n      [user]=\"user\"\n      (onLogout)=\"onLogout.emit($event)\"\n      (onLogin)=\"onLogin.emit($event)\"\n      (onCreateAccount)=\"onCreateAccount.emit($event)\"\n    ></storybook-header>\n    <section>\n      <h2>Pages in Storybook</h2>\n      <p>\n        We recommend building UIs with a\n        <a href=\"https://componentdriven.org\" target=\"_blank\" rel=\"noopener noreferrer\">\n          <strong>component-driven</strong>\n        </a>\n        process starting with atomic components and ending with pages.\n      </p>\n      <p>\n        Render pages with mock data. This makes it easy to build and review page states without\n        needing to navigate to them in your app. Here are some handy patterns for managing page data\n        in Storybook:\n      </p>\n      <ul>\n        <li>\n          Use a higher-level connected component. Storybook helps you compose such data from the\n          \"args\" of child component stories\n        </li>\n        <li>\n          Assemble data in the page component from your services. You can mock these services out\n          using Storybook.\n        </li>\n      </ul>\n      <p>\n        Get a guided tutorial on component-driven development at\n        <a href=\"https://www.learnstorybook.com\" target=\"_blank\" rel=\"noopener noreferrer\">\n          Learn Storybook\n        </a>\n        . Read more in the\n        <a href=\"https://storybook.js.org/docs\" target=\"_blank\" rel=\"noopener noreferrer\">\n          docs\n        </a>\n        .\n      </p>\n      <div class=\"tip-wrapper\">\n        <span class=\"tip\">Tip</span> Adjust the width of the canvas with the\n        <svg width=\"10\" height=\"10\" viewBox=\"0 0 12 12\" xmlns=\"http://www.w3.org/2000/svg\">\n          <g fill=\"none\" fillRule=\"evenodd\">\n            <path\n              d=\"M1.5 5.2h4.8c.3 0 .5.2.5.4v5.1c-.1.2-.3.3-.4.3H1.4a.5.5 0 01-.5-.4V5.7c0-.3.2-.5.5-.5zm0-2.1h6.9c.3 0 .5.2.5.4v7a.5.5 0 01-1 0V4H1.5a.5.5 0 010-1zm0-2.1h9c.3 0 .5.2.5.4v9.1a.5.5 0 01-1 0V2H1.5a.5.5 0 010-1zm4.3 5.2H2V10h3.8V6.2z\"\n              id=\"a\"\n              fill=\"#999\"\n            />\n          </g>\n        </svg>\n        Viewports addon in the toolbar\n      </div>\n    </section>\n  </article>",
+            "templateUrl": [],
+            "viewProviders": [],
+            "inputsClass": [
+                {
+                    "name": "user",
+                    "defaultValue": "null",
+                    "line": 66,
+                    "type": "unknown"
+                }
+            ],
+            "outputsClass": [
+                {
+                    "name": "onCreateAccount",
+                    "defaultValue": "new EventEmitter<Event>()",
+                    "line": 75,
+                    "type": "EventEmitter"
+                },
+                {
+                    "name": "onLogin",
+                    "defaultValue": "new EventEmitter<Event>()",
+                    "line": 69,
+                    "type": "EventEmitter"
+                },
+                {
+                    "name": "onLogout",
+                    "defaultValue": "new EventEmitter<Event>()",
+                    "line": 72,
+                    "type": "EventEmitter"
+                }
+            ],
+            "propertiesClass": [],
+            "methodsClass": [],
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "",
+            "type": "component",
+            "sourceCode": "import { Component, Input, Output, EventEmitter } from '@angular/core';\n\n@Component({\n  selector: 'storybook-page',\n  template: `<article>\n    <storybook-header\n      [user]=\"user\"\n      (onLogout)=\"onLogout.emit($event)\"\n      (onLogin)=\"onLogin.emit($event)\"\n      (onCreateAccount)=\"onCreateAccount.emit($event)\"\n    ></storybook-header>\n    <section>\n      <h2>Pages in Storybook</h2>\n      <p>\n        We recommend building UIs with a\n        <a href=\"https://componentdriven.org\" target=\"_blank\" rel=\"noopener noreferrer\">\n          <strong>component-driven</strong>\n        </a>\n        process starting with atomic components and ending with pages.\n      </p>\n      <p>\n        Render pages with mock data. This makes it easy to build and review page states without\n        needing to navigate to them in your app. Here are some handy patterns for managing page data\n        in Storybook:\n      </p>\n      <ul>\n        <li>\n          Use a higher-level connected component. Storybook helps you compose such data from the\n          \"args\" of child component stories\n        </li>\n        <li>\n          Assemble data in the page component from your services. You can mock these services out\n          using Storybook.\n        </li>\n      </ul>\n      <p>\n        Get a guided tutorial on component-driven development at\n        <a href=\"https://www.learnstorybook.com\" target=\"_blank\" rel=\"noopener noreferrer\">\n          Learn Storybook\n        </a>\n        . Read more in the\n        <a href=\"https://storybook.js.org/docs\" target=\"_blank\" rel=\"noopener noreferrer\">\n          docs\n        </a>\n        .\n      </p>\n      <div class=\"tip-wrapper\">\n        <span class=\"tip\">Tip</span> Adjust the width of the canvas with the\n        <svg width=\"10\" height=\"10\" viewBox=\"0 0 12 12\" xmlns=\"http://www.w3.org/2000/svg\">\n          <g fill=\"none\" fillRule=\"evenodd\">\n            <path\n              d=\"M1.5 5.2h4.8c.3 0 .5.2.5.4v5.1c-.1.2-.3.3-.4.3H1.4a.5.5 0 01-.5-.4V5.7c0-.3.2-.5.5-.5zm0-2.1h6.9c.3 0 .5.2.5.4v7a.5.5 0 01-1 0V4H1.5a.5.5 0 010-1zm0-2.1h9c.3 0 .5.2.5.4v9.1a.5.5 0 01-1 0V2H1.5a.5.5 0 010-1zm4.3 5.2H2V10h3.8V6.2z\"\n              id=\"a\"\n              fill=\"#999\"\n            />\n          </g>\n        </svg>\n        Viewports addon in the toolbar\n      </div>\n    </section>\n  </article>`,\n  styleUrls: ['./page.css'],\n})\nexport default class PageComponent {\n  @Input()\n  user: unknown = null;\n\n  @Output()\n  onLogin = new EventEmitter<Event>();\n\n  @Output()\n  onLogout = new EventEmitter<Event>();\n\n  @Output()\n  onCreateAccount = new EventEmitter<Event>();\n}\n\n// export const Page = ({ user, onLogin, onLogout, onCreateAccount }) => (\n//   <article>\n//     <Header user={user} onLogin={onLogin} onLogout={onLogout} onCreateAccount={onCreateAccount} />\n\n// );\n// Page.propTypes = {\n//   user: PropTypes.shape({}),\n//   onLogin: PropTypes.func.isRequired,\n//   onLogout: PropTypes.func.isRequired,\n//   onCreateAccount: PropTypes.func.isRequired,\n// };\n\n// Page.defaultProps = {\n//   user: null,\n// };\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "section {\n  font-family: 'Nunito Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;\n  font-size: 14px;\n  line-height: 24px;\n  padding: 48px 20px;\n  margin: 0 auto;\n  max-width: 600px;\n  color: #333;\n}\n\nh2 {\n  font-weight: 900;\n  font-size: 32px;\n  line-height: 1;\n  margin: 0 0 4px;\n  display: inline-block;\n  vertical-align: top;\n}\n\np {\n  margin: 1em 0;\n}\n\na {\n  text-decoration: none;\n  color: #1ea7fd;\n}\n\nul {\n  padding-left: 30px;\n  margin: 1em 0;\n}\n\nli {\n  margin-bottom: 8px;\n}\n\n.tip {\n  display: inline-block;\n  border-radius: 1em;\n  font-size: 11px;\n  line-height: 12px;\n  font-weight: 700;\n  background: #e7fdd8;\n  color: #66bf3c;\n  padding: 4px 12px;\n  margin-right: 10px;\n  vertical-align: top;\n}\n\n.tip-wrapper {\n  font-size: 13px;\n  line-height: 20px;\n  margin-top: 40px;\n  margin-bottom: 40px;\n}\n\n.tip-wrapper svg {\n  display: inline-block;\n  height: 12px;\n  width: 12px;\n  margin-right: 4px;\n  vertical-align: top;\n  margin-top: 3px;\n}\n\n.tip-wrapper svg path {\n  fill: #1ea7fd;\n}\n",
+                    "styleUrl": "./page.css"
+                }
+            ],
+            "stylesData": ""
+        },
+        {
+            "name": "RegisterComponent",
+            "id": "component-RegisterComponent-c1a4e99356d64b9ffd8b99871af553ee",
+            "file": "src/app/pages/auth/register/register.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-register",
+            "styleUrls": [
+                "./register.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./register.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "newUserForm",
+                    "type": "FormGroup",
+                    "optional": false,
+                    "description": "",
+                    "line": 15,
+                    "modifierKind": [
+                        114
+                    ]
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 23
+                },
+                {
+                    "name": "signUp",
+                    "args": [
+                        {
+                            "name": "user",
+                            "type": "User"
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "Promise<void>",
+                    "typeParameters": [],
+                    "line": 33,
+                    "modifierKind": [
+                        120
+                    ],
+                    "jsdoctags": [
+                        {
+                            "name": "user",
+                            "type": "User",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "",
+            "type": "component",
+            "sourceCode": "import { Component, OnInit } from '@angular/core';\nimport { APIService } from '../../../API.service';\nimport { FormBuilder, FormGroup, Validators } from '@angular/forms';\nimport { User } from '../../../models/user.model';\nimport { RxwebValidators } from '@rxweb/reactive-form-validators';\nimport { AuthService } from '../auth-service';\nimport { Router } from '@angular/router';\n\n@Component({\n  selector: 'app-register',\n  templateUrl: './register.component.html',\n  styleUrls: ['./register.component.scss']\n})\nexport class RegisterComponent implements OnInit {\n  public newUserForm: FormGroup;\n\n  constructor(\n    private api: APIService,\n    private fb: FormBuilder,\n    private authService: AuthService,\n  ) { }\n\n  ngOnInit(): void {\n    this.newUserForm = this.fb.group({\n      name: ['', Validators.required],\n      email: ['', [Validators.required, RxwebValidators.email()]],\n      emailConfirm: ['', [Validators.required, RxwebValidators.email(), RxwebValidators.compare({fieldName: 'email'})]],\n      password: ['', [Validators.required]],\n      passwordRepeat: ['', [Validators.required, RxwebValidators.compare({fieldName: 'password'})]]\n    })\n  }\n\n  async signUp(user: User): Promise<void> {\n    await this.authService.signUp(user).then((res) => {\n      console.log(res);\n    }, (error) => {\n      console.log(error);\n    })\n\n    // const newUserDto = {\n    //   username: user.username,\n    //   email: user.email,\n    //   password: user.password\n    // }\n    //\n    // this.api.CreateUser(newUserDto).then(event => {\n    //   console.log(event);\n    //   console.log('user created');\n    //   this.newUserForm.reset();\n    // }).catch((e: HttpErrorResponse) => {\n    //   console.log(e);\n    // })\n  }\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": ".authForm {\r\n\r\n  &__label {\r\n    width: 90px;\r\n  }\r\n\r\n  &__input {\r\n    width: 250px;\r\n  }\r\n}\r\n",
+                    "styleUrl": "./register.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "args": [
+                    {
+                        "name": "api",
+                        "type": "APIService"
+                    },
+                    {
+                        "name": "fb",
+                        "type": "FormBuilder"
+                    },
+                    {
+                        "name": "authService",
+                        "type": "AuthService"
+                    }
+                ],
+                "line": 15,
+                "jsdoctags": [
+                    {
+                        "name": "api",
+                        "type": "APIService",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    },
+                    {
+                        "name": "fb",
+                        "type": "FormBuilder",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    },
+                    {
+                        "name": "authService",
+                        "type": "AuthService",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
+            "implements": [
+                "OnInit"
+            ],
+            "templateData": "<ng-container *transloco=\"let t\">\r\n  <div class=\"form-body p-grid\">\r\n    <form class=\"p-col-6 p-offset-3 authForm\" [formGroup]=\"newUserForm\" (ngSubmit)=\"signUp(newUserForm.value)\">\r\n      <div class=\"p-field p-grid\">\r\n        <label for=\"name\" class=\"p-col-fixed authForm__label\">{{t('formLabels.name')}}</label>\r\n        <div class=\"p-col\">\r\n          <input type=\"text\" id=\"name\" formControlName=\"name\" pInputText [className]=\"'authForm__input'\">\r\n          <app-validation-message\r\n            [control]=\"newUserForm.get('name')\"\r\n          ></app-validation-message>\r\n        </div>\r\n      </div>\r\n\r\n      <div class=\"p-field p-grid\">\r\n        <label for=\"email\" class=\"p-col-fixed authForm__label\">{{t('formLabels.email')}}</label>\r\n        <div class=\"p-col\">\r\n          <input type=\"text\" id=\"email\" formControlName=\"email\" pInputText [className]=\"'authForm__input'\">\r\n          <app-validation-message\r\n            [control]=\"newUserForm.get('email')\"\r\n          ></app-validation-message>\r\n        </div>\r\n      </div>\r\n\r\n      <div class=\"p-field p-grid\">\r\n        <label for=\"emailConfirm\" class=\"p-col-fixed authForm__label\">{{t('formLabels.confirm')}}</label>\r\n        <div class=\"p-col\">\r\n          <input type=\"text\" id=\"emailConfirm\" formControlName=\"emailConfirm\" pInputText\r\n                 [className]=\"'authForm__input'\">\r\n          <app-validation-message\r\n            [control]=\"newUserForm.get('emailConfirm')\"\r\n          ></app-validation-message>\r\n        </div>\r\n      </div>\r\n\r\n      <div class=\"p-field p-grid\">\r\n        <label for=\"pass\" class=\"p-col-fixed authForm__label\">{{t('formLabels.password')}}</label>\r\n        <div class=\"p-col\">\r\n          <input type=\"password\" id=\"pass\" formControlName=\"password\" pInputText [className]=\"'authForm__input'\">\r\n          <app-validation-message\r\n            [control]=\"newUserForm.get('password')\"\r\n          ></app-validation-message>\r\n        </div>\r\n      </div>\r\n\r\n      <div class=\"p-field p-grid\">\r\n        <label for=\"pass2\" class=\"p-col-fixed authForm__label\">{{t('formLabels.confirm')}}</label>\r\n        <div class=\"p-col\">\r\n          <input type=\"password\" id=\"pass2\" formControlName=\"passwordRepeat\" pInputText [className]=\"'authForm__input'\">\r\n          <app-validation-message\r\n            [control]=\"newUserForm.get('passwordRepeat')\"\r\n          ></app-validation-message>\r\n        </div>\r\n      </div>\r\n\r\n      <button type=\"submit\" [disabled]=\"newUserForm.invalid\" pButton [label]=\"t('buttons.submit')\"></button>\r\n    </form>\r\n  </div>\r\n</ng-container>\r\n"
+        },
+        {
+            "name": "ValidationMessageComponent",
+            "id": "component-ValidationMessageComponent-c57dcb16e383508a054d13e8f6d80f92",
+            "file": "src/app/ui-components/forms/validation-message/validation-message.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-validation-message",
+            "styleUrls": [
+                "./validation-message.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./validation-message.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [
+                {
+                    "name": "control",
+                    "line": 15,
+                    "type": "AbstractControl"
+                }
+            ],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [
+                {
+                    "name": "getErrors",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "ValidationMessage[]",
+                    "typeParameters": [],
+                    "line": 19
+                }
+            ],
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "",
+            "type": "component",
+            "sourceCode": "import { Component, Input, ViewEncapsulation } from '@angular/core';\r\nimport { AbstractControl, ValidationErrors } from '@angular/forms';\r\n\r\ninterface ValidationMessage {\r\n  keyError: string;\r\n  value: any;\r\n}\r\n\r\n@Component({\r\n  selector: 'app-validation-message',\r\n  templateUrl: './validation-message.component.html',\r\n  styleUrls: ['./validation-message.component.scss']\r\n})\r\nexport class ValidationMessageComponent {\r\n  @Input() control: AbstractControl;\r\n\r\n  constructor() { }\r\n\r\n  getErrors(): ValidationMessage[] {\r\n    const errors: ValidationErrors = this.control.errors;\r\n    if (errors !== null) {\r\n      return Object.keys(errors).map(keyError => {\r\n        return {\r\n          keyError,\r\n          value: errors[keyError]\r\n        }\r\n      })\r\n    }\r\n    return null;\r\n  }\r\n}\r\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": ".inputMsg {\r\n}\r\n",
+                    "styleUrl": "./validation-message.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "args": [],
+                "line": 15
+            },
+            "templateData": "<ng-container *transloco=\"let t\">\r\n  <ng-container *ngIf=\"control.dirty && control.invalid\">\r\n    <div *ngFor=\"let error of getErrors()\">\r\n      <small *ngIf=\"error.value\" class=\"p-invalid inputMsg\">{{t('formValidators.' + error.keyError)}}</small>\r\n    </div>\r\n  </ng-container>\r\n</ng-container>\r\n"
+        }
+    ],
+    "modules": [
+        {
+            "name": "AppModule",
+            "children": [
+                {
+                    "type": "providers",
+                    "elements": []
+                },
+                {
+                    "type": "declarations",
+                    "elements": [
+                        {
+                            "name": "AppComponent"
+                        },
+                        {
+                            "name": "AuthComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "imports",
+                    "elements": [
+                        {
+                            "name": "AppRoutingModule"
+                        },
+                        {
+                            "name": "TranslocoRootModule"
+                        }
+                    ]
+                },
+                {
+                    "type": "exports",
+                    "elements": []
+                },
+                {
+                    "type": "bootstrap",
+                    "elements": [
+                        {
+                            "name": "AppComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "classes",
+                    "elements": []
+                }
+            ]
+        },
+        {
+            "name": "AppRoutingModule",
+            "children": [
+                {
+                    "type": "providers",
+                    "elements": []
+                },
+                {
+                    "type": "declarations",
+                    "elements": []
+                },
+                {
+                    "type": "imports",
+                    "elements": []
+                },
+                {
+                    "type": "exports",
+                    "elements": []
+                },
+                {
+                    "type": "bootstrap",
+                    "elements": []
+                },
+                {
+                    "type": "classes",
+                    "elements": []
+                }
+            ]
+        },
+        {
+            "name": "AuthModule",
+            "children": [
+                {
+                    "type": "providers",
+                    "elements": []
+                },
+                {
+                    "type": "declarations",
+                    "elements": [
+                        {
+                            "name": "ConfirmComponent"
+                        },
+                        {
+                            "name": "LoginComponent"
+                        },
+                        {
+                            "name": "RegisterComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "imports",
+                    "elements": [
+                        {
+                            "name": "AuthRoutingModule"
+                        }
+                    ]
+                },
+                {
+                    "type": "exports",
+                    "elements": []
+                },
+                {
+                    "type": "bootstrap",
+                    "elements": []
+                },
+                {
+                    "type": "classes",
+                    "elements": []
+                }
+            ]
+        },
+        {
+            "name": "AuthRoutingModule",
+            "children": [
+                {
+                    "type": "providers",
+                    "elements": []
+                },
+                {
+                    "type": "declarations",
+                    "elements": []
+                },
+                {
+                    "type": "imports",
+                    "elements": []
+                },
+                {
+                    "type": "exports",
+                    "elements": []
+                },
+                {
+                    "type": "bootstrap",
+                    "elements": []
+                },
+                {
+                    "type": "classes",
+                    "elements": []
+                }
+            ]
+        },
+        {
+            "name": "TranslocoRootModule",
+            "children": [
+                {
+                    "type": "providers",
+                    "elements": []
+                },
+                {
+                    "type": "declarations",
+                    "elements": []
+                },
+                {
+                    "type": "imports",
+                    "elements": []
+                },
+                {
+                    "type": "exports",
+                    "elements": []
+                },
+                {
+                    "type": "bootstrap",
+                    "elements": []
+                },
+                {
+                    "type": "classes",
+                    "elements": []
+                }
+            ]
+        },
+        {
+            "name": "UiComponentsModule",
+            "children": [
+                {
+                    "type": "providers",
+                    "elements": []
+                },
+                {
+                    "type": "declarations",
+                    "elements": [
+                        {
+                            "name": "ValidationMessageComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "imports",
+                    "elements": []
+                },
+                {
+                    "type": "exports",
+                    "elements": [
+                        {
+                            "name": "ValidationMessageComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "bootstrap",
+                    "elements": []
+                },
+                {
+                    "type": "classes",
+                    "elements": []
+                }
+            ]
+        }
+    ],
+    "miscellaneous": {
+        "variables": [
+            {
+                "name": "context",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/test.ts",
+                "type": "",
+                "defaultValue": "require.context('./', true, /\\.spec\\.ts$/)"
+            },
+            {
+                "name": "environment",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/environments/environment.prod.ts",
+                "type": "object",
+                "defaultValue": "{\n  production: true\n}"
+            },
+            {
+                "name": "environment",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/environments/environment.ts",
+                "type": "object",
+                "defaultValue": "{\n  production: false\n}"
+            },
+            {
+                "name": "Large",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/Button.stories.ts",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "LoggedIn",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/Header.stories.ts",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "LoggedIn",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/Page.stories.ts",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "LoggedOut",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/Header.stories.ts",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "LoggedOut",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/Page.stories.ts",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "Primary",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/Button.stories.ts",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "require",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/test.ts",
+                "type": "literal type"
+            },
+            {
+                "name": "Secondary",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/Button.stories.ts",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "Small",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/Button.stories.ts",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/Button.stories.ts",
+                "type": "Story<Button>",
+                "defaultValue": "(args: Button) => ({\n  component: Button,\n  props: args,\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/Header.stories.ts",
+                "type": "Story<Header>",
+                "defaultValue": "(args: Header) => ({\n  component: Header,\n  props: args,\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/Page.stories.ts",
+                "type": "Story<Page>",
+                "defaultValue": "(args: Page) => ({\n  component: Page,\n  props: args,\n})"
+            }
+        ],
+        "functions": [],
+        "typealiases": [
+            {
+                "name": "CreateUserInput",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "literal type",
+                "file": "src/app/API.service.ts",
+                "description": "",
+                "kind": 165
+            },
+            {
+                "name": "CreateUserMutation",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "literal type",
+                "file": "src/app/API.service.ts",
+                "description": "",
+                "kind": 165
+            },
+            {
+                "name": "DeleteUserInput",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "literal type",
+                "file": "src/app/API.service.ts",
+                "description": "",
+                "kind": 165
+            },
+            {
+                "name": "DeleteUserMutation",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "literal type",
+                "file": "src/app/API.service.ts",
+                "description": "",
+                "kind": 165
+            },
+            {
+                "name": "GetUserQuery",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "literal type",
+                "file": "src/app/API.service.ts",
+                "description": "",
+                "kind": 165
+            },
+            {
+                "name": "ListUsersQuery",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "literal type",
+                "file": "src/app/API.service.ts",
+                "description": "",
+                "kind": 165
+            },
+            {
+                "name": "ModelIDInput",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "literal type",
+                "file": "src/app/API.service.ts",
+                "description": "",
+                "kind": 165
+            },
+            {
+                "name": "ModelSizeInput",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "literal type",
+                "file": "src/app/API.service.ts",
+                "description": "",
+                "kind": 165
+            },
+            {
+                "name": "ModelStringInput",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "literal type",
+                "file": "src/app/API.service.ts",
+                "description": "",
+                "kind": 165
+            },
+            {
+                "name": "ModelUserConditionInput",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "literal type",
+                "file": "src/app/API.service.ts",
+                "description": "",
+                "kind": 165
+            },
+            {
+                "name": "ModelUserFilterInput",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "literal type",
+                "file": "src/app/API.service.ts",
+                "description": "",
+                "kind": 165
+            },
+            {
+                "name": "OnCreateUserSubscription",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "literal type",
+                "file": "src/app/API.service.ts",
+                "description": "",
+                "kind": 165
+            },
+            {
+                "name": "OnDeleteUserSubscription",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "literal type",
+                "file": "src/app/API.service.ts",
+                "description": "",
+                "kind": 165
+            },
+            {
+                "name": "OnUpdateUserSubscription",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "literal type",
+                "file": "src/app/API.service.ts",
+                "description": "",
+                "kind": 165
+            },
+            {
+                "name": "UpdateUserInput",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "literal type",
+                "file": "src/app/API.service.ts",
+                "description": "",
+                "kind": 165
+            },
+            {
+                "name": "UpdateUserMutation",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "literal type",
+                "file": "src/app/API.service.ts",
+                "description": "",
+                "kind": 165
+            }
+        ],
+        "enumerations": [
+            {
+                "name": "ModelAttributeTypes",
+                "childs": [
+                    {
+                        "name": "binary",
+                        "value": "binary"
+                    },
+                    {
+                        "name": "binarySet",
+                        "value": "binarySet"
+                    },
+                    {
+                        "name": "bool",
+                        "value": "bool"
+                    },
+                    {
+                        "name": "list",
+                        "value": "list"
+                    },
+                    {
+                        "name": "map",
+                        "value": "map"
+                    },
+                    {
+                        "name": "number",
+                        "value": "number"
+                    },
+                    {
+                        "name": "numberSet",
+                        "value": "numberSet"
+                    },
+                    {
+                        "name": "string",
+                        "value": "string"
+                    },
+                    {
+                        "name": "stringSet",
+                        "value": "stringSet"
+                    },
+                    {
+                        "name": "_null",
+                        "value": "_null"
+                    }
+                ],
+                "ctype": "miscellaneous",
+                "subtype": "enum",
+                "description": "",
+                "file": "src/app/API.service.ts"
+            }
+        ],
+        "groupedVariables": {
+            "src/test.ts": [
+                {
+                    "name": "context",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/test.ts",
+                    "type": "",
+                    "defaultValue": "require.context('./', true, /\\.spec\\.ts$/)"
+                },
+                {
+                    "name": "require",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/test.ts",
+                    "type": "literal type"
+                }
+            ],
+            "src/environments/environment.prod.ts": [
+                {
+                    "name": "environment",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/environments/environment.prod.ts",
+                    "type": "object",
+                    "defaultValue": "{\n  production: true\n}"
+                }
+            ],
+            "src/environments/environment.ts": [
+                {
+                    "name": "environment",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/environments/environment.ts",
+                    "type": "object",
+                    "defaultValue": "{\n  production: false\n}"
+                }
+            ],
+            "src/stories/Button.stories.ts": [
+                {
+                    "name": "Large",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/Button.stories.ts",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Primary",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/Button.stories.ts",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Secondary",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/Button.stories.ts",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Small",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/Button.stories.ts",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/Button.stories.ts",
+                    "type": "Story<Button>",
+                    "defaultValue": "(args: Button) => ({\n  component: Button,\n  props: args,\n})"
+                }
+            ],
+            "src/stories/Header.stories.ts": [
+                {
+                    "name": "LoggedIn",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/Header.stories.ts",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "LoggedOut",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/Header.stories.ts",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/Header.stories.ts",
+                    "type": "Story<Header>",
+                    "defaultValue": "(args: Header) => ({\n  component: Header,\n  props: args,\n})"
+                }
+            ],
+            "src/stories/Page.stories.ts": [
+                {
+                    "name": "LoggedIn",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/Page.stories.ts",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "LoggedOut",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/Page.stories.ts",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/Page.stories.ts",
+                    "type": "Story<Page>",
+                    "defaultValue": "(args: Page) => ({\n  component: Page,\n  props: args,\n})"
+                }
+            ]
+        },
+        "groupedFunctions": {},
+        "groupedEnumerations": {
+            "src/app/API.service.ts": [
+                {
+                    "name": "ModelAttributeTypes",
+                    "childs": [
+                        {
+                            "name": "binary",
+                            "value": "binary"
+                        },
+                        {
+                            "name": "binarySet",
+                            "value": "binarySet"
+                        },
+                        {
+                            "name": "bool",
+                            "value": "bool"
+                        },
+                        {
+                            "name": "list",
+                            "value": "list"
+                        },
+                        {
+                            "name": "map",
+                            "value": "map"
+                        },
+                        {
+                            "name": "number",
+                            "value": "number"
+                        },
+                        {
+                            "name": "numberSet",
+                            "value": "numberSet"
+                        },
+                        {
+                            "name": "string",
+                            "value": "string"
+                        },
+                        {
+                            "name": "stringSet",
+                            "value": "stringSet"
+                        },
+                        {
+                            "name": "_null",
+                            "value": "_null"
+                        }
+                    ],
+                    "ctype": "miscellaneous",
+                    "subtype": "enum",
+                    "description": "",
+                    "file": "src/app/API.service.ts"
+                }
+            ]
+        },
+        "groupedTypeAliases": {
+            "src/app/API.service.ts": [
+                {
+                    "name": "CreateUserInput",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "literal type",
+                    "file": "src/app/API.service.ts",
+                    "description": "",
+                    "kind": 165
+                },
+                {
+                    "name": "CreateUserMutation",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "literal type",
+                    "file": "src/app/API.service.ts",
+                    "description": "",
+                    "kind": 165
+                },
+                {
+                    "name": "DeleteUserInput",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "literal type",
+                    "file": "src/app/API.service.ts",
+                    "description": "",
+                    "kind": 165
+                },
+                {
+                    "name": "DeleteUserMutation",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "literal type",
+                    "file": "src/app/API.service.ts",
+                    "description": "",
+                    "kind": 165
+                },
+                {
+                    "name": "GetUserQuery",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "literal type",
+                    "file": "src/app/API.service.ts",
+                    "description": "",
+                    "kind": 165
+                },
+                {
+                    "name": "ListUsersQuery",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "literal type",
+                    "file": "src/app/API.service.ts",
+                    "description": "",
+                    "kind": 165
+                },
+                {
+                    "name": "ModelIDInput",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "literal type",
+                    "file": "src/app/API.service.ts",
+                    "description": "",
+                    "kind": 165
+                },
+                {
+                    "name": "ModelSizeInput",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "literal type",
+                    "file": "src/app/API.service.ts",
+                    "description": "",
+                    "kind": 165
+                },
+                {
+                    "name": "ModelStringInput",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "literal type",
+                    "file": "src/app/API.service.ts",
+                    "description": "",
+                    "kind": 165
+                },
+                {
+                    "name": "ModelUserConditionInput",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "literal type",
+                    "file": "src/app/API.service.ts",
+                    "description": "",
+                    "kind": 165
+                },
+                {
+                    "name": "ModelUserFilterInput",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "literal type",
+                    "file": "src/app/API.service.ts",
+                    "description": "",
+                    "kind": 165
+                },
+                {
+                    "name": "OnCreateUserSubscription",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "literal type",
+                    "file": "src/app/API.service.ts",
+                    "description": "",
+                    "kind": 165
+                },
+                {
+                    "name": "OnDeleteUserSubscription",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "literal type",
+                    "file": "src/app/API.service.ts",
+                    "description": "",
+                    "kind": 165
+                },
+                {
+                    "name": "OnUpdateUserSubscription",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "literal type",
+                    "file": "src/app/API.service.ts",
+                    "description": "",
+                    "kind": 165
+                },
+                {
+                    "name": "UpdateUserInput",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "literal type",
+                    "file": "src/app/API.service.ts",
+                    "description": "",
+                    "kind": 165
+                },
+                {
+                    "name": "UpdateUserMutation",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "literal type",
+                    "file": "src/app/API.service.ts",
+                    "description": "",
+                    "kind": 165
+                }
+            ]
+        }
+    },
+    "routes": {
+        "name": "<root>",
+        "kind": "module",
+        "className": "AppModule",
+        "children": [
+            {
+                "name": "routes",
+                "filename": "src/app/app-routing.module.ts",
+                "module": "AppRoutingModule",
+                "children": [
+                    {
+                        "path": "auth",
+                        "component": "AuthComponent",
+                        "loadChildren": "./pages/auth/auth.module#AuthModule",
+                        "children": [
+                            {
+                                "kind": "module",
+                                "children": [
+                                    {
+                                        "name": "routes",
+                                        "filename": "src/app/pages/auth/auth-routing.module.ts",
+                                        "module": "AuthRoutingModule",
+                                        "children": [
+                                            {
+                                                "path": "register",
+                                                "component": "RegisterComponent"
+                                            },
+                                            {
+                                                "path": "login",
+                                                "component": "LoginComponent"
+                                            },
+                                            {
+                                                "path": "confirm",
+                                                "component": "ConfirmComponent"
+                                            },
+                                            {
+                                                "path": "",
+                                                "pathMatch": "full",
+                                                "redirectTo": "login"
+                                            },
+                                            {
+                                                "path": "**",
+                                                "redirectTo": "login"
+                                            }
+                                        ],
+                                        "kind": "module"
+                                    }
+                                ],
+                                "module": "AuthModule"
+                            }
+                        ]
+                    }
+                ],
+                "kind": "module"
+            }
+        ]
+    },
+    "coverage": {
+        "count": 2,
+        "status": "low",
+        "files": [
+            {
+                "filePath": "e2e/src/app.po.ts",
+                "type": "class",
+                "linktype": "classe",
+                "name": "AppPage",
+                "coveragePercent": 0,
+                "coverageCount": "0/3",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/API.service.ts",
+                "type": "injectable",
+                "linktype": "injectable",
+                "name": "APIService",
+                "coveragePercent": 0,
+                "coverageCount": "0/9",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/app.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "AppComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/4",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/models/user.model.ts",
+                "type": "interface",
+                "linktype": "interface",
+                "name": "User",
+                "coveragePercent": 0,
+                "coverageCount": "0/5",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/pages/auth/auth-service.ts",
+                "type": "injectable",
+                "linktype": "injectable",
+                "name": "AuthService",
+                "coveragePercent": 0,
+                "coverageCount": "0/7",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/pages/auth/auth.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "AuthComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/3",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/pages/auth/confirm/confirm.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "ConfirmComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/5",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/pages/auth/login/login.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "LoginComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/5",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/pages/auth/register/register.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "RegisterComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/5",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/transloco/transloco-root.module.ts",
+                "type": "injectable",
+                "linktype": "injectable",
+                "name": "TranslocoHttpLoader",
+                "coveragePercent": 0,
+                "coverageCount": "0/3",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/ui-components/forms/validation-message/validation-message.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "ValidationMessageComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/4",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/ui-components/forms/validation-message/validation-message.component.ts",
+                "type": "interface",
+                "linktype": "interface",
+                "name": "ValidationMessage",
+                "coveragePercent": 0,
+                "coverageCount": "0/3",
+                "status": "low"
+            },
+            {
+                "filePath": "src/environments/environment.prod.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "environment",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/environments/environment.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "environment",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/Button.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Large",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/Button.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Primary",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/Button.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Secondary",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/Button.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Small",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/Button.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Template",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/Header.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "LoggedIn",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/Header.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "LoggedOut",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/Header.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Template",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/Page.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "LoggedIn",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/Page.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "LoggedOut",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/Page.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Template",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/button.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "ButtonComponent",
+                "coveragePercent": 83,
+                "coverageCount": "5/6",
+                "status": "very-good"
+            },
+            {
+                "filePath": "src/stories/header.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "HeaderComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/5",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/page.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "PageComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/5",
+                "status": "low"
+            },
+            {
+                "filePath": "src/test.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "context",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/test.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "require",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            }
+        ]
+    }
+}

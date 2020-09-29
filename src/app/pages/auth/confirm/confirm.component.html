@@ -2,17 +2,17 @@
   <div class="form-body p-grid">
     <form class="p-col-6 p-offset-3 authForm" [formGroup]="confirmForm" (ngSubmit)="onConfirm(confirmForm.value)">
       <div class="p-field p-grid">
-        <label for="email" class="p-col-fixed authForm__label">Email:</label>
+        <label for="email" class="p-col-fixed authForm__label">{{t('formLabels.email')}}</label>
         <div class="p-col">
           <input type="text" id="email" formControlName="username" pInputText [className]="'authForm__input'">
         </div>
       </div>
 
       <div class="p-field p-grid">
-        <label for="name" class="p-col-fixed authForm__label">Confirm Code:</label>
+        <label for="name" class="p-col-fixed authForm__label">{{t('formLabels.confirmCode')}}</label>
         <div class="p-col">
           <input type="password" id="name" formControlName="code" pInputText [className]="'authForm__input'">
-        </div>
+        </div> 
       </div>
 
       <button type="submit" [disabled]="confirmForm.invalid" pButton [label]="t('buttons.submit')"></button>

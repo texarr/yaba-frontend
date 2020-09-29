@@ -3,7 +3,8 @@
     "name": "Name",
     "email": "Email",
     "confirm": "Confirm",
-    "password": "Password"
+    "password": "Password",
+    "confirmCode": "Confirm Code"
   },
   "formValidators": {
     "required": "This field is required",
