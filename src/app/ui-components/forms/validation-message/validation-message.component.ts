@@ -1,6 +1,11 @@
 import { Component, Input, ViewEncapsulation } from '@angular/core';
 import { AbstractControl, ValidationErrors } from '@angular/forms';
 
+interface ValidationMessage {
+  keyError: string;
+  value: any;
+}
+
 @Component({
   selector: 'app-validation-message',
   templateUrl: './validation-message.component.html',
@@ -11,7 +16,7 @@ export class ValidationMessageComponent {
 
   constructor() { }
 
-  getErrors() {
+  getErrors(): ValidationMessage[] {
     const errors: ValidationErrors = this.control.errors;
     if (errors !== null) {
       return Object.keys(errors).map(keyError => {
