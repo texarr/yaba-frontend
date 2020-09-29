@@ -4,6 +4,9 @@
       <label for="name" class="p-col-fixed authForm__label">Name:</label>
       <div class="p-col">
         <input type="text" id="name" formControlName="name" pInputText [className]="'authForm__input'">
+        <app-validation-message
+          [control]="newUserForm.get('name')"
+        ></app-validation-message>
       </div>
     </div>
 
@@ -11,6 +14,9 @@
       <label for="email" class="p-col-fixed authForm__label">Email:</label>
       <div class="p-col">
         <input type="text" id="email" formControlName="email" pInputText [className]="'authForm__input'">
+        <app-validation-message
+          [control]="newUserForm.get('email')"
+        ></app-validation-message>
       </div>
     </div>
 
@@ -18,6 +24,9 @@
       <label for="emailConfirm" class="p-col-fixed authForm__label">Email Confirm:</label>
       <div class="p-col">
         <input type="text" id="emailConfirm" formControlName="emailConfirm" pInputText [className]="'authForm__input'">
+        <app-validation-message
+          [control]="newUserForm.get('emailConfirm')"
+        ></app-validation-message>
       </div>
     </div>
 
@@ -25,6 +34,9 @@
       <label for="pass" class="p-col-fixed authForm__label">Password:</label>
       <div class="p-col">
         <input type="password" id="pass" formControlName="password" pInputText [className]="'authForm__input'">
+        <app-validation-message
+          [control]="newUserForm.get('password')"
+        ></app-validation-message>
       </div>
     </div>
 
@@ -32,6 +44,9 @@
       <label for="pass2" class="p-col-fixed authForm__label">Repeat:</label>
       <div class="p-col">
         <input type="password" id="pass2" formControlName="passwordRepeat" pInputText [className]="'authForm__input'">
+        <app-validation-message
+          [control]="newUserForm.get('passwordRepeat')"
+        ></app-validation-message>
       </div>
     </div>
 

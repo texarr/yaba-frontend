@@ -1,19 +1,33 @@
-<div class="form-body p-grid">
-  <form class="p-col-6 p-offset-3 authForm" [formGroup]="loginForm" (ngSubmit)="onLogin(loginForm.value)">
-    <div class="p-field p-grid">
-      <label for="email" class="p-col-fixed authForm__label">Email:</label>
-      <div class="p-col">
-        <input type="text" id="email" formControlName="email" pInputText [className]="'authForm__input'">
+<ng-container *transloco="let t">
+  <div class="form-body p-grid">
+    <form class="p-col-6 p-offset-3 authForm" [formGroup]="loginForm" (ngSubmit)="onLogin(loginForm.value)">
+      <div class="p-field p-grid">
+        <label for="email" class="p-col-fixed authForm__label">{{t('formLabels.email')}}</label>
+        <div class="p-col">
+          <input
+            type="text"
+            id="email"
+            formControlName="email"
+            pInputText
+            [className]="'authForm__input'"
+          >
+          <app-validation-message
+            [control]="loginForm.get('email')"
+          ></app-validation-message>
+        </div>
       </div>
-    </div>
 
-    <div class="p-field p-grid">
-      <label for="pass" class="p-col-fixed authForm__label">Password:</label>
-      <div class="p-col">
-        <input type="password" id="pass" formControlName="password" pInputText [className]="'authForm__input'">
+      <div class="p-field p-grid">
+        <label for="pass" class="p-col-fixed authForm__label">{{t('formLabels.password')}}</label>
+        <div class="p-col">
+          <input type="password" id="pass" formControlName="password" pInputText [className]="'authForm__input'">
+          <app-validation-message
+            [control]="loginForm.get('password')"
+          ></app-validation-message>
+        </div>
       </div>
-    </div>
 
-    <button type="submit" [disabled]="loginForm.invalid" pButton>Login</button>
-  </form>
-</div>
+      <button type="submit" [disabled]="loginForm.invalid" pButton>Login</button>
+    </form>
+  </div>
+</ng-container>
