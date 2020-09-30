@@ -16,6 +16,7 @@ import { UiComponentsModule } from '../../ui-components/ui-components.module';
   declarations: [RegisterComponent, LoginComponent, ConfirmComponent],
   imports: [
     CommonModule,
+    TranslocoModule,
     AuthRoutingModule,
     FormsModule,
     ReactiveFormsModule,
@@ -23,7 +24,6 @@ import { UiComponentsModule } from '../../ui-components/ui-components.module';
     AmplifyUIAngularModule,
     InputTextModule,
     ButtonModule,
-    TranslocoModule,
     UiComponentsModule
   ]
 })

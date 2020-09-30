@@ -14,5 +14,10 @@
   "buttons": {
     "login": "Login",
     "submit": "Submit"
+  },
+  "nav": {
+    "categories": "Categories",
+    "plan": "Plan",
+    "progress": "Realisation"
   }
 }
