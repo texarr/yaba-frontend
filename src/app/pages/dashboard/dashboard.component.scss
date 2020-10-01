@@ -1,0 +1,21 @@
+.dashboard {
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__container {
+    display: flex;
+    height: calc(100vh - 83px);
+  }
+
+  &__menu {
+    width: 250px;
+  }
+
+  &__content {
+    flex-grow: 1;
+  }
+}

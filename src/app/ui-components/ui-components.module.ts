@@ -20,7 +20,8 @@ import { ValidationMessageComponent } from './forms/validation-message/validatio
     TranslocoModule
   ],
   exports: [
-    ValidationMessageComponent
+    ValidationMessageComponent,
+    TranslocoModule
   ]
 })
 export class UiComponentsModule { }
