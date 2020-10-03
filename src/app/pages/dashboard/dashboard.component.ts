@@ -3,6 +3,8 @@ import { MenuItem } from 'primeng/api';
 import { TranslocoService } from '@ngneat/transloco';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { AuthService } from '../auth/auth-service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -14,7 +16,9 @@ export class DashboardComponent implements OnInit, OnDestroy {
   destroyed = new Subject();
 
   constructor(
-    private transloco: TranslocoService
+    private transloco: TranslocoService,
+    private authService: AuthService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -37,10 +41,18 @@ export class DashboardComponent implements OnInit, OnDestroy {
         }
       ]
     });
+
+    console.log(localStorage);
   }
 
   ngOnDestroy(): void {
     this.destroyed.next();
     this.destroyed.complete();
+  }
+
+  async handleLogout() {
+    await this.authService.signOut().then(() => {
+      this.router.navigateByUrl('');
+    })
   }
 }

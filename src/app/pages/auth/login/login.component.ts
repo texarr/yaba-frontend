@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { APIService } from '../../../API.service';
 import { AuthService } from '../auth-service';
 import { RxwebValidators } from '@rxweb/reactive-form-validators';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -26,10 +27,10 @@ export class LoginComponent implements OnInit {
   }
 
   async onLogin(user) {
-    await this.authService.signIn(user.email, user.password).then((res) => {
-      console.log(res);
-    }, (error) => {
-      console.log(error);
-    })
+    try {
+      await this.authService.signIn(user.email, user.password)
+    } catch (e) {
+      console.log(e);
+    }
   }
 }
