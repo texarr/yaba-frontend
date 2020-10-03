@@ -1,16 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Auth } from 'aws-amplify';
 import { User } from '../../models/user.model';
-import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  constructor(
-    private router: Router
-  ) {}
+  constructor() {}
 
   async signUp(userDto: User) {
     try {
@@ -21,8 +18,6 @@ export class AuthService {
           name: userDto.name
         }
       });
-
-      this.router.navigateByUrl('/auth/confirm');
       return user;
     } catch (error) {
       return error;
@@ -31,8 +26,7 @@ export class AuthService {
 
   async confirmSignUp(username: string, code: string) {
     try {
-      const confirm = await Auth.confirmSignUp(username, code);
-      this.router.navigateByUrl('/');
+      await Auth.confirmSignUp(username, code);
       return confirm;
     } catch (error) {
       return error;
@@ -41,9 +35,9 @@ export class AuthService {
 
   async signIn(username: string, password: string) {
     try {
-      const signIn = await Auth.signIn(username, password);
-      this.router.navigateByUrl('/')
-      return signIn;
+      return await Auth.signIn(username, password).then((res) => {
+        localStorage.setItem('yabaAuth', JSON.stringify(res.signInUserSession))
+      });
     } catch (error) {
       return error;
     }
@@ -59,7 +53,7 @@ export class AuthService {
 
   async signOut() {
     try {
-      return await Auth.signOut({ global: true });
+      await Auth.signOut({ global: true });
     } catch (error) {
       return error;
     }

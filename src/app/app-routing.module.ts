@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { AuthComponent } from './pages/auth/auth.component';
-import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { RouterModule, Routes } from '@angular/router';
+import { AuthGuardService } from './pages/auth/auth-guard.service';
 
 const routes: Routes = [
   // todo: landing page
@@ -9,10 +8,12 @@ const routes: Routes = [
   //   path: '', component: LandingPage
   // }
   {
-    path: 'auth', loadChildren: () => import('./pages/auth/auth.module').then(m => m.AuthModule)
+    path: 'auth',
+    loadChildren: () => import('./pages/auth/auth.module').then(m => m.AuthModule)
   },
-  { // todo: add auth guard
-    path: 'dashboard', loadChildren: () => import('./pages/dashboard/dashboard.module').then(m => m.DashboardModule)
+  {
+    path: 'dashboard', canActivate: [AuthGuardService],
+    loadChildren: () => import('./pages/dashboard/dashboard.module').then(m => m.DashboardModule)
   },
   {
     path: '**', redirectTo: 'auth'
