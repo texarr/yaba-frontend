@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
-import { Auth } from 'aws-amplify';
 
 @Injectable({providedIn: 'root'})
 export class AuthGuardService implements CanActivate {
