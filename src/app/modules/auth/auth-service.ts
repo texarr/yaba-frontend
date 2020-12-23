@@ -14,8 +14,6 @@ export class AuthService {
   ) {}
 
   async signUp(userDto: User): Promise<void> {
-    // todo: signup connection
-    console.log(userDto);
     return this.http.post<void>(`${this.apiBase}/auth/register`, userDto).toPromise();
   }
 
