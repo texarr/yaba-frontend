@@ -4,7 +4,6 @@ import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { AuthRoutingModule } from './auth-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AmplifyUIAngularModule } from '@aws-amplify/ui-angular';
 import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 import { ConfirmComponent } from './confirm/confirm.component';
@@ -21,7 +20,6 @@ import { UiComponentsModule } from '../../ui-components/ui-components.module';
     FormsModule,
     ReactiveFormsModule,
     RxReactiveFormsModule,
-    AmplifyUIAngularModule,
     InputTextModule,
     ButtonModule,
     UiComponentsModule
