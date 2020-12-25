@@ -43,7 +43,9 @@ export class LoginComponent implements OnInit {
           this.transloco.translate('messages.message.loginSuccess'),
           this.transloco.translate('messages.message.welcome') + res.user.name
         )
-        // todo: save token
+
+        localStorage.setItem('yabaAuth', res.accessToken);
+
         setTimeout(() => {
           this.authService.clearMessages();
           this.router.navigateByUrl('/dashboard')

@@ -52,6 +52,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   async handleLogout() {
     await this.authService.signOut().then(() => {
+      localStorage.removeItem('yabaAuth');
       this.router.navigateByUrl('');
     })
   }

@@ -3,7 +3,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthGuardService } from './modules/auth/auth-guard.service';
 
 const routes: Routes = [
-  // todo: landing page
   // {
   //   path: '', component: LandingPage
   // }
