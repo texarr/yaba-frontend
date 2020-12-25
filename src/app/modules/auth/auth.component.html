@@ -1,1 +1,9 @@
-<router-outlet></router-outlet>
+<div class="authComponent">
+  <div class="authComponent__messages">
+    <p-messages [(value)]="authService.msgs"></p-messages>
+  </div>
+
+  <div class="authComponent__content">
+    <router-outlet></router-outlet>
+  </div>
+</div>

@@ -10,9 +10,10 @@ import { ConfirmComponent } from './confirm/confirm.component';
 import { RxReactiveFormsModule } from '@rxweb/reactive-form-validators';
 import { TranslocoModule } from '@ngneat/transloco';
 import { UiComponentsModule } from '../../ui-components/ui-components.module';
+import { ResendActivationMailComponent } from './resend-activation-mail/resend-activation-mail.component';
 
 @NgModule({
-  declarations: [RegisterComponent, LoginComponent, ConfirmComponent],
+  declarations: [RegisterComponent, LoginComponent, ConfirmComponent, ResendActivationMailComponent],
   imports: [
     CommonModule,
     TranslocoModule,

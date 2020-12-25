@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { RxwebValidators } from '@rxweb/reactive-form-validators';
 import { AuthService } from '../auth-service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-confirm',
@@ -9,22 +8,21 @@ import { AuthService } from '../auth-service';
   styleUrls: ['./confirm.component.scss']
 })
 export class ConfirmComponent implements OnInit {
-  confirmForm: FormGroup;
+  confirmationToken: string;
 
   constructor(
-    private fb: FormBuilder,
-    private authService: AuthService
+    private authService: AuthService,
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
-    this.confirmForm = this.fb.group({
-      username: ['', [Validators.required, RxwebValidators.email()]],
-      code: ['', Validators.required]
+    this.route.paramMap.subscribe((param) => {
+      this.confirmationToken = param.get('confirmationToken');
     })
   }
 
-  async onConfirm(confirmation) {
-    await this.authService.confirmSignUp(confirmation.username, confirmation.code).then((res) => {
+  async onConfirm() {
+    await this.authService.confirmSignUp(this.confirmationToken).then((res) => {
       console.log(res);
     }, (error) => {
       console.log(error);

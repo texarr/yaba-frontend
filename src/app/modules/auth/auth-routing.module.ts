@@ -4,6 +4,7 @@ import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { ConfirmComponent } from './confirm/confirm.component';
 import { AuthComponent } from './auth.component';
+import { ResendActivationMailComponent } from './resend-activation-mail/resend-activation-mail.component';
 
 const routes: Routes = [
   {
@@ -15,7 +16,10 @@ const routes: Routes = [
         path: 'login', component: LoginComponent
       },
       {
-        path: 'confirm', component: ConfirmComponent
+        path: 'confirm/:confirmationToken', component: ConfirmComponent
+      },
+      {
+        path: 'mailer/sendActivationToken', component: ResendActivationMailComponent
       },
       {
         path: '**', redirectTo: 'login'

@@ -53,6 +53,9 @@
       </div>
 
       <button type="submit" [disabled]="newUserForm.invalid" pButton [label]="t('buttons.submit')"></button>
+
+      <button type="button" pButton [label]="t('buttons.resendActivation')"
+              routerLink="/auth/mailer/sendActivationToken"></button>
     </form>
   </div>
 </ng-container>

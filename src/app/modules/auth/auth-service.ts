@@ -1,39 +1,60 @@
 import { Injectable } from '@angular/core';
-import { User } from '../../models/user.model';
+import {
+  UserConfirmationCallBack, UserLoginCallback,
+  UserLoginPayload,
+  UserRegisterCallback,
+  UserRegisterPayload
+} from './models/user.model';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
+import { MailerConfirmationPayload } from './models/mailer-confirmation-payload.interface';
+import { Message, MessageService } from 'primeng/api';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   apiBase = environment.apiBase;
+  msgs: Message[] = [];
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private messageService: MessageService
   ) {}
 
-  async signUp(userDto: User): Promise<void> {
-    return this.http.post<void>(`${this.apiBase}/auth/register`, userDto).toPromise();
+  async signUp(userDto: UserRegisterPayload): Promise<UserRegisterCallback> {
+    return this.http.post<UserRegisterCallback>(`${this.apiBase}/auth/register`, userDto).toPromise();
   }
 
-  async confirmSignUp(username: string, code: string) {
-    try {
-      // todo: signup confirmation
-    } catch (error) {
-      return error;
-    }
+  async confirmSignUp(confirmationToken: string): Promise<UserConfirmationCallBack> {
+    return this.http.get<UserConfirmationCallBack>(`${this.apiBase}/auth/confirm/${confirmationToken}`).toPromise();
   }
 
-  async signIn(username: string, password: string) {
-    // todo: sign in connection
+  async signIn(userPayload: UserLoginPayload): Promise<UserLoginCallback> {
+    return this.http.post<UserLoginCallback>(`${this.apiBase}/auth/login`, userPayload).toPromise();
   }
 
-  async resendConfirmationCode(username: string) {
-    // todo: resend confirmation
+  async resendEmail(mailerPayload: MailerConfirmationPayload): Promise<void> {
+    return this.http.post<void>(`${this.apiBase}/mailer/resendEmail`, mailerPayload).toPromise();
   }
 
   async signOut() {
     // todo: sign out
+  }
+
+  handleRequestCallbackMessage(severity: string, message: string, detail: string, clearPrevious?: boolean): void {
+    if (clearPrevious) {
+      this.msgs = [];
+    }
+
+    this.msgs.push({
+      severity: severity,
+      summary: message,
+      detail: detail
+    })
+  }
+
+  clearMessages(): void {
+    this.msgs = [];
   }
 }

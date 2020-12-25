@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { User } from '../../../models/user.model';
 import { RxwebValidators } from '@rxweb/reactive-form-validators';
 import { AuthService } from '../auth-service';
+import { UserRegisterPayload } from '../models/user.model';
 
 @Component({
   selector: 'app-register',
@@ -27,7 +27,7 @@ export class RegisterComponent implements OnInit {
     })
   }
 
-  async signUp(user: User): Promise<void> {
+  async signUp(user: UserRegisterPayload): Promise<void> {
     await this.authService.signUp(user).then((res) => {
       console.log(res);
     }, (error) => {

@@ -1,0 +1,21 @@
+.authComponent {
+  position: relative;
+  padding-top: 52px;
+
+  &__messages {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+
+    ::ng-deep {
+      .p-message {
+        margin: 0;
+      }
+
+      &.p-message-wrapper {
+        padding: 10px 12px;
+      }
+    }
+  }
+}

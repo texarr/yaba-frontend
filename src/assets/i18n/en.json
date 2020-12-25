@@ -19,5 +19,11 @@
     "categories": "Categories",
     "plan": "Plan",
     "progress": "Realisation"
+  },
+  "messages": {
+    "message": {
+      "loginSuccess": "Successfully logged in",
+      "welcome": "Hello: "
+    }
   }
 }
