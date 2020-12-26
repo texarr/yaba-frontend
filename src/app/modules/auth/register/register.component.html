@@ -52,7 +52,7 @@
         </div>
       </div>
 
-      <button type="submit" [disabled]="newUserForm.invalid" pButton [label]="t('buttons.submit')"></button>
+      <button type="submit" [disabled]="newUserForm.invalid || newUserForm.disabled" pButton [label]="t('buttons.submit')"></button>
 
       <button type="button" pButton [label]="t('buttons.resendActivation')"
               routerLink="/auth/mailer/sendActivationToken"></button>

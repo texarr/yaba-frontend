@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { RxwebValidators } from '@rxweb/reactive-form-validators';
 import { AuthService } from '../auth-service';
 import { UserRegisterPayload } from '../models/user.model';
+import { TranslocoService } from '@ngneat/transloco';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-register',
@@ -15,6 +17,7 @@ export class RegisterComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
+    private transloco: TranslocoService
   ) { }
 
   ngOnInit(): void {
@@ -29,9 +32,15 @@ export class RegisterComponent implements OnInit {
 
   async signUp(user: UserRegisterPayload): Promise<void> {
     await this.authService.signUp(user).then((res) => {
-      console.log(res);
-    }, (error) => {
-      console.log(error);
+      this.authService.handleRequestCallbackMessage(
+        'success',
+        this.transloco.translate('messages.message.registrationSuccess'),
+        this.transloco.translate('messages.message.registrationAuthorizationInfo')
+      )
+
+      this.newUserForm.disable();
+    }, (err: HttpErrorResponse) => {
+      this.authService.handleCallbackErrorMessage(err);
     })
   }
 }

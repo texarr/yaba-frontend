@@ -13,7 +13,8 @@
   },
   "buttons": {
     "login": "Login",
-    "submit": "Submit"
+    "submit": "Submit",
+    "resendActivation": "Send activation email"
   },
   "nav": {
     "categories": "Categories",
@@ -23,7 +24,13 @@
   "messages": {
     "message": {
       "loginSuccess": "Successfully logged in",
-      "welcome": "Hello: "
+      "welcome": "Hello: ",
+      "registrationSuccess": "Account created",
+      "registrationAuthorizationInfo": "Check your e-mail and confirm account",
+      "accountConfirmed": {
+        "title": "Account confirmed",
+        "message": "You can now log in"
+      }
     }
   }
 }

@@ -37,7 +37,6 @@ export class LoginComponent implements OnInit {
 
     await this.authService.signIn(userLoginPayload).then(
       (res: UserLoginCallback) => {
-        this.authService.clearMessages();
         this.authService.handleRequestCallbackMessage(
           'success',
           this.transloco.translate('messages.message.loginSuccess'),
@@ -51,12 +50,7 @@ export class LoginComponent implements OnInit {
           this.router.navigateByUrl('/dashboard')
         }, 2000);
       }, (err: HttpErrorResponse) => {
-        this.authService.handleRequestCallbackMessage(
-          'error',
-          `Http Error: Status: ${err.status.toString()}`,
-          `${err.message}`,
-          true
-        )
+        this.authService.handleCallbackErrorMessage(err);
       }
     )
   }
