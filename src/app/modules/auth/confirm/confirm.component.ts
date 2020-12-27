@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth-service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { take } from 'rxjs/operators';
 import { HttpErrorResponse } from '@angular/common/http';
 import { TranslocoService } from '@ngneat/transloco';
 import { UserConfirmationCallBack } from '../models/user.model';
