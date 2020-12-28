@@ -6,15 +6,17 @@ import { BudgetProgressComponent } from './budget-progress/budget-progress.compo
 import { UiComponentsModule } from '../../ui-components/ui-components.module';
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { PanelMenuModule } from 'primeng/panelmenu';
-import { HttpClientModule } from '@angular/common/http';
+import { CategoriesComponent } from './categories/categories.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [DashboardComponent, BudgetPlanComponent, BudgetProgressComponent],
+  declarations: [DashboardComponent, BudgetPlanComponent, BudgetProgressComponent, CategoriesComponent],
   imports: [
     CommonModule,
     DashboardRoutingModule,
     UiComponentsModule,
-    PanelMenuModule
+    PanelMenuModule,
+    ReactiveFormsModule
   ]
 })
 export class DashboardModule { }

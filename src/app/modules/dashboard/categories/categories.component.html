@@ -1,1 +1,63 @@
-<p>categories works!</p>
+<ng-container *ngIf="form">
+  <div class="categories" [formGroup]="form">
+
+    <!-- Income categories -->
+    <div class="categories__incomes"
+         formArrayName="incomes">
+      <ng-container *ngFor="let incomesControl of getFormArray('incomes').controls; index as i">
+        <div [formGroupName]="i">
+          <div>
+            <input type="text" formControlName="icon">
+            <input type="text" formControlName="name">
+
+            <button (click)="removeCategory(getFormArray('incomes'), i)">Remove main category</button>
+          </div>
+
+          <div class="categories__childCategories"
+               formArrayName="childCategories">
+            <ng-container *ngFor="let childControl of getChildCategories(incomesControl).controls; index as j">
+              <div [formGroupName]="j">
+                <input type="text" formControlName="name">
+                <button (click)="removeCategory(getChildCategories(incomesControl), j)">remove child category</button>
+              </div>
+            </ng-container>
+
+            <button (click)="addChildCategory(incomesControl)">Add child category</button>
+          </div>
+        </div>
+      </ng-container>
+
+      <button (click)="addMainCategory(getFormArray('incomes'))">Add income category</button>
+    </div>
+
+
+    <!-- Outcome categories -->
+    <div class="categories__outcomes"
+         formArrayName="outcomes">
+      <ng-container *ngFor="let outcomesControl of getFormArray('outcomes').controls; index as i">
+        <div [formGroupName]="i">
+          <div>
+            <input type="text" formControlName="icon">
+            <input type="text" formControlName="name">
+
+            <button (click)="removeCategory(getFormArray('outcomes'), i)">Remove main category</button>
+          </div>
+
+          <div class="categories__childCategories"
+               formArrayName="childCategories">
+            <ng-container *ngFor="let childControl of getChildCategories(outcomesControl).controls; index as j">
+              <div [formGroupName]="j">
+                <input type="text" formControlName="name">
+                <button (click)="removeCategory(getChildCategories(outcomesControl), j)">remove child category</button>
+              </div>
+            </ng-container>
+
+            <button (click)="addChildCategory(outcomesControl)">Add child category</button>
+          </div>
+        </div>
+      </ng-container>
+
+      <button (click)="addMainCategory(getFormArray('outcomes'))">Add outcome category</button>
+    </div>
+  </div>
+</ng-container>
