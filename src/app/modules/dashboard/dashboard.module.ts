@@ -7,7 +7,7 @@ import { UiComponentsModule } from '../../ui-components/ui-components.module';
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { PanelMenuModule } from 'primeng/panelmenu';
 import { CategoriesComponent } from './categories/categories.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [DashboardComponent, BudgetPlanComponent, BudgetProgressComponent, CategoriesComponent],
@@ -16,7 +16,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     DashboardRoutingModule,
     UiComponentsModule,
     PanelMenuModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
   ]
 })
 export class DashboardModule { }

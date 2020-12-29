@@ -18,7 +18,7 @@
     display: flex;
     justify-content: center;
 
-    div {
+    > div {
       margin-bottom: 5px;
     }
 
@@ -67,6 +67,17 @@
       margin-left: auto;
       display: block;
     }
+  }
+
+  &__submitButtons {
+    padding-left: 15px;
+    padding-right: 15px;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
   }
 }
 

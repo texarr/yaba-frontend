@@ -14,7 +14,12 @@
   "buttons": {
     "login": "Login",
     "submit": "Submit",
-    "resendActivation": "Send activation email"
+    "resendActivation": "Send activation email",
+    "incomeCategory": "Income category",
+    "outcomeCategory": "Outcome category",
+    "saveExistingCategory": "Save",
+    "cancelChanges": "Cancel",
+    "saveAs": "Save as"
   },
   "nav": {
     "categories": "Categories",
@@ -32,5 +37,11 @@
         "message": "You can now log in"
       }
     }
+  },
+  "inputs": {
+    "icon": "Icon",
+    "categoryName": "Category name",
+    "subcategoryName": "Subcategory name",
+    "saveAs": "New category name"
   }
 }

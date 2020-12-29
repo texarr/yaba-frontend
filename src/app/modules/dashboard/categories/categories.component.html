@@ -8,15 +8,38 @@
         <div [formGroupName]="i" class="categories__mainCategoryInputsContainer">
           <div class="categories__mainCategoryInputs">
             <div class="p-field categories__mainCategoryInputs__iconSelect">
-              <label [for]="'incomesIcon' + i">Icon</label>
+              <label [for]="'incomesIcon' + i">{{'inputs.icon' | transloco}}</label>
               <p-dropdown
                 [id]="'incomesIcon' + i"
                 formControlName="icon"
-              ></p-dropdown>
+                [options]="icons"
+                [virtualScroll]="true"
+                itemSize="30"
+                optionLabel="name"
+              >
+                <ng-template pTemplate="selectedItem">
+                  <div class="p-dropdown p-component"
+                       style="border: none"
+                       *ngIf="incomesControl.value.icon.name; else emptyValue">
+                    <i [class]="'pi ' + incomesControl.value.icon.name"></i>
+                  </div>
+
+                  <ng-template #emptyValue>
+                    <div class="p-dropdown p-component"
+                         style="border: none"></div>
+                  </ng-template>
+                </ng-template>
+
+                <ng-template let-item pTemplate="item">
+                  <div class="country-item">
+                    <div [class]="'pi ' + item.name"></div>
+                  </div>
+                </ng-template>
+              </p-dropdown>
             </div>
 
             <div class="p-field categories__mainCategoryInputs__inputName">
-              <label [for]="'incomesName' + i">Username</label>
+              <label [for]="'incomesName' + i">{{'inputs.categoryName' | transloco}}</label>
               <input
                 [id]="'incomesName' + i"
                 pInputText
@@ -40,7 +63,7 @@
             <ng-container *ngFor="let childControl of getChildCategories(incomesControl).controls; index as j">
               <div [formGroupName]="j" class="categories__childCategoryInputs">
                 <div class="p-field categories__mainCategoryInputs__inputName">
-                  <label [for]="'childCategory'+j">Child category name</label>
+                  <label [for]="'childCategory'+j">{{'inputs.subcategoryName' | transloco}}</label>
                   <input
                     [id]="'childCategory'+j"
                     pInputText
@@ -73,7 +96,7 @@
 
       <div class="categories__mainCategoryButtonContainer">
         <p-button
-          label="Income category"
+          [label]="'buttons.incomeCategory' | transloco"
           icon="pi pi-plus"
           iconPos="left"
           (click)="addMainCategory(getFormArray('incomes'))"></p-button>
@@ -88,15 +111,38 @@
         <div [formGroupName]="i" class="categories__mainCategoryInputsContainer">
           <div class="categories__mainCategoryInputs">
             <div class="p-field categories__mainCategoryInputs__iconSelect">
-              <label [for]="'outcomesIcon' + i">Icon</label>
+              <label [for]="'outcomesIcon' + i">{{'inputs.icon' | transloco}}</label>
               <p-dropdown
                 [id]="'outcomesIcon' + i"
                 formControlName="icon"
-              ></p-dropdown>
+                [options]="icons"
+                [virtualScroll]="true"
+                itemSize="30"
+                optionLabel="name"
+              >
+                <ng-template pTemplate="selectedItem">
+                  <div class="p-dropdown p-component"
+                       style="border: none"
+                       *ngIf="outcomesControl.value.icon.name; else emptyValue">
+                    <i [class]="'pi ' + outcomesControl.value.icon.name"></i>
+                  </div>
+
+                  <ng-template #emptyValue>
+                    <div class="p-dropdown p-component"
+                         style="border: none"></div>
+                  </ng-template>
+                </ng-template>
+
+                <ng-template let-item pTemplate="item">
+                  <div class="country-item">
+                    <div [class]="'pi ' + item.name"></div>
+                  </div>
+                </ng-template>
+              </p-dropdown>
             </div>
 
             <div class="p-field categories__mainCategoryInputs__inputName">
-              <label [for]="'outcomesName' + i">Username</label>
+              <label [for]="'outcomesName' + i">{{'inputs.categoryName' | transloco}}</label>
               <input
                 [id]="'outcomesName' + i"
                 pInputText
@@ -120,7 +166,7 @@
             <ng-container *ngFor="let childControl of getChildCategories(outcomesControl).controls; index as j">
               <div [formGroupName]="j" class="categories__childCategoryInputs">
                 <div class="p-field categories__mainCategoryInputs__inputName">
-                  <label [for]="'childCategory'+j">Child category name</label>
+                  <label [for]="'childCategory'+j">{{'inputs.subcategoryName' | transloco}}</label>
                   <input
                     [id]="'childCategory'+j"
                     pInputText
@@ -153,11 +199,45 @@
 
       <div class="categories__mainCategoryButtonContainer">
         <p-button
-          label="Outcome category"
+          [label]="'buttons.outcomeCategory' | transloco"
           icon="pi pi-plus"
           iconPos="left"
           (click)="addMainCategory(getFormArray('outcomes'))"></p-button>
       </div>
     </div>
+  </div>
+
+  <div class="categories__submitButtons">
+    <p-button
+      [label]="'buttons.saveExistingCategory' | transloco"
+      icon="pi pi-plus"
+      iconPos="left"
+      (click)="saveExistingCategory()">
+    </p-button>
+
+    <p-button
+      [label]="'buttons.cancelChanges' | transloco"
+      icon="pi pi-plus"
+      iconPos="left"
+      (click)="cancelChanges()">
+    </p-button>
+
+    <div>
+      <label for="saveAsName">{{'inputs.saveAs' | transloco}}</label>
+      <input
+        id="saveAsName"
+        pInputText
+        [(ngModel)]="saveAsName"
+      >
+    </div>
+
+    <p-button
+      [label]="'buttons.saveAs' | transloco"
+      icon="pi pi-plus"
+      iconPos="left"
+      [disabled]="!saveAsName"
+      (click)="saveAs()">
+    </p-button>
+
   </div>
 </ng-container>
