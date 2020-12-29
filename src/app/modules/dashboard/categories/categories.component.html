@@ -5,29 +5,79 @@
     <div class="categories__incomes"
          formArrayName="incomes">
       <ng-container *ngFor="let incomesControl of getFormArray('incomes').controls; index as i">
-        <div [formGroupName]="i">
-          <div>
-            <input type="text" formControlName="icon">
-            <input type="text" formControlName="name">
+        <div [formGroupName]="i" class="categories__mainCategoryInputsContainer">
+          <div class="categories__mainCategoryInputs">
+            <div class="p-field categories__mainCategoryInputs__iconSelect">
+              <label [for]="'incomesIcon' + i">Icon</label>
+              <p-dropdown
+                [id]="'incomesIcon' + i"
+                formControlName="icon"
+              ></p-dropdown>
+            </div>
 
-            <button (click)="removeCategory(getFormArray('incomes'), i)">Remove main category</button>
+            <div class="p-field categories__mainCategoryInputs__inputName">
+              <label [for]="'incomesName' + i">Username</label>
+              <input
+                [id]="'incomesName' + i"
+                pInputText
+                formControlName="name"
+              >
+            </div>
+
+            <div class="p-field categories__mainCategoryInputs__removeBtn">
+              <button
+                pButton
+                icon="pi pi-times"
+                class="p-button-rounded p-button-danger"
+                (click)="removeCategory(getFormArray('incomes'), i)"
+              ></button>
+            </div>
           </div>
 
+          <!-- Income child categories-->
           <div class="categories__childCategories"
                formArrayName="childCategories">
             <ng-container *ngFor="let childControl of getChildCategories(incomesControl).controls; index as j">
-              <div [formGroupName]="j">
-                <input type="text" formControlName="name">
-                <button (click)="removeCategory(getChildCategories(incomesControl), j)">remove child category</button>
+              <div [formGroupName]="j" class="categories__childCategoryInputs">
+                <div class="p-field categories__mainCategoryInputs__inputName">
+                  <label [for]="'childCategory'+j">Child category name</label>
+                  <input
+                    [id]="'childCategory'+j"
+                    pInputText
+                    formControlName="name"
+                  >
+                </div>
+
+                <div class="p-field categories__mainCategoryInputs__removeBtn">
+                  <button
+                    pButton
+                    type="button"
+                    icon="pi pi-minus"
+                    class="p-button-rounded p-button-outlined p-button-danger"
+                    (click)="removeCategory(getChildCategories(incomesControl), j)">
+                  </button>
+                </div>
               </div>
             </ng-container>
-
-            <button (click)="addChildCategory(incomesControl)">Add child category</button>
           </div>
+
+          <button
+            pButton
+            type="button"
+            icon="pi pi-plus"
+            class="p-button-rounded p-button-outlined categories__childCategoryInputs__addSubcategoryBtn"
+            (click)="addChildCategory(incomesControl)">
+          </button>
         </div>
       </ng-container>
 
-      <button (click)="addMainCategory(getFormArray('incomes'))">Add income category</button>
+      <div class="categories__mainCategoryButtonContainer">
+        <p-button
+          label="Income category"
+          icon="pi pi-plus"
+          iconPos="left"
+          (click)="addMainCategory(getFormArray('incomes'))"></p-button>
+      </div>
     </div>
 
 
@@ -35,29 +85,79 @@
     <div class="categories__outcomes"
          formArrayName="outcomes">
       <ng-container *ngFor="let outcomesControl of getFormArray('outcomes').controls; index as i">
-        <div [formGroupName]="i">
-          <div>
-            <input type="text" formControlName="icon">
-            <input type="text" formControlName="name">
+        <div [formGroupName]="i" class="categories__mainCategoryInputsContainer">
+          <div class="categories__mainCategoryInputs">
+            <div class="p-field categories__mainCategoryInputs__iconSelect">
+              <label [for]="'outcomesIcon' + i">Icon</label>
+              <p-dropdown
+                [id]="'outcomesIcon' + i"
+                formControlName="icon"
+              ></p-dropdown>
+            </div>
 
-            <button (click)="removeCategory(getFormArray('outcomes'), i)">Remove main category</button>
+            <div class="p-field categories__mainCategoryInputs__inputName">
+              <label [for]="'outcomesName' + i">Username</label>
+              <input
+                [id]="'outcomesName' + i"
+                pInputText
+                formControlName="name"
+              >
+            </div>
+
+            <div class="p-field categories__mainCategoryInputs__removeBtn">
+              <button
+                pButton
+                icon="pi pi-times"
+                class="p-button-rounded p-button-danger"
+                (click)="removeCategory(getFormArray('outcomes'), i)"
+              ></button>
+            </div>
           </div>
 
+          <!-- Outcome child categories-->
           <div class="categories__childCategories"
                formArrayName="childCategories">
             <ng-container *ngFor="let childControl of getChildCategories(outcomesControl).controls; index as j">
-              <div [formGroupName]="j">
-                <input type="text" formControlName="name">
-                <button (click)="removeCategory(getChildCategories(outcomesControl), j)">remove child category</button>
+              <div [formGroupName]="j" class="categories__childCategoryInputs">
+                <div class="p-field categories__mainCategoryInputs__inputName">
+                  <label [for]="'childCategory'+j">Child category name</label>
+                  <input
+                    [id]="'childCategory'+j"
+                    pInputText
+                    formControlName="name"
+                  >
+                </div>
+
+                <div class="p-field categories__mainCategoryInputs__removeBtn">
+                  <button
+                    pButton
+                    type="button"
+                    icon="pi pi-minus"
+                    class="p-button-rounded p-button-outlined p-button-danger"
+                    (click)="removeCategory(getChildCategories(outcomesControl), j)">
+                  </button>
+                </div>
               </div>
             </ng-container>
-
-            <button (click)="addChildCategory(outcomesControl)">Add child category</button>
           </div>
+
+          <button
+            pButton
+            type="button"
+            icon="pi pi-plus"
+            class="p-button-rounded p-button-outlined categories__childCategoryInputs__addSubcategoryBtn"
+            (click)="addChildCategory(outcomesControl)">
+          </button>
         </div>
       </ng-container>
 
-      <button (click)="addMainCategory(getFormArray('outcomes'))">Add outcome category</button>
+      <div class="categories__mainCategoryButtonContainer">
+        <p-button
+          label="Outcome category"
+          icon="pi pi-plus"
+          iconPos="left"
+          (click)="addMainCategory(getFormArray('outcomes'))"></p-button>
+      </div>
     </div>
   </div>
 </ng-container>

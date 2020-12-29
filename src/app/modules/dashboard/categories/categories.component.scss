@@ -1,3 +1,118 @@
 .categories {
 
+  &__incomes,
+  &__coutcomes {
+    margin-bottom: 25px;
+  }
+
+  &__mainCategoryInputsContainer {
+    margin-bottom: 7px;
+  }
+
+  &__mainCategoryButtonContainer {
+    display: flex;
+    justify-content: center;
+  }
+
+  &__mainCategoryInputs {
+    display: flex;
+    justify-content: center;
+
+    div {
+      margin-bottom: 5px;
+    }
+
+    &__iconSelect {
+      width: 70px;
+      margin-right: 5px;
+
+      ::ng-deep {
+        .p-dropdown {
+          width: 100%;
+        }
+      }
+    }
+
+    &__inputName {
+      margin-right: 5px;
+
+      input {
+        width: 100%;
+      }
+    }
+
+    &__removeBtn {
+      display: flex;
+      align-items: flex-end;
+
+      button {
+        flex-shrink: 0;
+      }
+    }
+  }
+
+  &__childCategories {
+    width: calc(100% - 75px);
+    margin-left: auto;
+  }
+
+  &__childCategoryInputs {
+    display: flex;
+
+    div {
+      margin-bottom: 5px;
+    }
+
+    &__addSubcategoryBtn {
+      margin-left: auto;
+      display: block;
+    }
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .categories {
+    &__childCategories {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+
+      button {
+        flex-shrink: 0;
+      }
+    }
+
+    &__childCategoryInputs {
+      margin-left: 50px;
+    }
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .categories {
+    display: flex;
+
+    &__incomes,
+    &__outcomes {
+      flex-basis: 50%;
+    }
+
+    &__incomes {
+      margin-right: 25px;
+    }
+
+    &__outcomes {
+      margin-left: 25px;
+    }
+
+    &__mainCategoryInputs,
+    &__childCategories {
+      justify-content: flex-start;
+    }
+
+    &__childCategoryInputs {
+      margin: 0 10px;
+    }
+  }
 }
