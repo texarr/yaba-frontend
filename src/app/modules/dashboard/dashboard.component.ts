@@ -15,11 +15,13 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
     trigger('openClose', [
       state('open', style({
         width: '250px',
-        opacity: 1
+        opacity: 1,
+        left: '*'
       })),
       state('closed', style({
         width: '0',
-        opacity: 0
+        opacity: 0,
+        left: '-250px'
       })),
       transition('open => closed', [
         animate('0.2s')

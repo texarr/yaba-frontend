@@ -16,7 +16,7 @@
 
   <div class="dashboard__container">
     <div class="dashboard__menu" [@openClose]="isOpen ? 'open' : 'closed'">
-      <p-panelMenu [model]="menuItems" class="dashboard__menu__panel"></p-panelMenu>
+      <p-panelMenu [model]="menuItems" class="dashboard__menu__panel" (click)="toggleMenu()"></p-panelMenu>
     </div>
 
     <div class="dashboard__content">
