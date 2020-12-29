@@ -1,12 +1,21 @@
 <div class="dashboard">
   <div class="dashboard__header">
-    <div class="dashboard__header__logo">Logo</div>
-    <div class="pageTitle"><h2>title</h2></div>
-    <div class="dashboard__header__buttons" (click)="handleLogout()">Logout</div>
+    <div class="dashboard__header__button dashboard__header__button--menu">
+      <i class="dashboard__header__button__icon p-menuitem-icon pi pi-bars"
+         (click)="toggleMenu()"></i>
+    </div>
+
+    <div class="pageTitle"><h2>Logo</h2></div>
+
+    <div class="dashboard__header__button dashboard__header__button--logout">
+      <i class="dashboard__header__button__icon p-menuitem-icon pi pi-sign-out"
+         (click)="handleLogout()">
+      </i>
+    </div>
   </div>
 
   <div class="dashboard__container">
-    <div class="dashboard__menu">
+    <div class="dashboard__menu" [@openClose]="isOpen ? 'open' : 'closed'">
       <p-panelMenu [model]="menuItems" class="dashboard__menu__panel"></p-panelMenu>
     </div>
 

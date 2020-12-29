@@ -5,15 +5,35 @@ import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { AuthService } from '../auth/auth-service';
 import { Router } from '@angular/router';
+import { animate, state, style, transition, trigger } from '@angular/animations';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss']
+  styleUrls: ['./dashboard.component.scss'],
+  animations: [
+    trigger('openClose', [
+      state('open', style({
+        width: '250px',
+        opacity: 1
+      })),
+      state('closed', style({
+        width: '0',
+        opacity: 0
+      })),
+      transition('open => closed', [
+        animate('0.2s')
+      ]),
+      transition('closed => open', [
+        animate('0.2s')
+      ])
+    ])
+  ]
 })
 export class DashboardComponent implements OnInit, OnDestroy {
   menuItems: MenuItem[];
   destroyed = new Subject();
+  isOpen = false;
 
   constructor(
     private transloco: TranslocoService,
@@ -41,8 +61,10 @@ export class DashboardComponent implements OnInit, OnDestroy {
         }
       ]
     });
+  }
 
-    console.log(localStorage);
+  toggleMenu(): void {
+    this.isOpen = !this.isOpen;
   }
 
   ngOnDestroy(): void {

@@ -4,6 +4,12 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    &__button {
+      width: 45px;
+      text-align: center;
+      padding: 10px;
+    }
   }
 
   &__container {
@@ -12,7 +18,8 @@
   }
 
   &__menu {
-    width: 250px;
+    //width: 250px;
+    position: fixed;
   }
 
   &__content {
