@@ -3,9 +3,9 @@ import { MenuItem } from 'primeng/api';
 import { TranslocoService } from '@ngneat/transloco';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { AuthService } from '../auth/auth-service';
 import { Router } from '@angular/router';
 import { animate, state, style, transition, trigger } from '@angular/animations';
+import { DashboardService } from './dashboard.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -39,8 +39,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   constructor(
     private transloco: TranslocoService,
-    private authService: AuthService,
-    private router: Router
+    private router: Router,
+    public dashboardService: DashboardService
   ) { }
 
   ngOnInit(): void {
@@ -75,9 +75,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   async handleLogout() {
-    await this.authService.signOut().then(() => {
-      localStorage.removeItem('yabaAuth');
-      this.router.navigateByUrl('');
-    })
+    localStorage.removeItem('yabaAuth');
+    await this.router.navigateByUrl('');
   }
 }

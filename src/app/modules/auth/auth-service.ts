@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {
-  UserConfirmationCallBack, UserLoginCallback,
+  UserConfirmationCallBack,
+  UserLoginCallback,
   UserLoginPayload,
   UserRegisterCallback,
   UserRegisterPayload
@@ -8,8 +9,7 @@ import {
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import { MailerConfirmationPayload } from './models/mailer-confirmation-payload.interface';
-import { Message, MessageService } from 'primeng/api';
-import { Observable } from 'rxjs';
+import { Message } from 'primeng/api';
 
 @Injectable({
   providedIn: 'root'
@@ -37,10 +37,6 @@ export class AuthService {
 
   async resendEmail(mailerPayload: MailerConfirmationPayload): Promise<void> {
     return this.http.post<void>(`${this.apiBase}/mailer/resendEmail`, mailerPayload).toPromise();
-  }
-
-  async signOut() {
-    // todo: sign out
   }
 
   handleRequestCallbackMessage(severity: string, message: string, detail: string, clearPrevious = true): void {

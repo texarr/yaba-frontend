@@ -63,9 +63,9 @@
             <ng-container *ngFor="let childControl of getChildCategories(incomesControl).controls; index as j">
               <div [formGroupName]="j" class="categories__childCategoryInputs">
                 <div class="p-field categories__mainCategoryInputs__inputName">
-                  <label [for]="'childCategory'+j">{{'inputs.subcategoryName' | transloco}}</label>
+                  <label [for]="'incomesChildCategory' + i + '' + j">{{'inputs.subcategoryName' | transloco}}</label>
                   <input
-                    [id]="'childCategory'+j"
+                    [id]="'incomesChildCategory' + i + '' + j"
                     pInputText
                     formControlName="name"
                   >
@@ -118,7 +118,6 @@
                 [options]="icons"
                 [virtualScroll]="true"
                 itemSize="30"
-                optionLabel="name"
               >
                 <ng-template pTemplate="selectedItem">
                   <div class="p-dropdown p-component"
@@ -166,9 +165,9 @@
             <ng-container *ngFor="let childControl of getChildCategories(outcomesControl).controls; index as j">
               <div [formGroupName]="j" class="categories__childCategoryInputs">
                 <div class="p-field categories__mainCategoryInputs__inputName">
-                  <label [for]="'childCategory'+j">{{'inputs.subcategoryName' | transloco}}</label>
+                  <label [for]="'outcomesChildCategory' + i + '' + j">{{'inputs.subcategoryName' | transloco}}</label>
                   <input
-                    [id]="'childCategory'+j"
+                    [id]="'outcomesChildCategory' + i + '' + j"
                     pInputText
                     formControlName="name"
                   >
@@ -207,11 +206,24 @@
     </div>
   </div>
 
-  <div class="categories__submitButtons">
+  <div class="categories__submitButtons" [formGroup]="form">
+    <div *ngIf="templates">
+      <label for="templates">{{'inputs.categoryTemplate' | transloco}}</label>
+      <p-dropdown
+        id="templates"
+        [options]="templates"
+        formControlName="templateName"
+        optionValue="value"
+        optionLabel="name"
+        (onChange)="getTemplateCategories($event.value)"
+      ></p-dropdown>
+    </div>
+
     <p-button
       [label]="'buttons.saveExistingCategory' | transloco"
       icon="pi pi-plus"
       iconPos="left"
+      [disabled]="form.invalid"
       (click)="saveExistingCategory()">
     </p-button>
 
@@ -219,25 +231,7 @@
       [label]="'buttons.cancelChanges' | transloco"
       icon="pi pi-plus"
       iconPos="left"
-      (click)="cancelChanges()">
+      (click)="resetForm()">
     </p-button>
-
-    <div>
-      <label for="saveAsName">{{'inputs.saveAs' | transloco}}</label>
-      <input
-        id="saveAsName"
-        pInputText
-        [(ngModel)]="saveAsName"
-      >
-    </div>
-
-    <p-button
-      [label]="'buttons.saveAs' | transloco"
-      icon="pi pi-plus"
-      iconPos="left"
-      [disabled]="!saveAsName"
-      (click)="saveAs()">
-    </p-button>
-
   </div>
 </ng-container>

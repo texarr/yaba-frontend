@@ -8,6 +8,8 @@ import { DashboardRoutingModule } from './dashboard-routing.module';
 import { PanelMenuModule } from 'primeng/panelmenu';
 import { CategoriesComponent } from './categories/categories.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { DashboardService } from './dashboard.service';
+import { MessagesModule } from 'primeng/messages';
 
 @NgModule({
   declarations: [DashboardComponent, BudgetPlanComponent, BudgetProgressComponent, CategoriesComponent],
@@ -17,7 +19,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     UiComponentsModule,
     PanelMenuModule,
     ReactiveFormsModule,
-    FormsModule
-  ]
+    FormsModule,
+    MessagesModule
+  ],
+  providers: [DashboardService]
 })
 export class DashboardModule { }

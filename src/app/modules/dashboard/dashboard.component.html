@@ -15,6 +15,10 @@
   </div>
 
   <div class="dashboard__container">
+    <div class="dashboard__messages">
+      <p-messages [(value)]="dashboardService.msgs"></p-messages>
+    </div>
+
     <div class="dashboard__menu" [@openClose]="isOpen ? 'open' : 'closed'">
       <p-panelMenu [model]="menuItems" class="dashboard__menu__panel" (click)="toggleMenu()"></p-panelMenu>
     </div>

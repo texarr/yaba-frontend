@@ -15,6 +15,21 @@
   &__container {
     display: flex;
     height: calc(100vh - 83px);
+    position: relative;
+    padding-top: 84px;
+  }
+
+  &__messages {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+
+    ::ng-deep {
+      .p-message {
+        margin: 0;
+      }
+    }
   }
 
   &__menu {

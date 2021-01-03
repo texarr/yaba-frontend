@@ -42,6 +42,13 @@
     "icon": "Icon",
     "categoryName": "Category name",
     "subcategoryName": "Subcategory name",
-    "saveAs": "New category name"
+    "saveAs": "New category name",
+    "categoryTemplate": "My templates: "
+  },
+  "categories": {
+    "templatesFetched": {
+      "message": "Category templates fetched:",
+      "detail": "You can choose your template to edit or create a new one"
+    }
   }
 }

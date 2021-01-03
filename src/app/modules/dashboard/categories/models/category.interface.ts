@@ -1,8 +1,7 @@
-import { IconInterface } from './icon.interface';
 import { ChildCategoryInterface } from './child-category.interface';
 
 export interface CategoryInterface {
-  icon: IconInterface;
+  icon: string; // IconInterface;
   name: string;
   childCategories: ChildCategoryInterface[];
 }
