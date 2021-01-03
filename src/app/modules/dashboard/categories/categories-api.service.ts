@@ -21,4 +21,16 @@ export class CategoriesApiService {
   getTemplateCategories(templateName: string): Observable<CategoryTemplateInterface> {
     return this.http.get<CategoryTemplateInterface>(`${this.apiBase}/dashboard/categories/${templateName}`)
   }
+
+  async getTemplateCategoriesP(templateName: string): Promise<CategoryTemplateInterface> {
+    return this.http.get<CategoryTemplateInterface>(`${this.apiBase}/dashboard/categories/${templateName}`).toPromise();
+  }
+
+  async saveCategoryTemplate(payload: CategoryTemplateInterface): Promise<CategoryTemplateInterface> {
+    return this.http.post<CategoryTemplateInterface>(`${this.apiBase}/dashboard/categoryTemplate`, payload).toPromise();
+  }
+
+  async removeCategoryTemplate(id: string): Promise<void> {
+    return this.http.delete<void>(`${this.apiBase}/dashboard/template/${id}`).toPromise();
+  }
 }

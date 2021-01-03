@@ -7,6 +7,7 @@ import { TranslocoModule } from '@ngneat/transloco';
 import { ValidationMessageComponent } from './forms/validation-message/validation-message.component';
 import { DropdownModule } from 'primeng/dropdown';
 import { ButtonModule } from 'primeng/button';
+import { DynamicDialogModule } from 'primeng/dynamicdialog';
 
 
 @NgModule({
@@ -21,14 +22,16 @@ import { ButtonModule } from 'primeng/button';
     InputTextModule,
     TranslocoModule,
     DropdownModule,
-    ButtonModule
+    ButtonModule,
+    DynamicDialogModule
   ],
   exports: [
     ValidationMessageComponent,
     TranslocoModule,
     DropdownModule,
     InputTextModule,
-    ButtonModule
+    ButtonModule,
+    DynamicDialogModule
   ]
 })
 export class UiComponentsModule { }

@@ -10,9 +10,16 @@ import { CategoriesComponent } from './categories/categories.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DashboardService } from './dashboard.service';
 import { MessagesModule } from 'primeng/messages';
+import { NewCategoryDialogComponent } from './categories/new-category-dialog/new-category-dialog.component';
 
 @NgModule({
-  declarations: [DashboardComponent, BudgetPlanComponent, BudgetProgressComponent, CategoriesComponent],
+  declarations: [
+    DashboardComponent,
+    BudgetPlanComponent,
+    BudgetProgressComponent,
+    CategoriesComponent,
+    NewCategoryDialogComponent
+  ],
   imports: [
     CommonModule,
     DashboardRoutingModule,
@@ -22,6 +29,9 @@ import { MessagesModule } from 'primeng/messages';
     FormsModule,
     MessagesModule
   ],
-  providers: [DashboardService]
+  providers: [DashboardService],
+  entryComponents: [
+    NewCategoryDialogComponent
+  ]
 })
 export class DashboardModule { }

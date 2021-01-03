@@ -19,7 +19,9 @@
     "outcomeCategory": "Outcome category",
     "saveExistingCategory": "Save",
     "cancelChanges": "Cancel",
-    "saveAs": "Save as"
+    "saveAs": "Save as",
+    "createTemplate": "Add template",
+    "deleteTemplate": "Delete template"
   },
   "nav": {
     "categories": "Categories",
@@ -35,6 +37,14 @@
       "accountConfirmed": {
         "title": "Account confirmed",
         "message": "You can now log in"
+      },
+      "categoryTemplateSaved": {
+        "title": "Template created: ",
+        "message": "You can now create a new budget with this template"
+      },
+      "categoryTemplateRemoved": {
+        "title": "Template removed: ",
+        "message": " "
       }
     }
   },
@@ -43,7 +53,8 @@
     "categoryName": "Category name",
     "subcategoryName": "Subcategory name",
     "saveAs": "New category name",
-    "categoryTemplate": "My templates: "
+    "categoryTemplate": "Extend from: ",
+    "templateName": "Template name: "
   },
   "categories": {
     "templatesFetched": {

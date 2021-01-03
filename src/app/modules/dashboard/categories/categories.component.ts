@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AbstractControl, FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { icons } from './icons/icons';
 import { CategoryTemplateInterface } from './models/category-template.interface';
@@ -7,36 +7,47 @@ import { CategoriesApiService } from './categories-api.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { DashboardService } from '../dashboard.service';
 import { TranslocoService } from '@ngneat/transloco';
-import { take } from 'rxjs/operators';
+import { take, takeUntil } from 'rxjs/operators';
 import { CategoryInterface } from './models/category.interface';
 import { ChildCategoryInterface } from './models/child-category.interface';
+import { DialogService } from 'primeng/dynamicdialog';
+import { NewCategoryDialogComponent } from './new-category-dialog/new-category-dialog.component';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-categories',
   templateUrl: './categories.component.html',
   styleUrls: ['./categories.component.scss'],
-  providers: [CategoriesApiService]
+  providers: [CategoriesApiService, DialogService]
 })
-export class CategoriesComponent implements OnInit {
+export class CategoriesComponent implements OnInit, OnDestroy {
   form: FormGroup
   icons = icons;
   templates: CategoryTemplateOptionInterface[];
+  destroyed$: Subject<void>;
 
   constructor(
     private fb: FormBuilder,
     private categoriesApiService: CategoriesApiService,
     private dashboardService: DashboardService,
-    private transloco: TranslocoService
+    private transloco: TranslocoService,
+    public dialogService: DialogService
   ) { }
 
   ngOnInit(): void {
     this.initMainGroup();
     this.getTemplates();
+    this.destroyed$ = new Subject();
+  }
+
+  ngOnDestroy(): void {
+    this.destroyed$.complete();
+    this.destroyed$.next();
   }
 
   initMainGroup(templateName?: string) {
     this.form = this.fb.group({
-      templateName: this.fb.control('', [Validators.required]),
+      templateName: this.fb.control(templateName || '', [Validators.required]),
       incomes: this.fb.array([]),
       outcomes: this.fb.array([])
     })
@@ -67,7 +78,7 @@ export class CategoriesComponent implements OnInit {
 
         this.getTemplateCategories(this.templates[0].value);
       }, (err: HttpErrorResponse) => {
-        console.log(err);
+        this.dashboardService.handleCallbackErrorMessage(err);
       }
     )
   }
@@ -76,10 +87,10 @@ export class CategoriesComponent implements OnInit {
     if (templateName) {
       this.categoriesApiService.getTemplateCategories(templateName).pipe(take(1)).subscribe(
         (res: CategoryTemplateInterface) => {
-          this.initMainGroup();
+          this.initMainGroup(templateName);
           this.renderFormTemplate(res);
         }, (err: HttpErrorResponse) => {
-          console.log(err);
+          this.dashboardService.handleCallbackErrorMessage(err);
         }
       )
     } else {
@@ -88,27 +99,49 @@ export class CategoriesComponent implements OnInit {
   }
 
   addNewTemplateCategory(): void {
-    // todo: message with template name field
-    // todo: select with existing template fields to import
+    const ref = this.dialogService.open(NewCategoryDialogComponent, {
+      data: {
+        templates: this.templates
+      }
+    })
 
-    // patch value with written name
+    ref.onClose.pipe(takeUntil(this.destroyed$)).subscribe(async (data) => {
+      if (data) {
+        this.templates[this.templates.length - 1].value = data.newTemplateName.replace(/\s/g, '-');
+        this.templates[this.templates.length - 1].name = data.newTemplateName;
+        this.templates[this.templates.length - 1].isNew = data.isNew;
 
-    // init new empty form or extended from existing template form
+        this.resetForm(true);
+
+        if (data.templateToExtend) {
+          await this.categoriesApiService.getTemplateCategoriesP(data.templateToExtend).then(
+            (res: CategoryTemplateInterface) => {
+              this.renderFormTemplate(res);
+            }
+          )
+        }
+
+        this.form.removeControl('templateId');
+        this.form.get('templateName').patchValue(data.newTemplateName.replace(/\s/g, '-'));
+      }
+    })
   }
 
-  renderFormTemplate(formData: CategoryTemplateInterface): void {
+  renderFormTemplate(formData: CategoryTemplateInterface, templateName?: string): void {
     const incomesFormArray = this.getFormArray('incomes');
     const outcomesFormArray = this.getFormArray('outcomes');
 
-    this.form.get('templateName').patchValue(formData.templateName)
-    this.form.addControl('templateId', this.fb.control(formData.templateId));
+    this.form.get('templateName').patchValue(templateName || formData.templateName)
+    if (!templateName) {
+      this.form.addControl('templateId', this.fb.control(formData.templateId));
+    }
 
     /* Fill incomes category fields */
     formData.incomes.forEach((incomeCategory, i) => {
       this.addMainCategory(incomesFormArray, incomeCategory);
-      const selectedIcon = this.icons.find(icon => icon.name === 'pi-' + incomeCategory.icon)
+      const selectedIcon = this.icons.find(icon => icon.name === incomeCategory.icon)
       if (selectedIcon) {
-        incomesFormArray.controls[i].get('icon').patchValue(selectedIcon);
+        incomesFormArray.controls[i].get('icon').patchValue(selectedIcon.name);
       }
 
       /* Fill child category fields */
@@ -120,9 +153,9 @@ export class CategoriesComponent implements OnInit {
     /* Fill outcomes category fields */
     formData.outcomes.forEach((outcomeCategory, i) => {
       this.addMainCategory(outcomesFormArray, outcomeCategory);
-      const selectedIcon = this.icons.find(icon => icon.name === 'pi-' + outcomeCategory.icon)
+      const selectedIcon = this.icons.find(icon => icon.name === outcomeCategory.icon)
       if (selectedIcon) {
-        outcomesFormArray.controls[i].get('icon').patchValue(selectedIcon);
+        outcomesFormArray.controls[i].get('icon').patchValue(selectedIcon.name);
       }
 
       /* Fill child category fields */
@@ -164,13 +197,24 @@ export class CategoriesComponent implements OnInit {
     return formGroup.get('childCategories') as FormArray;
   }
 
-  saveExistingCategory(): void {
+  async saveCategory(): Promise<void> {
     const payload: CategoryTemplateInterface = this.form.value;
-    console.log(payload);
-    // todo: implement request when backend ready
+
+    await this.categoriesApiService.saveCategoryTemplate(payload).then(
+      (res) => {
+        this.dashboardService.handleRequestCallbackMessage(
+          'success',
+          this.transloco.translate('messages.message.categoryTemplateSaved.title'),
+          this.transloco.translate('messages.message.categoryTemplateSaved.message')
+        )
+        this.dashboardService.clearMessages(2000);
+      }, (err: HttpErrorResponse) => {
+        this.dashboardService.handleCallbackErrorMessage(err);
+      }
+    )
   }
 
-  resetForm(): void {
+  resetForm(isNewTemplate? :boolean): void {
     const { templateName } = this.form.value;
     const incomesArray = this.getFormArray('incomes');
     const outcomesArray = this.getFormArray('outcomes');
@@ -182,15 +226,25 @@ export class CategoriesComponent implements OnInit {
       this.removeCategory(outcomesArray, 0);
     })
 
-    if (templateName !== '') {
+    if (templateName !== '' && !isNewTemplate) {
       this.getTemplateCategories(templateName);
     }
   }
 
-  saveAs(): void {
-    const payload: CategoryTemplateInterface = this.form.value;
-    console.log(payload);
-    // todo: implement save new categories when backend ready
-  }
+  async deleteTemplate(): Promise<void> {
+    const templateId = this.form.value.templateId;
 
+    this.categoriesApiService.removeCategoryTemplate(templateId).then(
+      () => {
+        this.dashboardService.handleRequestCallbackMessage(
+          'success',
+          this.transloco.translate('messages.message.categoryTemplateRemoved.title'),
+          this.transloco.translate('messages.message.categoryTemplateRemoved.message')
+        )
+        this.dashboardService.clearMessages(2000);
+      }, (err: HttpErrorResponse) => {
+        this.dashboardService.handleCallbackErrorMessage(err);
+      }
+    )
+  }
 }

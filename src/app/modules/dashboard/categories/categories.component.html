@@ -16,12 +16,13 @@
                 [virtualScroll]="true"
                 itemSize="30"
                 optionLabel="name"
+                optionValue="name"
               >
                 <ng-template pTemplate="selectedItem">
                   <div class="p-dropdown p-component"
                        style="border: none"
-                       *ngIf="incomesControl.value.icon.name; else emptyValue">
-                    <i [class]="'pi ' + incomesControl.value.icon.name"></i>
+                       *ngIf="incomesControl.value.icon; else emptyValue">
+                    <i [class]="'pi ' + incomesControl.value.icon"></i>
                   </div>
 
                   <ng-template #emptyValue>
@@ -118,12 +119,14 @@
                 [options]="icons"
                 [virtualScroll]="true"
                 itemSize="30"
+                optionLabel="name"
+                optionValue="name"
               >
                 <ng-template pTemplate="selectedItem">
                   <div class="p-dropdown p-component"
                        style="border: none"
-                       *ngIf="outcomesControl.value.icon.name; else emptyValue">
-                    <i [class]="'pi ' + outcomesControl.value.icon.name"></i>
+                       *ngIf="outcomesControl.value.icon; else emptyValue">
+                    <i [class]="'pi ' + outcomesControl.value.icon"></i>
                   </div>
 
                   <ng-template #emptyValue>
@@ -224,7 +227,7 @@
       icon="pi pi-plus"
       iconPos="left"
       [disabled]="form.invalid"
-      (click)="saveExistingCategory()">
+      (click)="saveCategory()">
     </p-button>
 
     <p-button
@@ -232,6 +235,14 @@
       icon="pi pi-plus"
       iconPos="left"
       (click)="resetForm()">
+    </p-button>
+
+    <p-button
+      [label]="'buttons.deleteTemplate' | transloco"
+      icon="pi pi-trash"
+      iconPos="left"
+      [disabled]="!form.value.templateId"
+      (click)="deleteTemplate()">
     </p-button>
   </div>
 </ng-container>

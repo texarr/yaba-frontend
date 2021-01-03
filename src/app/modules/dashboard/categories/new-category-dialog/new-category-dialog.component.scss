@@ -1,0 +1,19 @@
+.newCategory {
+  margin-top: 5px;
+
+  &__input {
+    .p-inputtext {
+      margin-left: 10px;
+    }
+  }
+
+  &__buttons {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+
+    p-button {
+      margin: 0 5px;
+    }
+  }
+}
