@@ -53,7 +53,7 @@
     "categoryName": "Category name",
     "subcategoryName": "Subcategory name",
     "saveAs": "New category name",
-    "categoryTemplate": "Extend from: ",
+    "categoryTemplate": "Select template: ",
     "templateName": "Template name: "
   },
   "categories": {

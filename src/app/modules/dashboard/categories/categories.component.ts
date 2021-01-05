@@ -46,6 +46,10 @@ export class CategoriesComponent implements OnInit, OnDestroy {
   }
 
   initMainGroup(templateName?: string) {
+    if (this.form) {
+      this.resetForm();
+    }
+
     this.form = this.fb.group({
       templateName: this.fb.control(templateName || '', [Validators.required]),
       incomes: this.fb.array([]),
@@ -53,7 +57,7 @@ export class CategoriesComponent implements OnInit, OnDestroy {
     })
   }
 
-  getTemplates(): void {
+  async getTemplates(): Promise<void> {
     this.categoriesApiService.getTemplates().pipe(take(1)).subscribe(
       (res: string[]) => {
         this.templates = res.map(template => {
@@ -63,11 +67,6 @@ export class CategoriesComponent implements OnInit, OnDestroy {
           }
         });
 
-        this.templates.push({
-          name: 'create new',
-          value: null
-        })
-
         this.dashboardService.handleRequestCallbackMessage(
           'success',
           this.transloco.translate('categories.templatesFetched.message'),
@@ -76,15 +75,45 @@ export class CategoriesComponent implements OnInit, OnDestroy {
 
         this.dashboardService.clearMessages(2000);
 
-        this.getTemplateCategories(this.templates[0].value);
+        const templates = this.templates.filter(template => template.name !== 'newTemplate');
+        if (templates.length) {
+          this.getTemplateCategories(templates[0].value);
+        }
+
+        if (!templates.find(template => template.name === 'newTemplate')) {
+          this.templates.push({
+            name: 'create new',
+            value: 'newTemplate'
+          })
+        }
       }, (err: HttpErrorResponse) => {
-        this.dashboardService.handleCallbackErrorMessage(err);
+        this.templates = [];
+        console.group('no templates');
+        console.table(err.error);
+        console.groupEnd();
+        this.addNewTemplateOption();
       }
     )
+
+    return
+  }
+
+  addNewTemplateOption(): void {
+    if ((!this.templates || this.templates.length === 0)) {
+      this.templates = [
+        {
+          name: 'create new',
+          value: 'newTemplate'
+        }
+      ];
+      if (this.templates.length === 1) {
+        this.addNewTemplateCategory();
+      }
+    }
   }
 
   getTemplateCategories(templateName: string): void {
-    if (templateName) {
+    if (templateName !== 'newTemplate') {
       this.categoriesApiService.getTemplateCategories(templateName).pipe(take(1)).subscribe(
         (res: CategoryTemplateInterface) => {
           this.initMainGroup(templateName);
@@ -105,13 +134,11 @@ export class CategoriesComponent implements OnInit, OnDestroy {
       }
     })
 
-    ref.onClose.pipe(takeUntil(this.destroyed$)).subscribe(async (data) => {
+    ref.onClose.pipe(take(1)).subscribe(async (data) => {
       if (data) {
         this.templates[this.templates.length - 1].value = data.newTemplateName.replace(/\s/g, '-');
         this.templates[this.templates.length - 1].name = data.newTemplateName;
         this.templates[this.templates.length - 1].isNew = data.isNew;
-
-        this.resetForm(true);
 
         if (data.templateToExtend) {
           await this.categoriesApiService.getTemplateCategoriesP(data.templateToExtend).then(
@@ -212,10 +239,12 @@ export class CategoriesComponent implements OnInit, OnDestroy {
         this.dashboardService.handleCallbackErrorMessage(err);
       }
     )
+
+    this.resetForm();
+    await this.getTemplates();
   }
 
-  resetForm(isNewTemplate? :boolean): void {
-    const { templateName } = this.form.value;
+  resetForm(): void {
     const incomesArray = this.getFormArray('incomes');
     const outcomesArray = this.getFormArray('outcomes');
 
@@ -225,26 +254,26 @@ export class CategoriesComponent implements OnInit, OnDestroy {
     outcomesArray.value.forEach(() => {
       this.removeCategory(outcomesArray, 0);
     })
-
-    if (templateName !== '' && !isNewTemplate) {
-      this.getTemplateCategories(templateName);
-    }
   }
 
   async deleteTemplate(): Promise<void> {
     const templateId = this.form.value.templateId;
 
-    this.categoriesApiService.removeCategoryTemplate(templateId).then(
+    await this.categoriesApiService.removeCategoryTemplate(templateId).then(
       () => {
         this.dashboardService.handleRequestCallbackMessage(
           'success',
           this.transloco.translate('messages.message.categoryTemplateRemoved.title'),
           this.transloco.translate('messages.message.categoryTemplateRemoved.message')
         )
+        this.resetForm();
+        this.getTemplates();
         this.dashboardService.clearMessages(2000);
       }, (err: HttpErrorResponse) => {
         this.dashboardService.handleCallbackErrorMessage(err);
       }
     )
+
+    await this.getTemplates();
   }
 }
