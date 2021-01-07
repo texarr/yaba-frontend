@@ -141,11 +141,15 @@ export class CategoriesComponent implements OnInit, OnDestroy {
         this.templates[this.templates.length - 1].isNew = data.isNew;
 
         if (data.templateToExtend) {
-          await this.categoriesApiService.getTemplateCategoriesP(data.templateToExtend).then(
-            (res: CategoryTemplateInterface) => {
-              this.renderFormTemplate(res);
-            }
-          )
+          if (data.templateToExtend !== 'newTemplate') {
+            await this.categoriesApiService.getTemplateCategoriesP(data.templateToExtend).then(
+              (res: CategoryTemplateInterface) => {
+                this.renderFormTemplate(res);
+              }
+            )
+          } else {
+            this.resetForm();
+          }
         }
 
         this.form.removeControl('templateId');
