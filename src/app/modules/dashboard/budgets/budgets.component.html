@@ -1,0 +1,101 @@
+<div class="budgets">
+  <p-table
+    #dt2
+    [value]="budgets"
+    [rows]="10"
+    [showCurrentPageReport]="true"
+    [rowsPerPageOptions]="[10,25,50]"
+    [loading]="loading"
+    [paginator]="true"
+    [globalFilterFields]="['name','year','status']"
+    dataKey="id"
+    styleClass="p-datatable-customers"
+    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+  >
+    <ng-template pTemplate="header">
+      <tr>
+        <th>{{'budget.table.header.name' | transloco}}</th>
+        <th>{{'budget.table.header.budgetYear' | transloco}}</th>
+        <th>{{'budget.table.header.status' | transloco}}</th>
+        <th>{{'budget.table.header.actions' | transloco}}</th>
+      </tr>
+      <tr>
+        <th>
+          <p-columnFilter type="text" field="name"></p-columnFilter>
+        </th>
+        <th>
+          <p-columnFilter type="text" field="year"></p-columnFilter>
+        </th>
+        <th>
+          <p-columnFilter
+            field="status"
+            matchMode="equals"
+            [showMenu]="false"
+          >
+            <ng-template pTemplate="filter" let-value let-filter="filterCallback">
+              <p-dropdown
+                [ngModel]="value"
+                [options]="statuses"
+                (onChange)="filter($event.value)"
+                [showClear]="true"
+                [placeholder]="'inputs.statusSearchPlaceholder' | transloco"
+              >
+                <ng-template let-option pTemplate="item">
+                  <span [class]="'customer-badge status-' + option.value">{{option.label}}</span>
+                </ng-template>
+              </p-dropdown>
+            </ng-template>
+          </p-columnFilter>
+        </th>
+        <th>
+          <p-button
+            icon="pi pi-plus"
+            iconPos="right"
+            [label]="'budget.table.buttons.addNew' | transloco"
+            (click)="handleBudgetAdd()"
+          ></p-button>
+        </th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-budget>
+      <tr>
+        <td>{{budget.name}}</td>
+        <td>{{budget.year}}</td>
+        <td>{{budget.status}}</td>
+        <td>
+          <button pButton pRipple
+                  type="button"
+                  class="p-button-outlined"
+                  [label]="'budget.table.buttons.planing' | transloco"
+                  (click)="handleBudgetAction(budget, 'plan')"
+          ></button>
+          <button pButton pRipple
+                  type="button"
+                  class="p-button-outlined p-button-secondary"
+                  [label]="'budget.table.buttons.realisation' | transloco"
+                  (click)="handleBudgetAction(budget, 'realise')"
+          ></button>
+          <button pButton pRipple
+                  type="button"
+                  icon="pi pi-chart-line"
+                  class="p-button-success p-button-outlined"
+                  [pTooltip]="'budget.table.buttons.summary' | transloco"
+                  (click)="handleBudgetAction(budget, 'summary')"
+          ></button>
+          <button pButton pRipple
+                  type="button"
+                  icon="pi pi-trash"
+                  class="p-button-danger p-button-outlined"
+                  [disabled]="budget.status === 'planned' || budget.status === 'inProgress'"
+                  (click)="handleBudgetAction(budget, 'delete')"
+          ></button>
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="emptymessage">
+      <tr>
+        <td colspan="4">No budgets found</td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>

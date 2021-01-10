@@ -8,6 +8,9 @@ import { ValidationMessageComponent } from './forms/validation-message/validatio
 import { DropdownModule } from 'primeng/dropdown';
 import { ButtonModule } from 'primeng/button';
 import { DynamicDialogModule } from 'primeng/dynamicdialog';
+import { TableModule } from 'primeng/table';
+import { TooltipModule } from 'primeng/tooltip';
+import { InputNumberModule } from 'primeng/inputnumber';
 
 
 @NgModule({
@@ -23,7 +26,10 @@ import { DynamicDialogModule } from 'primeng/dynamicdialog';
     TranslocoModule,
     DropdownModule,
     ButtonModule,
-    DynamicDialogModule
+    DynamicDialogModule,
+    TableModule,
+    TooltipModule,
+    InputNumberModule,
   ],
   exports: [
     ValidationMessageComponent,
@@ -31,7 +37,10 @@ import { DynamicDialogModule } from 'primeng/dynamicdialog';
     DropdownModule,
     InputTextModule,
     ButtonModule,
-    DynamicDialogModule
+    DynamicDialogModule,
+    TableModule,
+    TooltipModule,
+    InputNumberModule,
   ]
 })
 export class UiComponentsModule { }

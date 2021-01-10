@@ -1,8 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DashboardComponent } from './dashboard.component';
-import { BudgetPlanComponent } from './budget-plan/budget-plan.component';
-import { BudgetProgressComponent } from './budget-progress/budget-progress.component';
+import { BudgetsComponent } from './budgets/budgets.component';
 import { UiComponentsModule } from '../../ui-components/ui-components.module';
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { PanelMenuModule } from 'primeng/panelmenu';
@@ -11,14 +10,15 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DashboardService } from './dashboard.service';
 import { MessagesModule } from 'primeng/messages';
 import { NewCategoryDialogComponent } from './categories/new-category-dialog/new-category-dialog.component';
+import { NewBudgetDialogComponent } from './budgets/new-budget-dialog/new-budget-dialog.component';
 
 @NgModule({
   declarations: [
     DashboardComponent,
-    BudgetPlanComponent,
-    BudgetProgressComponent,
+    BudgetsComponent,
     CategoriesComponent,
-    NewCategoryDialogComponent
+    NewCategoryDialogComponent,
+    NewBudgetDialogComponent
   ],
   imports: [
     CommonModule,
@@ -27,11 +27,12 @@ import { NewCategoryDialogComponent } from './categories/new-category-dialog/new
     PanelMenuModule,
     ReactiveFormsModule,
     FormsModule,
-    MessagesModule
+    MessagesModule,
   ],
   providers: [DashboardService],
   entryComponents: [
-    NewCategoryDialogComponent
+    NewCategoryDialogComponent,
+    NewBudgetDialogComponent
   ]
 })
 export class DashboardModule { }

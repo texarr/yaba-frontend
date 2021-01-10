@@ -52,14 +52,9 @@ export class DashboardComponent implements OnInit, OnDestroy {
           routerLink: 'categories'
         },
         {
-          label: this.transloco.translate('nav.plan'),
+          label: this.transloco.translate('nav.budgets'),
           icon: 'pi pi-calendar',
-          routerLink: 'plan'
-        },
-        {
-          label: this.transloco.translate('nav.progress'),
-          icon: 'pi pi-chart-line',
-          routerLink: 'progress'
+          routerLink: 'budgets'
         }
       ]
     });

@@ -9,7 +9,8 @@
   "formValidators": {
     "required": "This field is required",
     "email": "Try a valid e-mail address",
-    "compare": "Fields must have same value here"
+    "compare": "Fields must have same value here",
+    "numeric": "This field cannot take provided number"
   },
   "buttons": {
     "login": "Login",
@@ -21,11 +22,12 @@
     "cancelChanges": "Cancel",
     "saveAs": "Save as",
     "createTemplate": "Add template",
-    "deleteTemplate": "Delete template"
+    "deleteTemplate": "Delete template",
+    "add": "Add"
   },
   "nav": {
     "categories": "Categories",
-    "plan": "Plan",
+    "budgets": "Budgets",
     "progress": "Realisation"
   },
   "messages": {
@@ -54,12 +56,47 @@
     "subcategoryName": "Subcategory name",
     "saveAs": "New category name",
     "categoryTemplate": "Select template: ",
-    "templateName": "Template name: "
+    "templateName": "Template name: ",
+    "searchPlaceholder": "Search keyword",
+    "statusSearchPlaceholder": "Search by status"
   },
   "categories": {
     "templatesFetched": {
       "message": "Category templates fetched:",
       "detail": "You can choose your template to edit or create a new one"
+    }
+  },
+  "budget": {
+    "statuses": {
+      "new": "New",
+      "finished": "Finished",
+      "inProgress": "In progress",
+      "planned": "Planned"
+    },
+    "table": {
+      "header": {
+        "name": "Name",
+        "budgetYear": "Budget year",
+        "status": "Status",
+        "actions": "Actions"
+      },
+      "buttons": {
+        "planing": "Planing",
+        "realisation": "Realisation",
+        "remove": "Remove",
+        "summary": "Summary",
+        "addNew": "Add new budget"
+      }
+    },
+    "newForm": {
+      "name": {
+        "label": "Name",
+        "placeholder": "Enter budget name"
+      },
+      "year": {
+        "label": "Year",
+        "placeholder": "Select budget year"
+      }
     }
   }
 }
