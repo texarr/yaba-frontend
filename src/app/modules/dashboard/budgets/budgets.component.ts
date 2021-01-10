@@ -9,6 +9,7 @@ import { Subject } from 'rxjs';
 import { DialogService } from 'primeng/dynamicdialog';
 import { NewBudgetDialogComponent } from './new-budget-dialog/new-budget-dialog.component';
 import { HttpErrorResponse } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 interface StatusOption {
   value: BudgetStatusEnum;
@@ -31,6 +32,7 @@ export class BudgetsComponent implements OnInit, OnDestroy {
   constructor(
     private transloco: TranslocoService,
     private budgetsApiService: BudgetsApiService,
+    private router: Router,
     public dialogService: DialogService
   ) { }
 
@@ -71,6 +73,7 @@ export class BudgetsComponent implements OnInit, OnDestroy {
   handleBudgetAction(budget: BudgetInterface, actionType: ActionTypeEnum | string): void {
     switch (actionType) {
       case ActionTypeEnum.plan: {
+        this.router.navigateByUrl(`dashboard/budget/plan/${budget.budgetId}`);
         break;
       }
       case ActionTypeEnum.realise: {

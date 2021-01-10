@@ -3,6 +3,7 @@ import { CategoriesComponent } from './categories/categories.component';
 import { BudgetsComponent } from './budgets/budgets.component';
 import { DashboardComponent } from './dashboard.component';
 import { NgModule } from '@angular/core';
+import { BudgetPlanningComponent } from './budgets/budget-planning/budget-planning.component';
 
 const routes: Routes = [
   {
@@ -12,6 +13,9 @@ const routes: Routes = [
       },
       {
         path: 'budgets', component: BudgetsComponent
+      },
+      {
+        path: 'budget/plan/:id', component: BudgetPlanningComponent
       },
       {
         path: '**', redirectTo: ''

@@ -1,0 +1,41 @@
+<div class="budgetPlan">
+  <div class="budgetPlan__navigator">
+    <div class="budgetPlan__navigator__buttons">
+      <div class="p-field p-grid">
+        <p-dropdown
+          [options]="templates"
+          [(ngModel)]="selectedCategory"
+          [placeholder]="'budget.plan.categorySelector' | transloco"
+          optionLabel="name"
+          [showClear]="false">
+        </p-dropdown>
+      </div>
+
+      <div class="p-field p-grid">
+        <p-calendar
+          view="month"
+          dateFormat="mm/yy"
+          yearRange="2021"
+          inputId="monthpicker"
+          styleClass="calendarInput"
+          [placeholder]="'budget.plan.monthPicker' | transloco"
+          [(ngModel)]="selectedMonth"
+          [readonlyInput]="true"
+          (onSelect)="selectMonth($event)"
+        ></p-calendar>
+      </div>
+    </div>
+
+    <div class="budgetPlan__navigator__summary">
+
+    </div>
+  </div>
+
+  <div class="budgetPlan__table">
+
+  </div>
+
+  <div class="budgetPlan__footer">
+
+  </div>
+</div>

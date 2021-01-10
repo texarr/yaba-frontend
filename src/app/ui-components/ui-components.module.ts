@@ -11,6 +11,7 @@ import { DynamicDialogModule } from 'primeng/dynamicdialog';
 import { TableModule } from 'primeng/table';
 import { TooltipModule } from 'primeng/tooltip';
 import { InputNumberModule } from 'primeng/inputnumber';
+import { CalendarModule } from 'primeng/calendar';
 
 
 @NgModule({
@@ -30,6 +31,7 @@ import { InputNumberModule } from 'primeng/inputnumber';
     TableModule,
     TooltipModule,
     InputNumberModule,
+    CalendarModule,
   ],
   exports: [
     ValidationMessageComponent,
@@ -41,6 +43,7 @@ import { InputNumberModule } from 'primeng/inputnumber';
     TableModule,
     TooltipModule,
     InputNumberModule,
+    CalendarModule,
   ]
 })
 export class UiComponentsModule { }

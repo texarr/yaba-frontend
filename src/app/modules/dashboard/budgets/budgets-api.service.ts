@@ -17,6 +17,10 @@ export class BudgetsApiService {
     return this.http.get<BudgetInterface[]>(`${this.apiBase}/dashboard/budgets`);
   }
 
+  getBudgetDetails(id: string): Observable<BudgetInterface> {
+    return this.http.get<BudgetInterface>(`${this.apiBase}/dashboard/budgets/${id}`)
+  }
+
   addBudget(name: string, year: number): Observable<BudgetInterface> {
     return this.http.post<BudgetInterface>(`${this.apiBase}/dashboard/budgets`, {
       name,

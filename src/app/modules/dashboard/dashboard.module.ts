@@ -11,6 +11,7 @@ import { DashboardService } from './dashboard.service';
 import { MessagesModule } from 'primeng/messages';
 import { NewCategoryDialogComponent } from './categories/new-category-dialog/new-category-dialog.component';
 import { NewBudgetDialogComponent } from './budgets/new-budget-dialog/new-budget-dialog.component';
+import { BudgetPlanningComponent } from './budgets/budget-planning/budget-planning.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { NewBudgetDialogComponent } from './budgets/new-budget-dialog/new-budget
     BudgetsComponent,
     CategoriesComponent,
     NewCategoryDialogComponent,
-    NewBudgetDialogComponent
+    NewBudgetDialogComponent,
+    BudgetPlanningComponent
   ],
   imports: [
     CommonModule,

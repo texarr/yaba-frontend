@@ -1,0 +1,14 @@
+.budgetPlan {
+
+  &__navigator {
+    display: flex;
+  }
+
+  ::ng-deep {
+    .p-datepicker-prev,
+    .p-datepicker-next {
+      display: none !important;
+    }
+  }
+}
+
