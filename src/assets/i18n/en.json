@@ -100,7 +100,21 @@
     },
     "plan": {
       "monthPicker": "Select month",
-      "categorySelector": "Select category template"
+      "categorySelector": "Select category template",
+      "summary": {
+        "previousMonth": {
+          "header": "Budget summary for previous month",
+          "input1Label": "Planned income",
+          "input2Label": "Planned expenses",
+          "input3Label": "Budget deficit / surplus"
+        },
+        "currentMonth": {
+          "header": "Budget summary for current month",
+          "input1Label": "Planned income",
+          "input2Label": "Planned expenses",
+          "input3Label": "Budget deficit / surplus"
+        }
+      }
     }
   }
 }

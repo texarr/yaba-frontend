@@ -1,0 +1,43 @@
+<div class="monthSummary">
+  <div class="p-grid p-fluid">
+    <h4 class="p-field p-col-12 monthSummary__header">{{header}}</h4>
+  </div>
+
+  <div class="p-grid p-fluid">
+    <div class="p-field p-col-12 monthSummary__row">
+      <label>{{input1Label}}
+        <p-inputNumber
+          [(ngModel)]="input1Value"
+          mode="currency"
+          currency="USD"
+          locale="en-US"
+          [disabled]="disabled"
+        ></p-inputNumber>
+      </label>
+    </div>
+
+    <div class="p-field p-col-12 monthSummary__row">
+      <label>{{input2Label}}
+        <p-inputNumber
+          [(ngModel)]="input2Value"
+          mode="currency"
+          currency="USD"
+          locale="en-US"
+          [disabled]="disabled"
+        ></p-inputNumber>
+      </label>
+    </div>
+
+    <div class="p-field p-col-12 monthSummary__row">
+      <label>{{input3Label}}
+        <p-inputNumber
+          [(ngModel)]="input3Value"
+          mode="currency"
+          currency="USD"
+          locale="en-US"
+          [disabled]="disabled"
+        ></p-inputNumber>
+      </label>
+    </div>
+  </div>
+</div>

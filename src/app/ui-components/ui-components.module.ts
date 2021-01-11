@@ -12,11 +12,13 @@ import { TableModule } from 'primeng/table';
 import { TooltipModule } from 'primeng/tooltip';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { CalendarModule } from 'primeng/calendar';
+import { BudgetMonthSummaryComponent } from './budget/budget-month-summary/budget-month-summary.component';
 
 
 @NgModule({
   declarations: [
-    ValidationMessageComponent
+    ValidationMessageComponent,
+    BudgetMonthSummaryComponent
   ],
   imports: [
     CommonModule,
@@ -35,6 +37,7 @@ import { CalendarModule } from 'primeng/calendar';
   ],
   exports: [
     ValidationMessageComponent,
+    BudgetMonthSummaryComponent,
     TranslocoModule,
     DropdownModule,
     InputTextModule,

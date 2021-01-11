@@ -1,7 +1,35 @@
+@import "../../../../styles/colors";
+
 .budgetPlan {
 
   &__navigator {
     display: flex;
+
+    &__buttons {
+      width: 240px;
+      margin-right: 25px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
+
+    &__summaryContainer {
+      display: flex;
+      border: 2px dotted $main-border-color;
+    }
+
+    &__summary {
+      width: 270px;
+      margin: 0 15px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
+
+    .p-field.p-grid {
+      margin-bottom: 8px;
+      margin-top: 18px;
+    }
   }
 
   ::ng-deep {

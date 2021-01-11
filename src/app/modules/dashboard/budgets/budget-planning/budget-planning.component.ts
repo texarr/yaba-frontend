@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CategoriesApiService } from '../../categories/categories-api.service';
-import { take } from 'rxjs/operators';
+import { take, takeUntil } from 'rxjs/operators';
 import { CategoryTemplateOptionInterface } from '../../categories/models/category-template-option.interface';
 import { BudgetsApiService } from '../budgets-api.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { BudgetInterface } from '../models/budget.interface';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-budget-planning',
@@ -12,10 +13,12 @@ import { BudgetInterface } from '../models/budget.interface';
   styleUrls: ['./budget-planning.component.scss'],
   providers: [CategoriesApiService, BudgetsApiService]
 })
-export class BudgetPlanningComponent implements OnInit {
+export class BudgetPlanningComponent implements OnInit, OnDestroy {
   selectedMonth: Date;
   selectedCategory: any;
   templates: CategoryTemplateOptionInterface[];
+  destroyed$ = new Subject();
+  budget: BudgetInterface;
 
   constructor(
     private categoriesApiService: CategoriesApiService,
@@ -34,14 +37,19 @@ export class BudgetPlanningComponent implements OnInit {
     })
   }
 
+  ngOnDestroy() {
+    this.destroyed$.next();
+    this.destroyed$.complete();
+  }
+
   selectMonth(value: any): void {
     console.log(value);
   }
 
   getBudget(id: string): void {
-    this.budgetsApiService.getBudgetDetails(id).pipe(take(1)).subscribe(
+    this.budgetsApiService.getBudgetDetails(id).pipe(takeUntil(this.destroyed$)).subscribe(
       (res: BudgetInterface) => {
-        console.log(res);
+        this.budget = res;
       }
     )
   }
@@ -57,5 +65,9 @@ export class BudgetPlanningComponent implements OnInit {
         });
       }
     )
+  }
+
+  assignCategory(event): void {
+    console.log(event.value);
   }
 }

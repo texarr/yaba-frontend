@@ -7,6 +7,10 @@
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
+h1, h2, h3, h4 {
+  margin-top: 0;
+}
+
 // primeNG global styles
 .p-grid {
   margin-right: 0;
@@ -16,7 +20,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 
 p-calendar,
-p-dropdown,
+p-dropdown.fullWidth,
 .p-dropdown {
   width: 100%;
 }
