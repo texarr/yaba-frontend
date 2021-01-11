@@ -4,8 +4,10 @@ import { take, takeUntil } from 'rxjs/operators';
 import { CategoryTemplateOptionInterface } from '../../categories/models/category-template-option.interface';
 import { BudgetsApiService } from '../budgets-api.service';
 import { ActivatedRoute } from '@angular/router';
-import { BudgetInterface } from '../models/budget.interface';
+import { BudgetInterface, BudgetPlanSummary } from '../models/budget.interface';
 import { Subject } from 'rxjs';
+import * as moment from 'moment'
+import { CategoryTemplateInterface } from '../../categories/models/category-template.interface';
 
 @Component({
   selector: 'app-budget-planning',
@@ -15,6 +17,7 @@ import { Subject } from 'rxjs';
 })
 export class BudgetPlanningComponent implements OnInit, OnDestroy {
   selectedMonth: Date;
+  selectedMonthNo: number;
   selectedCategory: any;
   templates: CategoryTemplateOptionInterface[];
   destroyed$ = new Subject();
@@ -42,8 +45,10 @@ export class BudgetPlanningComponent implements OnInit, OnDestroy {
     this.destroyed$.complete();
   }
 
-  selectMonth(value: any): void {
-    console.log(value);
+  selectMonth(value): void {
+    // todo: select categories template first exception
+    this.selectedMonth = value;
+    this.selectedMonthNo = Number(moment(value).format('M'));
   }
 
   getBudget(id: string): void {
@@ -67,7 +72,31 @@ export class BudgetPlanningComponent implements OnInit, OnDestroy {
     )
   }
 
-  assignCategory(event): void {
-    console.log(event.value);
+  assignTemplate(event): void {
+    this.categoriesApiService.getTemplateCategories(event.value).pipe(take(1)).subscribe(
+      (res) => {
+        this.prepareCategories(res, this.budget);
+
+        console.log(res);
+        console.log(this.selectedMonth);
+        console.log(this.selectedMonthNo);
+        console.log(this.budget);
+      }
+    )
+  }
+
+  prepareCategories(template: CategoryTemplateInterface, budget: BudgetInterface): any {
+    for (let i = 1; i < 13; i++) {
+      if (!budget.month) {
+        budget.month = []
+      }
+      budget.month.push(
+        {
+          monthNo: i,
+          categories: template,
+          plan: new BudgetPlanSummary()
+        }
+      )
+    }
   }
 }
