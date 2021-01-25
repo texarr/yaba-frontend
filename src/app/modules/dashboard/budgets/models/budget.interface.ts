@@ -7,13 +7,13 @@ export interface BudgetInterface {
   status: BudgetStatusEnum;
   year: number;
   isActive: boolean;
-  month?: BudgetMonthInterface[];
+  months?: BudgetMonthInterface[];
 }
 
 export interface BudgetMonthInterface {
   monthNo: number;
-  categories: CategoryTemplateInterface,
-  plan: BudgetPlanSummary;
+  categories: CategoryTemplateInterface;
+  monthSummary: BudgetPlanSummary
 }
 
 export class BudgetPlanSummary {

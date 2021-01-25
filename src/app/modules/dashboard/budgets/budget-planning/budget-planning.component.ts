@@ -87,14 +87,14 @@ export class BudgetPlanningComponent implements OnInit, OnDestroy {
 
   prepareCategories(template: CategoryTemplateInterface, budget: BudgetInterface): any {
     for (let i = 1; i < 13; i++) {
-      if (!budget.month) {
-        budget.month = []
+      if (!budget.months) {
+        budget.months = []
       }
-      budget.month.push(
+      budget.months.push(
         {
           monthNo: i,
           categories: template,
-          plan: new BudgetPlanSummary()
+          monthSummary: new BudgetPlanSummary()
         }
       )
     }
