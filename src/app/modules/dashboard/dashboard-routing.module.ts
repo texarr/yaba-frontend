@@ -7,25 +7,31 @@ import { BudgetPlanningComponent } from './budgets/budget-planning/budget-planni
 
 const routes: Routes = [
   {
-    path: '', component: DashboardComponent, children: [
+    path: '',
+    component: DashboardComponent,
+    children: [
       {
-        path: 'categories', component: CategoriesComponent
+        path: 'categories',
+        component: CategoriesComponent,
       },
       {
-        path: 'budgets', component: BudgetsComponent
+        path: 'budgets',
+        component: BudgetsComponent,
       },
       {
-        path: 'budget/plan/:id', component: BudgetPlanningComponent
+        path: 'budget/plan/:id',
+        component: BudgetPlanningComponent,
       },
       {
-        path: '**', redirectTo: ''
-      }
-    ]
-  }
-]
+        path: '**',
+        redirectTo: '',
+      },
+    ],
+  },
+];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class DashboardRoutingModule { }
+export class DashboardRoutingModule {}

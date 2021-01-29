@@ -8,7 +8,7 @@ import { UserConfirmationCallBack } from '../models/user.model';
 @Component({
   selector: 'app-confirm',
   templateUrl: './confirm.component.html',
-  styleUrls: ['./confirm.component.scss']
+  styleUrls: ['./confirm.component.scss'],
 })
 export class ConfirmComponent implements OnInit {
   confirmationToken: string;
@@ -18,14 +18,13 @@ export class ConfirmComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private transloco: TranslocoService
-  ) {
-  }
+  ) {}
 
   async ngOnInit(): Promise<void> {
     this.route.paramMap.subscribe(async (param) => {
       this.confirmationToken = param.get('confirmationToken');
       await this.confirmAccount();
-    })
+    });
   }
 
   async confirmAccount() {
@@ -36,13 +35,15 @@ export class ConfirmComponent implements OnInit {
           this.transloco.translate('messages.message.accountConfirmed.title'),
           this.transloco.translate('messages.message.accountConfirmed.message')
         );
-      }, (err: HttpErrorResponse) => {
+      },
+      (err: HttpErrorResponse) => {
         this.authService.handleCallbackErrorMessage(err);
-      });
+      }
+    );
 
     setTimeout(() => {
       this.router.navigateByUrl('/auth/login');
       this.authService.clearMessages();
-    }, 2000)
+    }, 2000);
   }
 }

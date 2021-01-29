@@ -1,15 +1,20 @@
 <div class="card" *ngIf="newBudgetForm">
-  <form class=p-fluid [formGroup]="newBudgetForm" (ngSubmit)="submit()">
+  <form class="p-fluid" [formGroup]="newBudgetForm" (ngSubmit)="submit()">
     <div class="p-field">
-      <label for="name">{{'budget.newForm.name.label' | transloco}}</label>
-      <input id="name" type="text" pInputText
-             formControlName="budgetName"
-             [placeholder]="'budget.newForm.name.placeholder' | transloco"
-      >
-      <app-validation-message [control]="newBudgetForm.get('budgetName')"></app-validation-message>
+      <label for="name">{{ "budget.newForm.name.label" | transloco }}</label>
+      <input
+        id="name"
+        type="text"
+        pInputText
+        formControlName="budgetName"
+        [placeholder]="'budget.newForm.name.placeholder' | transloco"
+      />
+      <app-validation-message
+        [control]="newBudgetForm.get('budgetName')"
+      ></app-validation-message>
     </div>
     <div class="p-field">
-      <label for="year">{{'budget.newForm.year.label' | transloco}}</label>
+      <label for="year">{{ "budget.newForm.year.label" | transloco }}</label>
       <p-inputNumber
         inputId="year"
         mode="decimal"
@@ -19,12 +24,17 @@
         [placeholder]="'budget.newForm.year.placeholder' | transloco"
       >
       </p-inputNumber>
-      <app-validation-message [control]="newBudgetForm.get('budgetYear')"></app-validation-message>
+      <app-validation-message
+        [control]="newBudgetForm.get('budgetYear')"
+      ></app-validation-message>
     </div>
 
-    <button pButton pRipple type="submit"
-            [disabled]="newBudgetForm.invalid"
-            [label]="'buttons.add' | transloco"
+    <button
+      pButton
+      pRipple
+      type="submit"
+      [disabled]="newBudgetForm.invalid"
+      [label]="'buttons.add' | transloco"
     ></button>
   </form>
 </div>

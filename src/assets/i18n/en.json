@@ -114,6 +114,12 @@
           "input2Label": "Planned expenses",
           "input3Label": "Budget deficit / surplus"
         }
+      },
+      "assign": {
+        "confirm": {
+          "header": "Assign template",
+          "message": "This action will assign category template to this budget, are You sure?"
+        }
       }
     }
   }

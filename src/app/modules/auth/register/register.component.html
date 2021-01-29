@@ -1,10 +1,22 @@
 <ng-container *transloco="let t">
   <div class="form-body p-grid">
-    <form class="p-col-6 p-offset-3 authForm" [formGroup]="newUserForm" (ngSubmit)="signUp(newUserForm.value)">
+    <form
+      class="p-col-6 p-offset-3 authForm"
+      [formGroup]="newUserForm"
+      (ngSubmit)="signUp(newUserForm.value)"
+    >
       <div class="p-field p-grid">
-        <label for="name" class="p-col-fixed authForm__label">{{t('formLabels.name')}}</label>
+        <label for="name" class="p-col-fixed authForm__label">{{
+          t("formLabels.name")
+        }}</label>
         <div class="p-col">
-          <input type="text" id="name" formControlName="name" pInputText [className]="'authForm__input'">
+          <input
+            type="text"
+            id="name"
+            formControlName="name"
+            pInputText
+            [className]="'authForm__input'"
+          />
           <app-validation-message
             [control]="newUserForm.get('name')"
           ></app-validation-message>
@@ -12,9 +24,17 @@
       </div>
 
       <div class="p-field p-grid">
-        <label for="email" class="p-col-fixed authForm__label">{{t('formLabels.email')}}</label>
+        <label for="email" class="p-col-fixed authForm__label">{{
+          t("formLabels.email")
+        }}</label>
         <div class="p-col">
-          <input type="text" id="email" formControlName="email" pInputText [className]="'authForm__input'">
+          <input
+            type="text"
+            id="email"
+            formControlName="email"
+            pInputText
+            [className]="'authForm__input'"
+          />
           <app-validation-message
             [control]="newUserForm.get('email')"
           ></app-validation-message>
@@ -22,10 +42,17 @@
       </div>
 
       <div class="p-field p-grid">
-        <label for="emailConfirm" class="p-col-fixed authForm__label">{{t('formLabels.confirm')}}</label>
+        <label for="emailConfirm" class="p-col-fixed authForm__label">{{
+          t("formLabels.confirm")
+        }}</label>
         <div class="p-col">
-          <input type="text" id="emailConfirm" formControlName="emailConfirm" pInputText
-                 [className]="'authForm__input'">
+          <input
+            type="text"
+            id="emailConfirm"
+            formControlName="emailConfirm"
+            pInputText
+            [className]="'authForm__input'"
+          />
           <app-validation-message
             [control]="newUserForm.get('emailConfirm')"
           ></app-validation-message>
@@ -33,9 +60,17 @@
       </div>
 
       <div class="p-field p-grid">
-        <label for="pass" class="p-col-fixed authForm__label">{{t('formLabels.password')}}</label>
+        <label for="pass" class="p-col-fixed authForm__label">{{
+          t("formLabels.password")
+        }}</label>
         <div class="p-col">
-          <input type="password" id="pass" formControlName="password" pInputText [className]="'authForm__input'">
+          <input
+            type="password"
+            id="pass"
+            formControlName="password"
+            pInputText
+            [className]="'authForm__input'"
+          />
           <app-validation-message
             [control]="newUserForm.get('password')"
           ></app-validation-message>
@@ -43,19 +78,36 @@
       </div>
 
       <div class="p-field p-grid">
-        <label for="pass2" class="p-col-fixed authForm__label">{{t('formLabels.confirm')}}</label>
+        <label for="pass2" class="p-col-fixed authForm__label">{{
+          t("formLabels.confirm")
+        }}</label>
         <div class="p-col">
-          <input type="password" id="pass2" formControlName="passwordRepeat" pInputText [className]="'authForm__input'">
+          <input
+            type="password"
+            id="pass2"
+            formControlName="passwordRepeat"
+            pInputText
+            [className]="'authForm__input'"
+          />
           <app-validation-message
             [control]="newUserForm.get('passwordRepeat')"
           ></app-validation-message>
         </div>
       </div>
 
-      <button type="submit" [disabled]="newUserForm.invalid || newUserForm.disabled" pButton [label]="t('buttons.submit')"></button>
+      <button
+        type="submit"
+        [disabled]="newUserForm.invalid || newUserForm.disabled"
+        pButton
+        [label]="t('buttons.submit')"
+      ></button>
 
-      <button type="button" pButton [label]="t('buttons.resendActivation')"
-              routerLink="/auth/mailer/sendActivationToken"></button>
+      <button
+        type="button"
+        pButton
+        [label]="t('buttons.resendActivation')"
+        routerLink="/auth/mailer/sendActivationToken"
+      ></button>
     </form>
   </div>
 </ng-container>

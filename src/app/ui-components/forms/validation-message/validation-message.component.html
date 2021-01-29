@@ -1,7 +1,9 @@
 <ng-container *transloco="let t">
   <ng-container *ngIf="(control.dirty || control.touched) && control.invalid">
     <div *ngFor="let error of getErrors()">
-      <small *ngIf="error.value" class="p-invalid inputMsg">{{t('formValidators.' + error.keyError)}}</small>
+      <small *ngIf="error.value" class="p-invalid inputMsg">{{
+        t("formValidators." + error.keyError)
+      }}</small>
     </div>
   </ng-container>
 </ng-container>

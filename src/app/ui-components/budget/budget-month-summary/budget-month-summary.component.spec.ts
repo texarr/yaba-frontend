@@ -8,9 +8,8 @@ describe('BudgetMonthSummaryComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ BudgetMonthSummaryComponent ]
-    })
-    .compileComponents();
+      declarations: [BudgetMonthSummaryComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

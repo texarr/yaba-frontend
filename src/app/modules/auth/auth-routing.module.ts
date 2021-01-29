@@ -8,28 +8,35 @@ import { ResendActivationMailComponent } from './resend-activation-mail/resend-a
 
 const routes: Routes = [
   {
-    path: '', component: AuthComponent, children: [
+    path: '',
+    component: AuthComponent,
+    children: [
       {
-        path: 'register', component: RegisterComponent
+        path: 'register',
+        component: RegisterComponent,
       },
       {
-        path: 'login', component: LoginComponent
+        path: 'login',
+        component: LoginComponent,
       },
       {
-        path: 'confirm/:confirmationToken', component: ConfirmComponent
+        path: 'confirm/:confirmationToken',
+        component: ConfirmComponent,
       },
       {
-        path: 'mailer/sendActivationToken', component: ResendActivationMailComponent
+        path: 'mailer/sendActivationToken',
+        component: ResendActivationMailComponent,
       },
       {
-        path: '**', redirectTo: 'login'
-      }
-    ]
-  }
-]
+        path: '**',
+        redirectTo: 'login',
+      },
+    ],
+  },
+];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AuthRoutingModule { }
+export class AuthRoutingModule {}

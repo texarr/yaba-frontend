@@ -1,15 +1,19 @@
 <div class="dashboard">
   <div class="dashboard__header">
     <div class="dashboard__header__button dashboard__header__button--menu">
-      <i class="dashboard__header__button__icon p-menuitem-icon pi pi-bars"
-         (click)="toggleMenu()"></i>
+      <i
+        class="dashboard__header__button__icon p-menuitem-icon pi pi-bars"
+        (click)="toggleMenu()"
+      ></i>
     </div>
 
     <div class="pageTitle"><h2>Logo</h2></div>
 
     <div class="dashboard__header__button dashboard__header__button--logout">
-      <i class="dashboard__header__button__icon p-menuitem-icon pi pi-sign-out"
-         (click)="handleLogout()">
+      <i
+        class="dashboard__header__button__icon p-menuitem-icon pi pi-sign-out"
+        (click)="handleLogout()"
+      >
       </i>
     </div>
   </div>
@@ -20,7 +24,11 @@
     </div>
 
     <div class="dashboard__menu" [@openClose]="isOpen ? 'open' : 'closed'">
-      <p-panelMenu [model]="menuItems" class="dashboard__menu__panel" (click)="toggleMenu()"></p-panelMenu>
+      <p-panelMenu
+        [model]="menuItems"
+        class="dashboard__menu__panel"
+        (click)="toggleMenu()"
+      ></p-panelMenu>
     </div>
 
     <div class="dashboard__content">

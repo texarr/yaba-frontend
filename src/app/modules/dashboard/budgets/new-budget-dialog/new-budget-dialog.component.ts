@@ -7,7 +7,7 @@ import * as moment from 'moment';
 @Component({
   selector: 'app-new-budget-dialog',
   templateUrl: './new-budget-dialog.component.html',
-  styleUrls: ['./new-budget-dialog.component.scss']
+  styleUrls: ['./new-budget-dialog.component.scss'],
 })
 export class NewBudgetDialogComponent implements OnInit {
   newBudgetForm: FormGroup;
@@ -16,17 +16,20 @@ export class NewBudgetDialogComponent implements OnInit {
     public ref: DynamicDialogRef,
     public config: DynamicDialogConfig,
     private fb: FormBuilder
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     const year = moment().format('YYYY').toString();
     this.newBudgetForm = this.fb.group({
       budgetName: this.fb.control('', [Validators.required]),
-      budgetYear: this.fb.control(Number(year), [Validators.required, RxwebValidators.numeric({
-        allowDecimal: false,
-        acceptValue: 1
-      })])
-    })
+      budgetYear: this.fb.control(Number(year), [
+        Validators.required,
+        RxwebValidators.numeric({
+          allowDecimal: false,
+          acceptValue: 1,
+        }),
+      ]),
+    });
   }
 
   submit(): void {

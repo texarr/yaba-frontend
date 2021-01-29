@@ -1,16 +1,12 @@
 <ng-container>
   <div class="newCategory">
     <div class="p-field newCategory__input">
-      <label for="templateName">{{'inputs.templateName' | transloco}}</label>
-      <input
-        id="templateName"
-        pInputText
-        [(ngModel)]="newTemplateName"
-      >
+      <label for="templateName">{{ "inputs.templateName" | transloco }}</label>
+      <input id="templateName" pInputText [(ngModel)]="newTemplateName" />
     </div>
 
     <div *ngIf="config.data.templates">
-      <label for="templates">{{'inputs.categoryTemplate' | transloco}}</label>
+      <label for="templates">{{ "inputs.categoryTemplate" | transloco }}</label>
       <p-dropdown
         id="templates"
         [options]="config.data.templates"
@@ -25,13 +21,15 @@
         [label]="'buttons.createTemplate' | transloco"
         iconPos="left"
         [disabled]="newTemplateName === '' || newTemplateName === undefined"
-        (click)="createNewCategory()">
+        (click)="createNewCategory()"
+      >
       </p-button>
 
       <p-button
         [label]="'buttons.cancelChanges' | transloco"
         iconPos="left"
-        (click)="resetForm()">
+        (click)="resetForm()"
+      >
       </p-button>
     </div>
   </div>

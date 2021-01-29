@@ -2,17 +2,20 @@ import { Injectable } from '@angular/core';
 import { Message } from 'primeng/api';
 import { HttpErrorResponse } from '@angular/common/http';
 
-
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DashboardService {
   msgs: Message[] = [];
 
-  constructor() {
-  }
+  constructor() {}
 
-  handleRequestCallbackMessage(severity: string, message: string, detail: string, clearPrevious = true): void {
+  handleRequestCallbackMessage(
+    severity: string,
+    message: string,
+    detail: string,
+    clearPrevious = true
+  ): void {
     if (clearPrevious) {
       this.msgs = [];
     }
@@ -20,8 +23,8 @@ export class DashboardService {
     this.msgs.push({
       severity: severity,
       summary: message,
-      detail: detail
-    })
+      detail: detail,
+    });
   }
 
   handleCallbackErrorMessage(err: HttpErrorResponse): void {
@@ -30,14 +33,14 @@ export class DashboardService {
       severity: 'error',
       summary: `Http Error: Status: ${err.status.toString()}`,
       detail: `${err.error.message}`,
-    })
+    });
   }
 
   clearMessages(timeout?: number): void {
     if (timeout) {
       setTimeout(() => {
-         this.msgs = [];
-      }, timeout)
+        this.msgs = [];
+      }, timeout);
       return;
     }
     this.msgs = [];

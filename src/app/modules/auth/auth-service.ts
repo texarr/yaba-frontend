@@ -4,7 +4,7 @@ import {
   UserLoginCallback,
   UserLoginPayload,
   UserRegisterCallback,
-  UserRegisterPayload
+  UserRegisterPayload,
 } from './models/user.model';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
@@ -12,34 +12,48 @@ import { MailerConfirmationPayload } from './models/mailer-confirmation-payload.
 import { Message } from 'primeng/api';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
   apiBase = environment.apiBase;
   msgs: Message[] = [];
 
-  constructor(
-    private http: HttpClient
-  ) {
-  }
+  constructor(private http: HttpClient) {}
 
   async signUp(userDto: UserRegisterPayload): Promise<UserRegisterCallback> {
-    return this.http.post<UserRegisterCallback>(`${this.apiBase}/auth/register`, userDto).toPromise();
+    return this.http
+      .post<UserRegisterCallback>(`${this.apiBase}/auth/register`, userDto)
+      .toPromise();
   }
 
-  async confirmSignUp(confirmationToken: string): Promise<UserConfirmationCallBack> {
-    return this.http.get<UserConfirmationCallBack>(`${this.apiBase}/auth/confirm/${confirmationToken}`).toPromise();
+  async confirmSignUp(
+    confirmationToken: string
+  ): Promise<UserConfirmationCallBack> {
+    return this.http
+      .get<UserConfirmationCallBack>(
+        `${this.apiBase}/auth/confirm/${confirmationToken}`
+      )
+      .toPromise();
   }
 
   async signIn(userPayload: UserLoginPayload): Promise<UserLoginCallback> {
-    return this.http.post<UserLoginCallback>(`${this.apiBase}/auth/login`, userPayload).toPromise();
+    return this.http
+      .post<UserLoginCallback>(`${this.apiBase}/auth/login`, userPayload)
+      .toPromise();
   }
 
   async resendEmail(mailerPayload: MailerConfirmationPayload): Promise<void> {
-    return this.http.post<void>(`${this.apiBase}/mailer/resendEmail`, mailerPayload).toPromise();
+    return this.http
+      .post<void>(`${this.apiBase}/mailer/resendEmail`, mailerPayload)
+      .toPromise();
   }
 
-  handleRequestCallbackMessage(severity: string, message: string, detail: string, clearPrevious = true): void {
+  handleRequestCallbackMessage(
+    severity: string,
+    message: string,
+    detail: string,
+    clearPrevious = true
+  ): void {
     if (clearPrevious) {
       this.msgs = [];
     }
@@ -47,8 +61,8 @@ export class AuthService {
     this.msgs.push({
       severity: severity,
       summary: message,
-      detail: detail
-    })
+      detail: detail,
+    });
   }
 
   handleCallbackErrorMessage(err: HttpErrorResponse): void {
@@ -57,7 +71,7 @@ export class AuthService {
       severity: 'error',
       summary: `Http Error: Status: ${err.status.toString()}`,
       detail: `${err.error.message}`,
-    })
+    });
   }
 
   clearMessages(): void {

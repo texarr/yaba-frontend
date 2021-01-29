@@ -20,7 +20,7 @@ import { BudgetPlanningComponent } from './budgets/budget-planning/budget-planni
     CategoriesComponent,
     NewCategoryDialogComponent,
     NewBudgetDialogComponent,
-    BudgetPlanningComponent
+    BudgetPlanningComponent,
   ],
   imports: [
     CommonModule,
@@ -32,9 +32,6 @@ import { BudgetPlanningComponent } from './budgets/budget-planning/budget-planni
     MessagesModule,
   ],
   providers: [DashboardService],
-  entryComponents: [
-    NewCategoryDialogComponent,
-    NewBudgetDialogComponent
-  ]
+  entryComponents: [NewCategoryDialogComponent, NewBudgetDialogComponent],
 })
-export class DashboardModule { }
+export class DashboardModule {}

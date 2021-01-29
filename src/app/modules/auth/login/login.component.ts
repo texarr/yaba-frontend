@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
   public loginForm: FormGroup;
@@ -20,20 +20,20 @@ export class LoginComponent implements OnInit {
     private authService: AuthService,
     private transloco: TranslocoService,
     private router: Router
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, RxwebValidators.email()]],
-      password: ['', [Validators.required]]
-    })
+      password: ['', [Validators.required]],
+    });
   }
 
   async onLogin(user) {
     const userLoginPayload: UserLoginPayload = {
       email: user.email,
-      password: user.password
-    }
+      password: user.password,
+    };
 
     await this.authService.signIn(userLoginPayload).then(
       (res: UserLoginCallback) => {
@@ -41,17 +41,18 @@ export class LoginComponent implements OnInit {
           'success',
           this.transloco.translate('messages.message.loginSuccess'),
           this.transloco.translate('messages.message.welcome') + res.user.name
-        )
+        );
 
         localStorage.setItem('yabaAuth', res.accessToken);
 
         setTimeout(() => {
           this.authService.clearMessages();
-          this.router.navigateByUrl('/dashboard')
+          this.router.navigateByUrl('/dashboard');
         }, 2000);
-      }, (err: HttpErrorResponse) => {
+      },
+      (err: HttpErrorResponse) => {
         this.authService.handleCallbackErrorMessage(err);
       }
-    )
+    );
   }
 }

@@ -5,7 +5,7 @@ import {
   HttpResponse,
   HttpHandler,
   HttpEvent,
-  HttpErrorResponse
+  HttpErrorResponse,
 } from '@angular/common/http';
 
 import { Observable, throwError } from 'rxjs';
@@ -20,11 +20,15 @@ export class JwtInterceptor implements HttpInterceptor {
     const token: string = localStorage.getItem('yabaAuth');
 
     if (token) {
-      req = req.clone({ headers: req.headers.set('Authorization', 'Bearer ' + token) });
+      req = req.clone({
+        headers: req.headers.set('Authorization', 'Bearer ' + token),
+      });
     }
 
     if (!req.headers.has('Content-Type')) {
-      req = req.clone({ headers: req.headers.set('Content-Type', 'application/json') });
+      req = req.clone({
+        headers: req.headers.set('Content-Type', 'application/json'),
+      });
     }
 
     req = req.clone({ headers: req.headers.set('Accept', 'application/json') });
@@ -39,6 +43,7 @@ export class JwtInterceptor implements HttpInterceptor {
       catchError((err: HttpErrorResponse) => {
         // console.log('error--->>>', err);
         return throwError(err);
-      }));
+      })
+    );
   }
 }

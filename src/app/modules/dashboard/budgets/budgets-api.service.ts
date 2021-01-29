@@ -5,30 +5,36 @@ import { Observable } from 'rxjs';
 import { BudgetInterface } from './models/budget.interface';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class BudgetsApiService {
   apiBase = environment.apiBase;
 
-  constructor(private http: HttpClient) {
-  }
+  constructor(private http: HttpClient) {}
 
   getBudgets(): Observable<BudgetInterface[]> {
-    return this.http.get<BudgetInterface[]>(`${this.apiBase}/dashboard/budgets`);
+    return this.http.get<BudgetInterface[]>(
+      `${this.apiBase}/dashboard/budgets`
+    );
   }
 
   getBudgetDetails(id: string): Observable<BudgetInterface> {
-    return this.http.get<BudgetInterface>(`${this.apiBase}/dashboard/budgets/${id}`)
+    return this.http.get<BudgetInterface>(
+      `${this.apiBase}/dashboard/budgets/${id}`
+    );
   }
 
   addBudget(name: string, year: number): Observable<BudgetInterface> {
-    return this.http.post<BudgetInterface>(`${this.apiBase}/dashboard/budgets`, {
-      name,
-      year
-    })
+    return this.http.post<BudgetInterface>(
+      `${this.apiBase}/dashboard/budgets`,
+      {
+        name,
+        year,
+      }
+    );
   }
 
   removeBudget(id: string): Observable<void> {
-    return this.http.delete<void>(`${this.apiBase}/dashboard/budgets/${id}`)
+    return this.http.delete<void>(`${this.apiBase}/dashboard/budgets/${id}`);
   }
 }

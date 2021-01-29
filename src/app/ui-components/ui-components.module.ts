@@ -13,13 +13,10 @@ import { TooltipModule } from 'primeng/tooltip';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { CalendarModule } from 'primeng/calendar';
 import { BudgetMonthSummaryComponent } from './budget/budget-month-summary/budget-month-summary.component';
-
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
 @NgModule({
-  declarations: [
-    ValidationMessageComponent,
-    BudgetMonthSummaryComponent
-  ],
+  declarations: [ValidationMessageComponent, BudgetMonthSummaryComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -34,6 +31,7 @@ import { BudgetMonthSummaryComponent } from './budget/budget-month-summary/budge
     TooltipModule,
     InputNumberModule,
     CalendarModule,
+    ConfirmDialogModule,
   ],
   exports: [
     ValidationMessageComponent,
@@ -47,6 +45,7 @@ import { BudgetMonthSummaryComponent } from './budget/budget-month-summary/budge
     TooltipModule,
     InputNumberModule,
     CalendarModule,
-  ]
+    ConfirmDialogModule,
+  ],
 })
-export class UiComponentsModule { }
+export class UiComponentsModule {}

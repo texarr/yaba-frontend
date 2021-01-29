@@ -33,28 +33,40 @@
       <div class="budgetPlan__navigator__summary">
         <app-budget-month-summary
           [header]="'budget.plan.summary.previousMonth.header' | transloco"
-          [input1Label]="'budget.plan.summary.previousMonth.input1Label' | transloco"
-          [input2Label]="'budget.plan.summary.previousMonth.input2Label' | transloco"
-          [input3Label]="'budget.plan.summary.previousMonth.input3Label' | transloco"
+          [input1Label]="
+            'budget.plan.summary.previousMonth.input1Label' | transloco
+          "
+          [input2Label]="
+            'budget.plan.summary.previousMonth.input2Label' | transloco
+          "
+          [input3Label]="
+            'budget.plan.summary.previousMonth.input3Label' | transloco
+          "
         ></app-budget-month-summary>
       </div>
 
       <div class="budgetPlan__navigator__summary">
         <app-budget-month-summary
           [header]="'budget.plan.summary.currentMonth.header' | transloco"
-          [input1Label]="'budget.plan.summary.currentMonth.input1Label' | transloco"
-          [input2Label]="'budget.plan.summary.currentMonth.input2Label' | transloco"
-          [input3Label]="'budget.plan.summary.currentMonth.input3Label' | transloco"
+          [input1Label]="
+            'budget.plan.summary.currentMonth.input1Label' | transloco
+          "
+          [input2Label]="
+            'budget.plan.summary.currentMonth.input2Label' | transloco
+          "
+          [input3Label]="
+            'budget.plan.summary.currentMonth.input3Label' | transloco
+          "
         ></app-budget-month-summary>
       </div>
     </div>
   </div>
 
-  <div class="budgetPlan__table">
+  <div class="budgetPlan__table"></div>
 
-  </div>
+  <div class="budgetPlan__footer"></div>
 
-  <div class="budgetPlan__footer">
-
-  </div>
+  <p-confirmDialog
+    [header]="'budget.plan.assign.confirm.header' | transloco"
+  ></p-confirmDialog>
 </div>

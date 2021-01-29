@@ -13,7 +13,7 @@ export interface BudgetInterface {
 export interface BudgetMonthInterface {
   monthNo: number;
   categories: CategoryTemplateInterface;
-  monthSummary: BudgetPlanSummary
+  monthSummary: BudgetPlanSummary;
 }
 
 export class BudgetPlanSummary {

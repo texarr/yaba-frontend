@@ -6,16 +6,12 @@ import { Message, MessageService } from 'primeng/api';
   selector: 'app-auth',
   templateUrl: './auth.component.html',
   styleUrls: ['./auth.component.scss'],
-  providers: [MessageService]
+  providers: [MessageService],
 })
 export class AuthComponent implements OnInit {
-
-  constructor(
-    public authService: AuthService
-  ) { }
+  constructor(public authService: AuthService) {}
 
   async ngOnInit(): Promise<void> {
     this.authService.handleRequestCallbackMessage('', '', '');
   }
-
 }

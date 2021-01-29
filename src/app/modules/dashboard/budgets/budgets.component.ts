@@ -20,9 +20,8 @@ interface StatusOption {
   selector: 'app-budgets',
   templateUrl: './budgets.component.html',
   styleUrls: ['./budgets.component.scss'],
-  providers: [BudgetsApiService, DialogService]
+  providers: [BudgetsApiService, DialogService],
 })
-
 export class BudgetsComponent implements OnInit, OnDestroy {
   budgets: BudgetInterface[];
   loading: boolean;
@@ -34,7 +33,7 @@ export class BudgetsComponent implements OnInit, OnDestroy {
     private budgetsApiService: BudgetsApiService,
     private router: Router,
     public dialogService: DialogService
-  ) { }
+  ) {}
 
   ngOnDestroy() {
     this.destroyed.next();
@@ -44,33 +43,45 @@ export class BudgetsComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.destroyed = new Subject();
 
-    this.transloco.selectTranslate('budget.statuses.new').pipe(take(1)).subscribe(
-      () => {
+    this.transloco
+      .selectTranslate('budget.statuses.new')
+      .pipe(take(1))
+      .subscribe(() => {
         this.statuses = [
           {
-            label: this.transloco.translate(`budget.statuses.${BudgetStatusEnum.new}`),
-            value: BudgetStatusEnum.new
+            label: this.transloco.translate(
+              `budget.statuses.${BudgetStatusEnum.new}`
+            ),
+            value: BudgetStatusEnum.new,
           },
           {
-            label: this.transloco.translate(`budget.statuses.${BudgetStatusEnum.finished}`),
-            value: BudgetStatusEnum.finished
+            label: this.transloco.translate(
+              `budget.statuses.${BudgetStatusEnum.finished}`
+            ),
+            value: BudgetStatusEnum.finished,
           },
           {
-            label: this.transloco.translate(`budget.statuses.${BudgetStatusEnum.inProgress}`),
-            value: BudgetStatusEnum.inProgress
+            label: this.transloco.translate(
+              `budget.statuses.${BudgetStatusEnum.inProgress}`
+            ),
+            value: BudgetStatusEnum.inProgress,
           },
           {
-            label: this.transloco.translate(`budget.statuses.${BudgetStatusEnum.planned}`),
-            value: BudgetStatusEnum.planned
-          }
-        ]
-      }
-    )
+            label: this.transloco.translate(
+              `budget.statuses.${BudgetStatusEnum.planned}`
+            ),
+            value: BudgetStatusEnum.planned,
+          },
+        ];
+      });
 
     this.getBudgets();
   }
 
-  handleBudgetAction(budget: BudgetInterface, actionType: ActionTypeEnum | string): void {
+  handleBudgetAction(
+    budget: BudgetInterface,
+    actionType: ActionTypeEnum | string
+  ): void {
     switch (actionType) {
       case ActionTypeEnum.plan: {
         this.router.navigateByUrl(`dashboard/budget/plan/${budget.budgetId}`);
@@ -90,15 +101,19 @@ export class BudgetsComponent implements OnInit, OnDestroy {
   }
 
   getBudgets(): void {
-    this.budgetsApiService.getBudgets().pipe(take(1)).subscribe(
-      (res: BudgetInterface[]) => {
-        this.budgets = res;
-      }, (err: HttpErrorResponse) => {
-        if (err.status === 404) {
-          this.budgets = [];
+    this.budgetsApiService
+      .getBudgets()
+      .pipe(take(1))
+      .subscribe(
+        (res: BudgetInterface[]) => {
+          this.budgets = res;
+        },
+        (err: HttpErrorResponse) => {
+          if (err.status === 404) {
+            this.budgets = [];
+          }
         }
-      }
-    )
+      );
   }
 
   handleBudgetAdd(): void {
@@ -106,17 +121,19 @@ export class BudgetsComponent implements OnInit, OnDestroy {
 
     ref.onClose.pipe(take(1)).subscribe((data) => {
       if (data) {
-        this.budgetsApiService.addBudget(data.budgetName, data.budgetYear)
+        this.budgetsApiService
+          .addBudget(data.budgetName, data.budgetYear)
           .pipe(take(1))
-          .subscribe(() => this.getBudgets())
+          .subscribe(() => this.getBudgets());
       }
-    })
+    });
   }
 
   handleBudgetDelete(budget: BudgetInterface): void {
     console.log(budget);
-    this.budgetsApiService.removeBudget(budget.budgetId).pipe(take(1)).subscribe(
-      () => this.getBudgets()
-    )
+    this.budgetsApiService
+      .removeBudget(budget.budgetId)
+      .pipe(take(1))
+      .subscribe(() => this.getBudgets());
   }
 }

@@ -8,9 +8,8 @@ describe('ResendActivationMailComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ResendActivationMailComponent ]
-    })
-    .compileComponents();
+      declarations: [ResendActivationMailComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

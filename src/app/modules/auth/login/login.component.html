@@ -1,10 +1,15 @@
 <ng-container *transloco="let t">
   <div class="form-body p-grid authFormContainer">
-    <form class="p-col-6 p-offset-3 authForm" [formGroup]="loginForm" (ngSubmit)="onLogin(loginForm.value)">
+    <form
+      class="p-col-6 p-offset-3 authForm"
+      [formGroup]="loginForm"
+      (ngSubmit)="onLogin(loginForm.value)"
+    >
       <div class="p-field p-grid">
-
         <!-- todo: make an input component -->
-        <label for="email" class="yInput__label">{{t('formLabels.email')}}</label>
+        <label for="email" class="yInput__label">{{
+          t("formLabels.email")
+        }}</label>
         <div class="">
           <input
             type="text"
@@ -12,25 +17,39 @@
             formControlName="email"
             pInputText
             [className]="'yInput__input'"
-          >
+          />
           <app-validation-message
             [control]="loginForm.get('email')"
           ></app-validation-message>
         </div>
-
       </div>
 
       <div class="p-field p-grid">
-        <label for="pass" class="p-col-fixed authForm__label">{{t('formLabels.password')}}</label>
+        <label for="pass" class="p-col-fixed authForm__label">{{
+          t("formLabels.password")
+        }}</label>
         <div class="p-col">
-          <input type="password" id="pass" formControlName="password" pInputText [className]="'authForm__input'">
+          <input
+            type="password"
+            id="pass"
+            formControlName="password"
+            pInputText
+            [className]="'authForm__input'"
+          />
           <app-validation-message
             [control]="loginForm.get('password')"
           ></app-validation-message>
         </div>
       </div>
 
-      <button type="submit" [disabled]="loginForm.invalid" pButton [label]="t('buttons.login')" icon="pi pi-sign-in" iconPos="right"></button>
+      <button
+        type="submit"
+        [disabled]="loginForm.invalid"
+        pButton
+        [label]="t('buttons.login')"
+        icon="pi pi-sign-in"
+        iconPos="right"
+      ></button>
     </form>
   </div>
 </ng-container>

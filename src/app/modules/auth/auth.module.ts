@@ -13,7 +13,12 @@ import { UiComponentsModule } from '../../ui-components/ui-components.module';
 import { ResendActivationMailComponent } from './resend-activation-mail/resend-activation-mail.component';
 
 @NgModule({
-  declarations: [RegisterComponent, LoginComponent, ConfirmComponent, ResendActivationMailComponent],
+  declarations: [
+    RegisterComponent,
+    LoginComponent,
+    ConfirmComponent,
+    ResendActivationMailComponent,
+  ],
   imports: [
     CommonModule,
     TranslocoModule,
@@ -23,7 +28,7 @@ import { ResendActivationMailComponent } from './resend-activation-mail/resend-a
     RxReactiveFormsModule,
     InputTextModule,
     ButtonModule,
-    UiComponentsModule
-  ]
+    UiComponentsModule,
+  ],
 })
-export class AuthModule { }
+export class AuthModule {}

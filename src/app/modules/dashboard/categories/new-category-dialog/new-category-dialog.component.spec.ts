@@ -8,9 +8,8 @@ describe('NewCategoryDialogComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ NewCategoryDialogComponent ]
-    })
-    .compileComponents();
+      declarations: [NewCategoryDialogComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

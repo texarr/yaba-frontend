@@ -9,22 +9,22 @@ interface ValidationMessage {
 @Component({
   selector: 'app-validation-message',
   templateUrl: './validation-message.component.html',
-  styleUrls: ['./validation-message.component.scss']
+  styleUrls: ['./validation-message.component.scss'],
 })
 export class ValidationMessageComponent {
   @Input() control: AbstractControl;
 
-  constructor() { }
+  constructor() {}
 
   getErrors(): ValidationMessage[] {
     const errors: ValidationErrors = this.control.errors;
     if (errors !== null) {
-      return Object.keys(errors).map(keyError => {
+      return Object.keys(errors).map((keyError) => {
         return {
           keyError,
-          value: errors[keyError]
-        }
-      })
+          value: errors[keyError],
+        };
+      });
     }
     return null;
   }

@@ -3,7 +3,7 @@ import { Component, Input, OnInit } from '@angular/core';
 @Component({
   selector: 'app-budget-month-summary',
   templateUrl: './budget-month-summary.component.html',
-  styleUrls: ['./budget-month-summary.component.scss']
+  styleUrls: ['./budget-month-summary.component.scss'],
 })
 export class BudgetMonthSummaryComponent implements OnInit {
   @Input() header: string;
@@ -18,9 +18,7 @@ export class BudgetMonthSummaryComponent implements OnInit {
 
   disabled = true;
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }

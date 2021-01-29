@@ -9,7 +9,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.scss']
+  styleUrls: ['./register.component.scss'],
 })
 export class RegisterComponent implements OnInit {
   public newUserForm: FormGroup;
@@ -18,29 +18,47 @@ export class RegisterComponent implements OnInit {
     private fb: FormBuilder,
     private authService: AuthService,
     private transloco: TranslocoService
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.newUserForm = this.fb.group({
       name: ['', Validators.required],
       email: ['', [Validators.required, RxwebValidators.email()]],
-      emailConfirm: ['', [Validators.required, RxwebValidators.email(), RxwebValidators.compare({fieldName: 'email'})]],
+      emailConfirm: [
+        '',
+        [
+          Validators.required,
+          RxwebValidators.email(),
+          RxwebValidators.compare({ fieldName: 'email' }),
+        ],
+      ],
       password: ['', [Validators.required]],
-      passwordRepeat: ['', [Validators.required, RxwebValidators.compare({fieldName: 'password'})]]
-    })
+      passwordRepeat: [
+        '',
+        [
+          Validators.required,
+          RxwebValidators.compare({ fieldName: 'password' }),
+        ],
+      ],
+    });
   }
 
   async signUp(user: UserRegisterPayload): Promise<void> {
-    await this.authService.signUp(user).then((res) => {
-      this.authService.handleRequestCallbackMessage(
-        'success',
-        this.transloco.translate('messages.message.registrationSuccess'),
-        this.transloco.translate('messages.message.registrationAuthorizationInfo')
-      )
+    await this.authService.signUp(user).then(
+      (res) => {
+        this.authService.handleRequestCallbackMessage(
+          'success',
+          this.transloco.translate('messages.message.registrationSuccess'),
+          this.transloco.translate(
+            'messages.message.registrationAuthorizationInfo'
+          )
+        );
 
-      this.newUserForm.disable();
-    }, (err: HttpErrorResponse) => {
-      this.authService.handleCallbackErrorMessage(err);
-    })
+        this.newUserForm.disable();
+      },
+      (err: HttpErrorResponse) => {
+        this.authService.handleCallbackErrorMessage(err);
+      }
+    );
   }
 }

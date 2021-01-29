@@ -5,18 +5,18 @@ export interface UserRegisterPayload {
 }
 
 export interface UserRegisterCallback {
-  id:	string;
-  name:	string;
+  id: string;
+  name: string;
   email: string;
-  emailConfirmed:	boolean;
+  emailConfirmed: boolean;
   confirmationToken: string;
 }
 
 export interface UserConfirmationCallBack {
-  id:	string
-  name:	string
-  email: string
-  emailConfirmed:	boolean
+  id: string;
+  name: string;
+  email: string;
+  emailConfirmed: boolean;
 }
 
 export interface UserLoginPayload {

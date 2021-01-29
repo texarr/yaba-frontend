@@ -14,10 +14,7 @@ import { JwtInterceptor } from './interceptors/jwt.interceptor';
 import { ErrorInterceptor } from './interceptors/error.interceptor';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    AuthComponent
-  ],
+  declarations: [AppComponent, AuthComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -25,13 +22,13 @@ import { ErrorInterceptor } from './interceptors/error.interceptor';
     HttpClientModule,
     TranslocoRootModule,
     MessagesModule,
-    MessageModule
+    MessageModule,
   ],
   providers: [
     MessageService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true}
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
