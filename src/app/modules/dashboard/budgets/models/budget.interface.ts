@@ -2,7 +2,7 @@ import { BudgetStatusEnum } from './budget-status.enum';
 import { CategoryTemplateInterface } from '../../categories/models/category-template.interface';
 
 export interface BudgetInterface {
-  budgetId: string;
+  id: string;
   name: string;
   status: BudgetStatusEnum;
   year: number;

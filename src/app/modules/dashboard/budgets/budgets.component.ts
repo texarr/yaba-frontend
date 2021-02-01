@@ -84,7 +84,7 @@ export class BudgetsComponent implements OnInit, OnDestroy {
   ): void {
     switch (actionType) {
       case ActionTypeEnum.plan: {
-        this.router.navigateByUrl(`dashboard/budget/plan/${budget.budgetId}`);
+        this.router.navigateByUrl(`dashboard/budget/plan/${budget.id}`);
         break;
       }
       case ActionTypeEnum.realise: {
@@ -132,7 +132,7 @@ export class BudgetsComponent implements OnInit, OnDestroy {
   handleBudgetDelete(budget: BudgetInterface): void {
     console.log(budget);
     this.budgetsApiService
-      .removeBudget(budget.budgetId)
+      .removeBudget(budget.id)
       .pipe(take(1))
       .subscribe(() => this.getBudgets());
   }
